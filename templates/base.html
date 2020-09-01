@@ -36,8 +36,13 @@
     <title>Body Balance {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    check code from class
+    
+    <header class="container-fluid fixed-top"></header>
 
+    {% if messages %}
+        <div class="message-container"></div>
+    {% endif %}
+    
     {% block page_header%}
     {% endblock %}
 
@@ -46,6 +51,6 @@
 
     {% block postloadjs%}
     {% endblock %}
-    
+
   </body>
 </html>
