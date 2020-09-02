@@ -1,0 +1,32 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: url('../../media/girls.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 300px);  
+    color: rgb(3, 3, 3);
+    font-family: 'Roboto';
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: auto;
+    /* z-index: 1002; */
+    background-color: #333C3C;
+}
+
+nav a {
+    color: #ffffff;
+}
+
+.align-text-center{
+    text-align: center;
+}
+
+.text-margin{
+    margin-top: 500px;
+    margin-left: 700px;
+}
