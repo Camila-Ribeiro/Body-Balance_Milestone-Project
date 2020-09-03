@@ -1,0 +1,27 @@
+[
+  {
+    "pk": 1,
+    "model": "products.category",
+    "fields": {
+      "category_name": "Activewear",
+      "category_friendly_name": "Activewear"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "products.category",
+    "fields": {
+      "category_name": "gym_equipment",
+      "category_friendly_name": "Gym Equipment"
+    }
+  },
+  
+  {
+    "pk": 3,
+    "model": "products.category",
+    "fields": {
+      "category_name": "deals",
+      "category_friendly_name": "Deals"
+    }
+  }
+]
