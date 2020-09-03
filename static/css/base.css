@@ -14,7 +14,7 @@ header {
     position: fixed;
     width: 100%;
     top: auto;
-    /* z-index: 1002; */
+    z-index: 1002;
     background-color: #333C3C;
 }
 
@@ -29,4 +29,20 @@ nav a {
 .text-margin{
     margin-top: 500px;
     margin-left: 700px;
+}
+ /* ---- Code From ckz8780 /boutique_ado_v1 -------*/
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: #e2e3dd;
+	z-index: -1;
+}
+
+ /* ---------------------------------- Products */
+.product-section{
+    margin-top: 100px;
+
 }

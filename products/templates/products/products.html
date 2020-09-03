@@ -10,11 +10,40 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {{ products }}
+    <div class="overlay"></div>
+    <section class="product-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h2 class="">Products</h2>
+                    <hr class="w-25 mt-1 mb-2">
+                </div>
+            </div>
+            <div class="container mt-5">
+                <div class="row row-cols-1 row-cols-md-3">
+                    {% for product in products %}
+                        <div class="col mb-4">
+                            <div class="card h-100">
+                                {% if product.image_file %}
+                                <img src="{{ product.image_url }}" class="card-img-top img-fluid" alt="{{ product.product_name }}">
+                                {% else %}
+                                <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ product.product_name }}">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h6 class="card-title">{{ product.product_name }}</h6>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="mb-0 text-right font-weight-bold">${{ product.price }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}

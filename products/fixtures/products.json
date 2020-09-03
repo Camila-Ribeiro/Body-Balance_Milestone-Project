@@ -4,12 +4,12 @@
     "model": "products.product",
     "fields": {
       "sku": "ff5001340155",
-      "product_name": "Addida Original Crop Top",
+      "product_name": "Adidas Original Crop Top",
       "description": "Bootcut jeans in our just-right original fit are comfortable and look great too.  5-pocket style sits below waist straight fit through seat and thigh bootcut leg 18\" leg opening cotton washable imported extended sizes and washes available online only",
       "price": 53.99,
       "category": 1,
       "rating": 4.6,
-      "image_url": "../../../media/001.pg",
+      "image_url": "/media/001.jpg",
       "image_file": "001.jpg"
     }
   },
@@ -23,7 +23,7 @@
       "price": 58.99,
       "category": 1,
       "rating": 4.6,
-      "image_url": "../../../media/002.pg",
+      "image_url": "/media/002.jpg",
       "image_file": "002.jpg"
     }
   },
@@ -37,7 +37,7 @@
       "price": 205.99,
       "category": 3,
       "rating": 4.7,
-      "image_url": "../../../media/003.pg",
+      "image_url": "/media/003.jpg",
       "image_file": "003.jpg"
     }
   },
@@ -51,7 +51,7 @@
       "price": 169.99,
       "category": 1,
       "rating": 3,
-      "image_url": "../../../media/004.pg",
+      "image_url": "/media/004.jpg",
       "image_file": "004.jpg"
     }
   },
@@ -65,7 +65,7 @@
       "price": 232.99,
       "category": 1,
       "rating": 5,
-      "image_url": "../../../media/005.pg",
+      "image_url": "/media/005.jpg",
       "image_file": "005.jpg"
     }
   },
@@ -79,7 +79,7 @@
       "price": 30.99,
       "category": 3,
       "rating": 4.7,
-      "image_url": "../../../media/006.pg",
+      "image_url": "/media/006.jpg",
       "image_file": "006.jpg"
     }
   },
@@ -93,7 +93,7 @@
       "price": 59,
       "category": 1,
       "rating": 4.4,
-      "image_url": "../../../media/007.pg",
+      "image_url": "/media/007.jpg",
       "image_file": "007.jpg"
     }
   },
@@ -107,7 +107,7 @@
       "price": 36.99,
       "category": 3,
       "rating": 4.5,
-      "image_url": "../../../media/008.pg",
+      "image_url": "/media/008.jpg",
       "image_file": "008.jpg"
     }
   },
@@ -121,7 +121,7 @@
       "price": 169.99,
       "category": 1,
       "rating": 4.7,
-      "image_url": "../../../media/009.pg",
+      "image_url": "/media/009.jpg",
       "image_file": "009.jpg"
     }
   },
@@ -135,7 +135,7 @@
       "price": 33.99,
       "category": 1,
       "rating": 4.4,
-      "image_url": "../../../media/010.pg",
+      "image_url": "/media/010.jpg",
       "image_file": "010.jpg"
     }
   },
@@ -149,7 +149,7 @@
       "price": 29.99,
       "category": 3,
       "rating": 3,
-      "image_url": "../../../media/011.pg",
+      "image_url": "/media/011.jpg",
       "image_file": "011.jpg"
     }
   },
@@ -163,7 +163,7 @@
       "price": 19.99,
       "category": 1,
       "rating": 4.6,
-      "image_url": "../../../media/012.pg",
+      "image_url": "/media/012.jpg",
       "image_file": "012.jpg"
     }
   },
@@ -177,7 +177,7 @@
       "price": 20,
       "category": 3,
       "rating": 3.2,
-      "image_url": "../../../media/013.pg",
+      "image_url": "/media/013.jpg",
       "image_file": "013.jpg"
     }
   },
@@ -191,7 +191,7 @@
       "price": 26.99,
       "category": 3,
       "rating": 4.7,
-      "image_url": "../../../media/014.pg",
+      "image_url": "/media/014.jpg",
       "image_file": "014.jpg"
     }
   },
@@ -205,7 +205,7 @@
       "price": 48.99,
       "category": 2,
       "rating": 4.8,
-      "image_url": "../../../media/015.pg",
+      "image_url": "/media/015.jpg",
       "image_file": "015.jpg"
     }
   },
@@ -219,7 +219,7 @@
       "price": 65.99,
       "category": 2,
       "rating": 4.4,
-      "image_url": "../../../media/016.pg",
+      "image_url": "/media/016.jpg",
       "image_file": "016.jpg"
     }
   },
@@ -233,7 +233,7 @@
       "price": 33.99,
       "category": 3,
       "rating": 4.4,
-      "image_url": "../../../media/017.pg",
+      "image_url": "/media/017.jpg",
       "image_file": "017.jpg"
     }
   },
@@ -247,7 +247,7 @@
       "price": 59.99,
       "category": 2,
       "rating": 4.8,
-      "image_url": "../../../media/018.pg",
+      "image_url": "/media/018.jpg",
       "image_file": "018.jpg"
     }
   },
@@ -261,7 +261,7 @@
       "price": 60.99,
       "category": 2,
       "rating": 5,
-      "image_url": "../../../media/019.pg",
+      "image_url": "/media/019.jpg",
       "image_file": "019.jpg"
     }
   },
@@ -275,7 +275,7 @@
       "price": 20.99,
       "category": 2,
       "rating": 4.7,
-      "image_url": "../../../media/020.pg",
+      "image_url": "/media/020.jpg",
       "image_file": "020.jpg"
     }
   }

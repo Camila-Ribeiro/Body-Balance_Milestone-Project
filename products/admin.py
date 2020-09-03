@@ -11,6 +11,7 @@ class Product_Admin(admin.ModelAdmin):
         'category',
         'price',
         'rating',
+        'image_url',
         'image_file',
     )
 
