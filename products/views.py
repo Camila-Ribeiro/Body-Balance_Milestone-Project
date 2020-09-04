@@ -31,7 +31,7 @@ def shop_all_products(request):
     context = {
         'products': shop_products,
         'search_term': query,
-        'current_categories': categories,
+        'selected_categories': categories,
     }
 
     return render(request, 'products/products.html', context)
