@@ -12,8 +12,23 @@ def shop_all_products(request):
     shop_products = Product.objects.all()
     query = None
     categories = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sort_key = request.GET['sort']
+            sort = sort_key
+            if sort_key == 'name':
+                sort_key = 'lower_name'
+                shop_products = shop_products.annotate(lower_name=Lower('name'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sort_key = f'-{sort_key}'
+            shop_products = shop_products.order_by(sort_key) 
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             shop_products = shop_products.filter(category__category_name__in=categories)
@@ -28,10 +43,13 @@ def shop_all_products(request):
             queries = Q(product_name__icontains=query) | Q(description__icontains=query)
             shop_products = shop_products.filter(queries)
 
+    selected_sorting = f'{sort}_{direction}'
+
     context = {
         'products': shop_products,
         'search_term': query,
         'selected_categories': categories,
+        'selected_sorting': selected_sorting,
     }
 
     return render(request, 'products/products.html', context)
