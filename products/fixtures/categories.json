@@ -3,7 +3,7 @@
     "pk": 1,
     "model": "products.category",
     "fields": {
-      "category_name": "Activewear",
+      "category_name": "activewear",
       "category_friendly_name": "Activewear"
     }
   },
