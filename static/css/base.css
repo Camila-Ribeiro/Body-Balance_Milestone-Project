@@ -46,3 +46,54 @@ nav a {
     margin-top: 100px;
 
 }
+
+/* ---------------------------------- Product Detail */
+.overlay-color{
+    height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: #a8b662;
+	z-index: -1;
+    
+}
+
+.product-detail-section{
+    margin-top: 130px;
+    background: #e2e3dd;
+    width: 80%;
+    border-radius: 20px;
+    margin-left: 10%;
+}
+
+.img-container a{
+    height: 300px;
+    width: 300px;
+    margin-left: 50px;
+}
+
+img-container img{
+    background-size: 300px 350px;
+}
+
+.product-detail-container{
+    height: 300px;
+    width: 300px;
+}
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .product-container {
+        margin-top: 250px;
+    }
+}

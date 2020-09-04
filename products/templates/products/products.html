@@ -25,9 +25,13 @@
                         <div class="col mb-4">
                             <div class="card h-100">
                                 {% if product.image_file %}
-                                <img src="{{ product.image_url }}" class="card-img-top img-fluid" alt="{{ product.product_name }}">
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ product.image_url }}" class="card-img-top img-fluid" alt="{{ product.product_name }}">
+                                </a>
                                 {% else %}
-                                <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ product.product_name }}">
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ product.product_name }}">
+                                </a>
                                 {% endif %}
                                 <div class="card-body">
                                     <h6 class="card-title">{{ product.product_name }}</h6>

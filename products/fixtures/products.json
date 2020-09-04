@@ -154,20 +154,6 @@
     }
   },
   {
-    "pk": 12,
-    "model": "products.product",
-    "fields": {
-      "sku": "ff5002820069",
-      "product_name": "Nike 3-pk. Performance Crew Socks - Boys",
-      "description": "Keep him moving in comfort all day with quality Nike crew socks.  arch support reinforced toe and heel cotton/polyester/spandex washable imported",
-      "price": 19.99,
-      "category": 1,
-      "rating": 4.6,
-      "image_url": "/media/012.jpg",
-      "image_file": "012.jpg"
-    }
-  },
-  {
     "pk": 13,
     "model": "products.product",
     "fields": {
@@ -263,20 +249,6 @@
       "rating": 5,
       "image_url": "/media/019.jpg",
       "image_file": "019.jpg"
-    }
-  },
-  {
-    "pk": 20,
-    "model": "products.product",
-    "fields": {
-      "sku": "ff5003161326",
-      "product_name": "JCPenney Home Oven Mitt",
-      "description": "Keep it cool in the kitchen with this lined oven mitt.  silicone grip protects hand from heat up to 350F contrast woven houndstooth trim fits comfortably on left or right hand handy hanging tie Sold individually. Cotton with cotton lining. Measures 7x13\". Washable. Imported. ",
-      "price": 20.99,
-      "category": 2,
-      "rating": 4.7,
-      "image_url": "/media/020.jpg",
-      "image_file": "020.jpg"
     }
   }
 ]

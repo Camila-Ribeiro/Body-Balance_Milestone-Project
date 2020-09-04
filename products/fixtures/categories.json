@@ -20,8 +20,8 @@
     "pk": 3,
     "model": "products.category",
     "fields": {
-      "category_name": "deals",
-      "category_friendly_name": "Deals"
+      "category_name": "special_offers",
+      "category_friendly_name": "Special Offers"
     }
   }
 ]
