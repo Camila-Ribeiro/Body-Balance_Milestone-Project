@@ -71,6 +71,37 @@ nav a {
     font-size: 1.125rem;
 }
 
+ /* https://codepen.io/phoenixzqy/pen/oLLVGq  */
+.btn-backToTop{
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    font-size: 3em;
+    z-index: 9999;
+    height: 50px;
+    width: 50px;
+    background-color: #a8b662;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.btn-backToTop i{
+position: absolute;
+top: 0px;
+left: 10px;
+color: #fff;
+}
+
+.btn-backToTop i:hover{
+color: rgb(6, 6, 6);
+}
+
+#container{
+height: 900px;
+}
+
 
 
 /* ---------------------------------- Product Detail */
