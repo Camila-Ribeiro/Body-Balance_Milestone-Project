@@ -122,7 +122,7 @@ height: 900px;
     margin-top: 130px;
 }
 
-.product-container{
+.product-container {
     padding: 3rem;
 }
 
@@ -132,12 +132,25 @@ height: 900px;
     margin: 0 auto;
 }
 
-.product-detail-container{
+.product-detail-container {
     max-width: 100%;
 }
 
-.product-detail-container .text-muted{
+.product-detail-container .text-muted {
     margin-bottom: 40px;
+}
+
+.price {
+    font-size: 2rem;
+}
+
+.price small {
+    font-size: 1rem;
+}
+
+.btn-style {
+    background-color:#f3bf26;
+    color: black;
 }
 
 /* -------------------------------- Shop Bag */
@@ -145,6 +158,57 @@ height: 900px;
     background-color: #f3bf26;
     color: black;
 }
+
+/* https://codepen.io/zeyan/pen/PqXBZN */
+/* box-sizing: border-box */
+
+.input-number {
+    width: 80px;
+    padding: 0 12px;
+    vertical-align: top;
+    text-align: center;
+    outline: none;
+}
+  
+
+.input-number,
+.input-number-decrement,
+.input-number-increment {
+    border: 1px solid #ccc;
+    height: 40px;
+    user-select: none;
+}
+  
+
+.input-number-decrement,
+.input-number-increment {
+    display: inline-block;
+    width: 30px;
+    line-height: 38px;
+    background: #f1f1f1;
+    color: #444;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+  
+
+&:active {
+    background: #ddd;
+}
+    
+
+.input-number-decrement {
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+  
+
+.input-number-increment {
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+}
+  
 
 /* -------------------------------- Media Queries */
 
