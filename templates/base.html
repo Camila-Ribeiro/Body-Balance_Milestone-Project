@@ -51,20 +51,43 @@
                 <div class="col col--lg-8 hidden-md hidden-sm hidden-xs align-text-center">
                     <nav>
                         <ul class="nav">
-                            <li class="nav-item">
+                            <li class="list-inline-item">
                                 <a class="nav-link" href="">WORKOUTS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">NUTRITION</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="list-inline-item">
                                 <a class="nav-link" href="{% url 'shop_products' %}">PRODUCTS</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">LOG IN</a>
+                            <li class="list-inline-item">
+                                <a class="nav-link" href="#">MY ACCOUNT</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">REGISTER</a>
+                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user.is_superuser %}
+                                        <a href="" class="dropdown-item">Product Management</a>
+                                    {% endif %}
+                                    <a href="" class="dropdown-item">My Profile</a>
+                                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                                {% else %}
+                                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                                {% endif %}
+                            </div>
+                            <li class="list-inline-item">
+                                <a class="{% if shop_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'shop_bag' %}">
+                                    <div class="text-center">
+                                        <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                        <p class="my-0">
+                                            {% if shop_total %}
+                                                ${{ shop_total|floatformat:2 }}
+                                            {% else %}
+                                                $0.00
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </a>
                             </li>
                         </ul>     
                     </nav>
