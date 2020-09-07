@@ -15,7 +15,6 @@
       "category_friendly_name": "Gym Equipment"
     }
   },
-  
   {
     "pk": 3,
     "model": "products.category",
