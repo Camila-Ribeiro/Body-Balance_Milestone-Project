@@ -9,7 +9,7 @@
       "price": 27.99,
       "category": 1,
       "rating": 4.5,
-      "image_url": "/media/001.jpg",
+      "image_url": "https://i.imgur.com/apQhpwG.jpg",
       "image_file": "001.jpg"
     }
   },
@@ -23,7 +23,7 @@
       "price": 30.00,
       "category": 1,
       "rating": 4.3,
-      "image_url": "/media/002.jpg",
+      "image_url": "https://i.imgur.com/1gcJVpC.jpg",
       "image_file": "002.jpg"
     }
   },
@@ -37,7 +37,7 @@
       "price": 48.95,
       "category": 3,
       "rating": 4.7,
-      "image_url": "/media/003.jpg",
+      "image_url": "https://i.imgur.com/fJVohV5.jpg",
       "image_file": "003.jpg"
     }
   },
@@ -51,7 +51,7 @@
       "price": 140.00,
       "category": 1,
       "rating": 3,
-      "image_url": "/media/004.jpg",
+      "image_url": "https://i.imgur.com/XHUTqBu.jpg",
       "image_file": "004.jpg"
     }
   },
@@ -65,7 +65,7 @@
       "price": 25.00,
       "category": 1,
       "rating": 3.8,
-      "image_url": "/media/005.jpg",
+      "image_url": "https://i.imgur.com/zQbfzE9.jpg",
       "image_file": "005.jpg"
     }
   },
@@ -79,7 +79,7 @@
       "price": 30.99,
       "category": 3,
       "rating": 5,
-      "image_url": "/media/006.jpg",
+      "image_url": "https://i.imgur.com/TxxywlD.jpg",
       "image_file": "006.jpg"
     }
   },
@@ -93,7 +93,7 @@
       "price": 69.99,
       "category": 1,
       "rating": 5,
-      "image_url": "/media/007.jpg",
+      "image_url": "https://i.imgur.com/Us1Gf60.jpg",
       "image_file": "007.jpg"
     }
   },
@@ -107,7 +107,7 @@
       "price": 25.50,
       "category": 3,
       "rating": 4.5,
-      "image_url": "/media/008.jpg",
+      "image_url": "https://i.imgur.com/3zdIRmb.jpg",
       "image_file": "008.jpg"
     }
   },
@@ -121,7 +121,7 @@
       "price": 90.00,
       "category": 1,
       "rating": 4.9,
-      "image_url": "/media/009.jpg",
+      "image_url": "https://i.imgur.com/4GnGEvU.jpg",
       "image_file": "009.jpg"
     }
   },
@@ -135,7 +135,7 @@
       "price": 33.99,
       "category": 1,
       "rating": 4.4,
-      "image_url": "/media/010.jpg",
+      "image_url": "https://i.imgur.com/0h4ruYp.jpg",
       "image_file": "010.jpg"
     }
   },
@@ -149,7 +149,7 @@
       "price": 29.99,
       "category": 3,
       "rating": 3,
-      "image_url": "/media/011.jpg",
+      "image_url": "https://i.imgur.com/SVfuSR5.jpg",
       "image_file": "011.jpg"
     }
   },
@@ -163,7 +163,7 @@
       "price": 50.00,
       "category": 3,
       "rating": 4.7,
-      "image_url": "/media/013.jpg",
+      "image_url": "https://i.imgur.com/ceUbYT8.jpg",
       "image_file": "013.jpg"
     }
   },
@@ -177,7 +177,7 @@
       "price": 99.95,
       "category": 3,
       "rating": 4.7,
-      "image_url": "/media/014.jpg",
+      "image_url": "https://i.imgur.com/ZnSu6l1.jpg",
       "image_file": "014.jpg"
     }
   },
@@ -191,7 +191,7 @@
       "price": 65.90,
       "category": 2,
       "rating": 4.8,
-      "image_url": "/media/015.jpg",
+      "image_url": "https://i.imgur.com/03E3up3.jpg",
       "image_file": "015.jpg"
     }
   },
@@ -205,7 +205,7 @@
       "price": 135.85,
       "category": 2,
       "rating": 4.4,
-      "image_url": "/media/016.jpg",
+      "image_url": "https://i.imgur.com/GCnBzVF.jpg",
       "image_file": "016.jpg"
     }
   },
@@ -219,7 +219,7 @@
       "price": 68.00,
       "category": 3,
       "rating": 4.4,
-      "image_url": "/media/017.jpg",
+      "image_url": "https://i.imgur.com/KeY9qei.jpg",
       "image_file": "017.jpg"
     }
   },
@@ -233,7 +233,7 @@
       "price": 135.77,
       "category": 2,
       "rating": 4.8,
-      "image_url": "/media/018.jpg",
+      "image_url": "https://i.imgur.com/FrQKNik.jpg",
       "image_file": "018.jpg"
     }
   },
@@ -247,7 +247,7 @@
       "price": 99.00,
       "category": 2,
       "rating": 5,
-      "image_url": "/media/019.jpg",
+      "image_url": "https://i.imgur.com/Mg493ZX.jpg",
       "image_file": "019.jpg"
     }
   }
