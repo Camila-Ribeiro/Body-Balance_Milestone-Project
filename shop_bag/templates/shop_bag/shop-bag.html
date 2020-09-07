@@ -52,12 +52,23 @@
                                     <p class="my-0"><strong>{{ item.product.product_name }}</strong></p>
                                     <p class="my-0 small text-muted">SKU {{ item.product.sku|upper }}</p>
                                     <p class="my-0"><strong>Size </strong>{% if item.product.product_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                    <a class="remove-item text-danger float-left" id="remove_{{ item.product_id }}" 
+                                        data-size="{{ item.size }}"><small>Remove</small></a>
                                 </td>
                                 <td class="py-2">
                                     <p class="my-0">€{{ item.product.price }}</p>
                                 </td>
                                 <td class="text-center py-2">
-                                    <p class="my-0">{{ item.product_quantity }}</p>
+                                    <form class="form update-form" method="POST" action="">
+                                        {% csrf_token %}
+                                        <span class="mt-0 input-number-decrement">–</span><input class="input-number" type="text" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}"><span class="input-number-increment">+</span>
+                                        
+                                        {% if item.product.product_sizes %}
+                                            <input type="hidden" name="product_size" value="{{ item.size }}">
+                                        {% endif %}
+                                    </form>
+                                    <a class="update-link text-info"><small>Update</small></a>
+                                    
                                 </td>
                                 <td class="text-right py-2">
                                     <p class="my-0">€{{ item.product.price }}</p>
@@ -117,4 +128,32 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/product_quantity_script.html' %}
+
+<!-- <script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var size = $(this).data('size');
+        var url = `/bag/remove/${itemId}`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'size': size};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script> -->
+
 {% endblock %}
