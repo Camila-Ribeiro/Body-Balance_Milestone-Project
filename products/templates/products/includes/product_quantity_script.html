@@ -1,0 +1,51 @@
+<!--https://codepen.io/zeyan/pen/PqXBZN-->
+
+<script type="text/javascript">
+    (function() {
+
+    window.inputNumber = function(el) {
+
+    var min = el.attr('min') || false;
+    var max = el.attr('max') || false;
+
+    var els = {};
+
+    els.dec = el.prev();
+    els.inc = el.next();
+
+    el.each(function() {
+        init($(this));
+    });
+
+    function init(el) {
+
+        els.dec.on('click', decrement);
+        els.inc.on('click', increment);
+
+         // Decrement quantity
+        function decrement() {
+        var value = el[0].value;
+        value--;
+        if(!min || value >= min) {
+            el[0].value = value;
+        }
+        }
+
+         // Increment quantity
+        function increment() {
+        var value = el[0].value;
+        value++;
+        if(!max || value <= max) {
+            el[0].value = value++;
+        }
+        }
+    }
+    }
+    })();
+
+    inputNumber($('.input-number'));
+</script>
+
+// Disable +/- buttons outside 1-99 range
+// Ensure proper enabling/disabling of all inputs on page load
+// Check enable/disable every time the input is changed
