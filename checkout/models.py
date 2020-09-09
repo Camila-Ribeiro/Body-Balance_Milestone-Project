@@ -37,7 +37,7 @@ class ProductOrder(models.Model):
         Update shopping bag total each time an order is added to the queue,
         accounting for delivery costs.
         """
-        self.order_total = self.oderqueue.aggregate(Sum('oderqueue_total'))['oderqueue_total__sum']
+        self.order_total = self.lineorders.aggregate(Sum('lineorder_total'))['lineorder_total__sum']
         if self.order_total < settings.FREE_DELIVERY:
             self.delivery_cost = self.order_total * settings.DELIVERY_PERCENTAGE / 100
         else:
@@ -57,19 +57,19 @@ class ProductOrder(models.Model):
     def __str__(self):
         return self.order_number
 
-class OrderQueue(models.Model):
-    order = models.ForeignKey(ProductOrder, null=False, blank=False, on_delete=models.CASCADE, related_name='oderqueue')
+class ProductLineOrder(models.Model):
+    order = models.ForeignKey(ProductOrder, null=False, blank=False, on_delete=models.CASCADE, related_name='lineorders')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     product_size = models.CharField(max_length=2, null=True, blank=True) # XS, S, M, L, XL
     product_quantity = models.IntegerField(null=False, blank=False, default=0)
-    orderqueue_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    lineorder_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         """
-        Override the original save method to set the queue order total
+        Override the original save method to set the product line order total
         and update the order total.
         """
-        self.orderqueue_total = self.product.price * self.product_quantity
+        self.lineorder_total = self.product.price * self.product_quantity
         super().save(*args, **kwargs)
 
     def __str__(self):
