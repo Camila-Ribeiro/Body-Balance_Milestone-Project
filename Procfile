@@ -1,0 +1,1 @@
+web: gunicorn body_balance.wsgi:application
