@@ -37,7 +37,7 @@ class ProductOrder(models.Model):
         Update shopping bag total each time an order is added to the queue,
         accounting for delivery costs.
         """
-        self.order_total = self.lineorders.aggregate(Sum('lineorder_total'))['lineorder_total__sum']
+        self.order_total = self.lineorders.aggregate(Sum('lineorder_total'))['lineorder_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY:
             self.delivery_cost = self.order_total * settings.DELIVERY_PERCENTAGE / 100
         else:
