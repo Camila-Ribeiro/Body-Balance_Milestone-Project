@@ -52,7 +52,11 @@ def checkout(request):
         }
         order_form = ProductOrderForm(form_database)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pay_intent_id = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pay_intent_id
+            order.original_shop_bag = json.dumps(shop_bag)
+            order.save()
             for product_id, item_data in shop_bag.items():
                 try:
                     product = Product.objects.get(id=product_id)
