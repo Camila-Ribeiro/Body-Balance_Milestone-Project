@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
@@ -8,8 +9,27 @@ from products.models import Product
 from shop_bag.contexts import bag_products
 
 import stripe
+import json
 
 # Create your views here.
+
+
+@require_POST
+def cache_checkout(request):
+    try:
+        pay_intent_id = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pay_intent_id, 
+            metadata={
+                'shop_bag': json.dumps(request.session.get('shop_bag', {})),
+                'save_info_box': request.POST.get('saver_info_box'),
+                'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
@@ -59,7 +79,7 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('shop_bag'))
-            request.session['save_order_info'] = 'save-order-info' in request.POST
+            request.session['save_info_box'] = 'save-info_box' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'Error! \
@@ -99,7 +119,7 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    save_order_info = request.session.get('save_order_info')
+    save_info_box = request.session.get('save_info_box')
     order = get_object_or_404(ProductOrder, order_number=order_number)
     messages.success(request, f'Your order was successfully processed! \
         The order number is {order_number}. A confirmation \

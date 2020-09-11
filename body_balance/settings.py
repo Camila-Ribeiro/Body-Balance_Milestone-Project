@@ -29,7 +29,7 @@ SECRET_KEY = 'f+-yf_b&z7h8g_r_o!=d0)9@5_#*5ke!=xs$9%%nwe7!z^s@wj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['body-balance-milestone-project.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['body-balance-milestone-project.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -127,8 +127,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3'
         }
+        
     }
 
 
