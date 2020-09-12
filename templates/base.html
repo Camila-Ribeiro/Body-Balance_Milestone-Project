@@ -62,21 +62,22 @@
                             <li class="list-inline-item">
                                 <a class="nav-link" href="{% url 'shop_products' %}">PRODUCTS</a>
                             </li>
-                            <li class="list-inline-item">
-                                <a class="nav-link" href="#">MY ACCOUNT</a>
-                            </li>
-                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                                {% if request.user.is_authenticated %}
-                                    {% if request.user.is_superuser %}
-                                        <a href="" class="dropdown-item">Product Management</a>
+                            <li class="list-inline-item  dropdown">
+                                <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MY ACCOUNT</a>
+                            
+                                <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                                    {% if request.user.is_authenticated %}
+                                        {% if request.user.is_superuser %}
+                                            <a href="" class="dropdown-item">Product Management</a>
+                                        {% endif %}
+                                        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+                                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                                    {% else %}
+                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
                                     {% endif %}
-                                    <a href="" class="dropdown-item">My Profile</a>
-                                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                                {% else %}
-                                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                                {% endif %}
-                            </div>
+                                </div>
+                            </li>
                             <li class="list-inline-item">
                                 <a class="{% if shop_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'shop_bag' %}">
                                     <div class="text-center">
