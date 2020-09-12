@@ -22,7 +22,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     category = models.ForeignKey(
-        'Category', on_delete=models.SET_NULL, null=True, blank=True, )
+        'Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=100, null=True, blank=True)
     product_sizes = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
