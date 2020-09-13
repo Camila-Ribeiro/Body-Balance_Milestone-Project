@@ -29,7 +29,7 @@ class StripeWebhookHandler:
         intent = event.data.object
         pay_intent_id = intent.id
         shop_bag = intent.metadata.shop_bag
-        save_info_box = intent.metadata.save_info_box
+        save_user_info = intent.metadata.save_user_info
 
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
