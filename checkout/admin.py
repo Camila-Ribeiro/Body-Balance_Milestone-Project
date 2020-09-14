@@ -23,6 +23,7 @@ class ProductOrderAdmin(admin.ModelAdmin):
               'street_address2', 'county', 'delivery_cost',
               'order_total', 'shop_total', 'original_shop_bag',
               'stripe_pid',)
+            
 
     list_display = ('order_number', 'date', 'full_name',
                     'order_total', 'delivery_cost',
