@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 
 from .models import Product, Category
 from .forms import AddProductForm
@@ -72,7 +73,17 @@ def get_product_detail(request, product_id):
 
 def add_product_to_admin(request):
     """ Add a product to the store """
-    form = AddProductForm()
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product added successfully!')
+            return redirect(reverse('add_product_to_admin'))
+        else:
+            messages.error(request, 'Failed! Please ensure you added the products correctly!')
+    else:
+        form = AddProductForm()
+
     template = 'products/add_product_admin.html'
     context = {
         'form': form,
