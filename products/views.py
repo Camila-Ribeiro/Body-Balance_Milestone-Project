@@ -90,3 +90,27 @@ def add_product_to_admin(request):
     }
 
     return render(request, template, context)
+
+
+def edit_product_to_admin(request, product_id):
+    """ Edit a product in the store """
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated product!')
+            return redirect(reverse('get_product_detail', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+    else:
+        form = AddProductForm(instance=product)
+        messages.info(request, f'You are editing {product.product_name}')
+
+    template = 'products/edit_product_admin.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, template, context)
