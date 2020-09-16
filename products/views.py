@@ -71,14 +71,14 @@ def get_product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-def add_product_to_admin(request):
+def add_product_admin(request):
     """ Add a product to the store """
     if request.method == 'POST':
         form = AddProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save()
             messages.success(request, 'Product added successfully!')
-            return redirect(reverse('add_product_to_admin'))
+            return redirect(reverse('get_product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed! Please ensure you added the products correctly!')
     else:
@@ -92,7 +92,7 @@ def add_product_to_admin(request):
     return render(request, template, context)
 
 
-def edit_product_to_admin(request, product_id):
+def edit_product_admin(request, product_id):
     """ Edit a product in the store """
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
@@ -114,3 +114,11 @@ def edit_product_to_admin(request, product_id):
     }
 
     return render(request, template, context)
+
+
+def delete_product_admin(request, product_id):
+    """ Delete a product from the store """
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product is deleted!')
+    return redirect(reverse('shop_products'))

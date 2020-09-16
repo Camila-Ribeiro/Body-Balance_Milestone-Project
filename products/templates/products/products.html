@@ -119,6 +119,12 @@
                                                 <div class="col">
                                                     <p class="price-font mb-0 text-right">€{{ product.price }}</p>
                                                 </div>
+                                                {% if request.user.is_superuser %}
+                                                <small class="ml-3">
+                                                    <a href="{% url 'edit_product_admin' product.id %}">Edit</a> | 
+                                                    <a class="text-danger" href="{% url 'delete_product_admin' product.id %}">Delete</a>
+                                                </small>
+                                            {% endif %}
                                             </div>
                                         </div>
                                     </div>
