@@ -37,8 +37,9 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 
  
 6. [**Databases Used**](#databases-used)
-   - [**API - Spoonacular**](#api-spoonacular)
-   - [**MongoDB**](#mongoDB)
+   - [**Stripe API**](#stripe-api)
+   - [**PostgresSQL**](#sostgressql)
+   - [**SQlite3**](#sqlite3)
  
 
 7. [**Testing**](#testing)
@@ -47,13 +48,18 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 
  
 8. [**Deployment**](#deployment)
+  - [**Deploying to Heroku**](#deploying-to-heroku)
+  - [**Local development**](#local-development)
+  - [**Amazon Web Services(AWS) - S3**](#amazon-web-services(aws)-s3)
+      - [**Media And Static Folders**](#media-and-static-folders)
+      
 
- 
 9. [**Credits**](#credits)
   - [**Content**](#content)
   - [**Media**](#media)
   - [**Acknowledgements**](#acknowledgements)
  
+
 ---
  
 ## Project overview
@@ -62,16 +68,54 @@ Body Balance was built using [Python](https://www.python.org/) - programming lan
  
 ## UX
  
-My Cookbook is an online web application designed for users with interest in gathering information about recipes. The user can:
-- Register an account
-- Add their own recipe (by registered user)
-- Edit, update and delete recipes (by registered user)
-- Search recipes (by without an allergen)
-- Search recipes (by diet)
-- Search recipes (by cuisine)
-- Search recipes (by meal type)
-- View recipe details
- 
+Body Balance is an online web application designed for users with interest in gathering information about fitness healthy lifestyle as Nutritional and Workout plans and also Gym Equipments and Activewear. The application is designed for two types of users: 
+
+- The site owner/ administrator (logging as a special user - superuser) and external users (as anonymous user, or logged in users).
+
+The anonymous user (users not logged in) can:
+ - Navigate through the website and see Nutrition, Workout and Products page.
+ - Search for products
+ - Search for nutrition and workout plan
+ - Purchase products, nutrition and workout plan
+ - Register an account
+
+The user can:
+ - Register an account
+ - If registered already, user can log in into their account
+ - Search for products
+ - Search for nutrition and workout plan
+ - Purchase products, nutrition and workout plan
+ - Access "My profile" page
+ - Access Order history
+ - Access weekly nutritional plan
+ - Access weekly workout plan
+
+The site owner/administrator (superuser) can:
+ - log in into their account
+ - Search for products
+ - Search for nutrition and workout plan
+ - Purchase products, nutrition and workout plan
+ - Access "Product Management" page
+ - Access "My profile" page
+ - Access Order history
+ - Access weekly nutritional plan
+ - Access weekly workout plan
+ - Add, edit and delete product and all it's specifications
+ - Through `https://body-balance-milestone-project.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
+    - Add, edit and delete product and all it's specifications
+    - Access Accounts
+    - Access Authentication and Authorization
+    - Access a list of Product Orders
+    - Access a list of Plans Orders
+    - Access a list of Products and Products Categories 
+    
+    
+    
+
+
+
+
+
 The website is simple and structured in a way that is easy to navigate through and find recipes.
  
 ### User Stories
@@ -304,6 +348,8 @@ Doing this meant after a while the error codes became more familiar to me. And f
 ---
  
 ## Deployment
+
+### Deploying to Heroku
  
 [Body Balance](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project) was developed  locally using **VS Code**, and all commits were pushed to [**Heroku**](https://body-balance-milestone-project.herokuapp.com/) using [**Git**](https://git-scm.com/).
  
@@ -323,6 +369,53 @@ Upon successful deployment Heroku will give you the URL that is hosted on your a
 - Please allow a few minutes to pass before opening your newly deployed link! Clicking this link too quickly may result in a failure to build the site, causing an Error 404 page instead.
  
 Congratulations! Your project should be deployed successfully on Heroku's app! :tada:
+
+### Local Development
+To run this project locally on your own system, users can clone to their desktop by completing the following steps:
+1.Go to [my GitHub repository](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project).
+2.Click on 'Code'(green button) placed beside Gitpod button.
+3.Copy the clone URL for the repository in the 'Clone with HTTPs section'.
+4.Open 'Git Bash' in your local IDE.
+5.Change the current working directory to the location where you want the cloned directory to be made. (e.g. cd projects).
+6.Type git clone, then paste the URL you copied in Step 3: git clone `https://github.com/USERNAME/REPOSITORY`
+7.Press Enter to complete the process and create your local clone.
+8.Create a `.env,py` file with your own credentials and import this into the `settings.py` file.
+9.Install the requirements.txt file by running the below command in your CLI Terminal:
+`pip3 install -r requirements.txt`.
+10.Run one of the following commands in your Terminal to launch the Django project:
+`python3 manage.py runserver`
+11.Click the `http:// link` that loads, and the project should load. If it doesn't load when you click the link, copy and paste it into a new browser tab instead.
+12.Run the following commands to migrate the database models and create a super user:
+`python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py createsuperuser`
+13.In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
+14.Set the following config vars in heroku :
+
+![devices image](static/img/heroku_congig_vars.png)
+
+
+Once the migrations are completed and the super user has been created successfully, the site should be running locally.
+
+### Amazon Web Services(AWS) - S3
+
+#### Media And Static Folders
+In early development of the project `static` and `media` folders were pushed to GitHub. At a later stage both folders were stored on [AWS - S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) which is a cloud-based storage service from [Amazon](https://aws.amazon.com) for the live version of the site.
+
+To allow you to access all functionality on the site locally, ensure you have created free accounts with the following services: 
+
+-[Stripe](https://stripe.com/)
+
+-[AWS - S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
+
+#### In Gitpod you create env.py file in main directory and write in first line: import os. Use table below to copy required fields.
+
+
+![devices image](static/img/env_file.png)
+
+
+
+
  
 ##### back to [top](#table-of-contents)
  
