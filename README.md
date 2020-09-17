@@ -8,6 +8,8 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
  
 ## Table of Contents
 1. [**Project overview**](#project-overview)
+
+
 2. [**UX**](#ux)
   - [**User Stories**](#user-stories)
   - [**Design**](#design)
@@ -16,23 +18,38 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
     - [**Typography**](#typography)
   - [**Wireframes**](#wireframes)
  
+
 3. [**Features**](#features)
    - [**Existing Features**](#existing-features)
-   - [**Features Left to Implement**](#features-left-to-implemement)
+   - [**Features Left to Implement**](#features-left-to-implement)
+
+
+4. [**Information Architecture**](#information-architecture)
+   - [**Database choice**](#database-choice)
+   - [**Data Models**](#data-models)
+     - [**Products App Model**](#products-app-model)
+     - [**Shop Bag App Model**](#shop-bag-app-model)
+     - [**Checkout App Model**](#checkout-app-model)
+     - [**User Profile App Model**](#user-profile-app-model)
+
  
-4. [**Technologies Used**](#technologies-used)
+5. [**Technologies Used**](#technologies-used)
+
  
-5. [**Databases Used**](#databases-used)
+6. [**Databases Used**](#databases-used)
    - [**API - Spoonacular**](#api-spoonacular)
    - [**MongoDB**](#mongoDB)
  
-6. [**Testing**](#testing)
+
+7. [**Testing**](#testing)
   - [**Validators**](#validators)
   - [**Manual Testing**](#manual-testing)
+
  
-7. [**Deployment**](#deployment)
+8. [**Deployment**](#deployment)
+
  
-8. [**Credits**](#credits)
+9. [**Credits**](#credits)
   - [**Content**](#content)
   - [**Media**](#media)
   - [**Acknowledgements**](#acknowledgements)
@@ -48,7 +65,7 @@ Body Balance was built using [Python](https://www.python.org/) - programming lan
 My Cookbook is an online web application designed for users with interest in gathering information about recipes. The user can:
 - Register an account
 - Add their own recipe (by registered user)
-- Edit,update and delete recipes (by registered user)
+- Edit, update and delete recipes (by registered user)
 - Search recipes (by without an allergen)
 - Search recipes (by diet)
 - Search recipes (by cuisine)
@@ -72,9 +89,9 @@ A standard layout is fully responsive on mobile devices and larger screens.
 #### Libraries
  
 - [Bootstrap 4](https://getbootstrap.com/) - is a framework for building responsive, mobile-first websites.
-- [Icofont](https://icofont.com/) - is an icon font application that contains 2100+ icons in a single font.
+- [FontAwesome](https://fontawesome.com/) - is a font and icon toolkit based on CSS and Less. It was used to provide icons across the website.
 - [jQuery](https://jquery.com/download/) - is a lightweight, "write less, do more", JavaScript library. The purpose of jQuery is to make it much easier to use JavaScript on your website.
-- [Slick](https://kenwheeler.github.io/slick/) - is a responsive carousel jQuery plugin that supports multiple breakpoints, CSS3 transitions, touch events/swiping & much more!
+- [psycopg2](https://pypi.org/project/psycopg2/) - is the most popular PostgreSQL database adapter for the Python programming language.
 - [Bootsrap Select](https://developer.snapappointments.com/bootstrap-select/) - is a jQuery plugin that brings select elements into the 21st century with intuitive multiselection, searching, and much more.
  
 #### Color Scheme
@@ -88,9 +105,9 @@ A standard layout is fully responsive on mobile devices and larger screens.
 #### Typography
  
 3 [Google Fonts](https://fonts.google.com/) were used across the site:
- - [Open Sans](https://fonts.google.com/specimen/OpenSans) : body text
- - [Lobster Two](https://fonts.google.com/specimen/LobsterTwo) : h1, h2, h3, h4, h5
- - [Montserrat](https://fonts.google.com/specimen/Montserrat) : h6
+ - [Roboto](https://fonts.google.com/specimen/Roboto) : body text
+ - [Noto Sans](https://fonts.google.com/specimen/Noto+Sans?query=noto) : h1, h2, h3, h4, h5 ?????
+
  
 ### Wireframes
  
@@ -132,6 +149,34 @@ My wireframes for this project can be found in the UX folder.
 ##### back to [top](#table-of-contents)
  
 ---
+
+## Information Architecture
+
+### Data Choice
+
+### Data Models
+
+#### Products App Model
+- Within the `products app`:
+   - the `Product model` holds all the data needed for the products in the shop bag.
+   - the `Category model` holds all the categories needed to insert products in it.
+
+#### Shop Bag App Model
+
+#### Checkout App Model
+- Within the `checkout app`:
+   - the `ProductOrder model` holds all the fields needed for ...
+   - the `ProductLineOrder model` holds all the ... needed to ...
+
+#### User Profile App Model
+The User model utilized for this project is the standard one provided by `django.contrib.auth.models`
+- Within the `user_profile app`:
+   - the `UserProfile model` maintain default
+    delivery information and order history
+
+##### back to [top](#table-of-contents)
+
+---
  
 ## Technologies Used
  
@@ -144,6 +189,8 @@ My wireframes for this project can be found in the UX folder.
  - [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - is a set of web developer tools built directly into the Google Chrome browser.
 3. ![CSS3](https://img.shields.io/static/v1?label=CSS&message=3&color=1572B6&logo=css3&logoColor=ffffff)
  - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3) - Used as the base for cascading styles.
+4. ![django3](https://docs.djangoproject.com/en/3.1/)
+ - [django3](https://docs.djangoproject.com/en/3.1/) - is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
 4. ![Flask](https://img.shields.io/badge/Flask-Version%201.1.2-orange)
  - [Flask](https://flask.palletsprojects.com/en/1.1.x/) - is a web framework, it provides you with tools, libraries and technologies that allow you to build a web application.
 5. ![Flask-Bcrypt](https://img.shields.io/badge/Flask--Bcrypt-0.7.1-orange)
@@ -160,6 +207,8 @@ My wireframes for this project can be found in the UX folder.
  - [GitHub](https://github.com/) - is a Web-based hosting service for version control using Git.
 11. ![GitIgnore](https://img.shields.io/badge/GitIgnore-files-royalblue)
  - [GitIgnore](https://github.com/toptal/gitignore.io) - is a web service designed to help you create .gitignore files for your Git repositories.
+22. ![gunicorn](https://pypi.org/project/gunicorn/)
+ - [gunicorn](https://pypi.org/project/gunicorn/) - is a Python WSGI HTTP Server for UNIX. It’s a pre-fork worker model ported from Ruby’s Unicorn project. The Gunicorn server is broadly compatible with various web frameworks, simply implemented, light on server resource usage, and fairly speedy.
 12. ![Heroku](https://img.shields.io/badge/Heroku-Deployment-blueviolet)
  - [Heroku](https://dashboard.heroku.com/) - lets you deploy, run and manage applications written in Ruby, Node.js, Java, Python, Clojure, Scala, Go and PHP.
 13. ![HTML5](https://img.shields.io/static/v1?label=HTML&message=5&color=E34F26&logo=html5&logoColor=ffffff)
@@ -174,37 +223,30 @@ My wireframes for this project can be found in the UX folder.
  - [Python](https://www.python.org/downloads/release/python-383/) - is a scripting language.
 18. ![PyMongo](https://img.shields.io/badge/PyMongo-2.3.0-green)
  - [PyMongo](https://docs.mongodb.com/drivers/pymongo) - is a MongoDB driver for Python used to access the MongoDB database.
+21. ![psycopg2](https://pypi.org/project/psycopg2/)
+ - [psycopg2](https://pypi.org/project/psycopg2/) - is the most popular PostgreSQL database adapter for the Python programming language.
 19. ![Werkzeug](https://img.shields.io/badge/Werkzeug-WSGI%20-yellow)
  - [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/) - is a WSGI utility library for Python
 20. ![WTforms](https://img.shields.io/badge/WTforms-0.14.3-blue)
  - [WTforms](https://pypi.org/project/WTForms/) - is  a framework agnostic library handling web forms in python.
- 
+
 ##### back to [top](#table-of-contents)
  
 ---
 ## Databases Used
+
+### Stripe API
+[Stripe API](https://stripe.com/en-ie) is a payment processor, which means they support the electronic transfer of money from a customer's bank (issuing bank) into a merchant's bank (acquiring bank) as payment for goods or services bought with a credit card.
  
-### API - Spoonacular
-[Spoonacular](https://spoonacular.com/) Food API is a free recipe search API that provides recipes data from calling a API endpoint and receiving the data back as [JSON](https://www.json.org/json-en.html) format. This API has daily limit calls based on 150 quota points per day.
+### PostgresSQL
+[PostgresSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads.
  
-Using Python requests I populated the recipes displayed on:
+### SQlite3
  
-- [index.html](https://my-cookbook-milestone-project.herokuapp.com/index) in the "Get Inspired" section
-- all filters across the website
-- [all-recipes.html](https://my-cookbook-milestone-project.herokuapp.com/all_recipes), populating cards accordingly with filter selected
-- [recipes-details](https://my-cookbook-milestone-project.herokuapp.com/recipe_details)
- 
-### MongoDB
- 
-MongoDB is a highly scalable database server that stores data in a non-relational format and it's designed to store humongous amounts of data.
-My MongoDB database consists of the following collections:
- 
-- add_recipes
-- cuisines
-- allergens
-- diets
-- meals
-- users
+[SQLite](https://www.sqlite.org/) is a C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine. 
+
+The SQLite file format is stable, cross-platform, and backwards compatible and the developers pledge to keep it that way through at least the year 2050. SQLite database files are commonly used as containers to transfer rich content between systems [1] [2] [3] and as a long-term archival format for data [4]. 
+
  
 I have also created a database schema:
 ![Diagram of database schema](static/img/MongoDB-Schema.png)
@@ -231,7 +273,7 @@ I also have validated all files using online validation sites cited below and ch
  
 #### PYTHON
  
-- [W3C CSS Validator](http://pep8online.com/checkresult) - `minor errorsgit status`
+- [Pep8 Online tool](http://pep8online.com/checkresult) - `minor errorsgit status`
  
 #### JavaScript
  
@@ -263,7 +305,7 @@ Doing this meant after a while the error codes became more familiar to me. And f
  
 ## Deployment
  
-[My CookBook](https://https://github.com/Camila-Ribeiro/My-Cookbook_Milestone-Project) was developed  locally using **VS Code**, and all commits were pushed to [**Heroku**](https://my-cookbook-milestone-project.herokuapp.com) using [**Git**](https://git-scm.com/).
+[Body Balance](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project) was developed  locally using **VS Code**, and all commits were pushed to [**Heroku**](https://body-balance-milestone-project.herokuapp.com/) using [**Git**](https://git-scm.com/).
  
 In order to get the application ready for deployment I followed the next steps:
 1. I removed all my hard-coded environment variables from app.py to protect my Database name, URI and secret-key and placed them in the env.py for development and entered it into herouku's Config Var for production.
@@ -304,4 +346,3 @@ I received inspiration for this project from Code Institute - Project Ideas
  
 ##### back to [top](#table-of-contents)
  
-
