@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <section class="margin-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h2 class="">Nutrition Plan</h2>
+                    <hr class="w-25 mt-1 mb-2">
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-4">
+                <div class="col mb-6">
+                  <div class="card">
+                    <img src="{{ MEDIA_URL }}1-month.jpg"" class="card-img-top" alt="...">
+                    <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  </div>
+                </div>
+                <div class="col mb-6">
+                  <div class="card">
+                    <img src="{{ MEDIA_URL }}3-month.png"" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+        </div>
+    </section>
+    
+     
+{% endblock %}

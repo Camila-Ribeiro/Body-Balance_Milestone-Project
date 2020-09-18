@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Nutrition(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Nutrition'
+
     week = models.DecimalField(max_digits=2, decimal_places=0, null=True, blank=True)
     day = models.DecimalField(max_digits=2, decimal_places=0, null=True, blank=True)
     description = models.TextField(max_length=1000)

@@ -3,6 +3,7 @@ from .models import Nutrition
 
 # Register your models here.
 
+
 class Nutrition_Plan_Admin(admin.ModelAdmin):
     list_display = (
         'week',
