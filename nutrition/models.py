@@ -8,7 +8,6 @@ class Nutrition(models.Model):
 
     week = models.DecimalField(max_digits=2, decimal_places=0, null=True, blank=True)
     day = models.DecimalField(max_digits=2, decimal_places=0, null=True, blank=True)
-    description = models.TextField(max_length=1000)
     breakfast = models.TextField(max_length=1000)
     am_snack = models.TextField(max_length=1000)
     lunch = models.TextField(max_length=1000)

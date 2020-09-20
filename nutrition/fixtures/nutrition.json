@@ -5,11 +5,7 @@
       "fields": {
         "week": 1,
         "day": 1,
-        "description": {
-            "step1": "Cook the Slow-Cooker Vegetable Soup overnight on Day 1 so it's ready for lunch on Day 2. Portion out two 1 1/2-cup servings into leak-proof containers to have later in the week for lunch on Days 3 and 5. Freeze an additional two 1 1/2-cup servings to have for lunch in Week 3. Freeze any remaining soup in an air-tight container for up to 6 months.",
-            "step2": "Prepare the Blueberry-Banana Overnight Oats so it's ready to grab-and-go in the morning of Day 2. Store in glass leak-proof containers that can go from the fridge to the microwave."
-        },
-        "breakfast": "1 serving Avocado-Egg Toast (271 calories)",
+        "breakfast": "1 serving Avocado-Egg Toast (271 calories).",
         "am_snack": "1 medium orange (62 calories)",
         "lunch": "1 serving Butternut Squash Soup with Avocado & Chickpeas (402 calories)",
         "pm_snack": "1 medium kiwi (42 calories)",
