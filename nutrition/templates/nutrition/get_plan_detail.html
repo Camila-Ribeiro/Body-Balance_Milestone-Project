@@ -23,6 +23,7 @@
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             {% for n in nutrition_obj %} 
+            {{n.plan_name}}
               <a class="nav-link {% if n.day == 1 %}active{% endif %}" id="{{ n.day }}" data-toggle="tab" href="#tab-{{ n.day }}" role="tab" aria-controls="tab-{{ n.day }}" aria-selected="{% if n.day == 1 %}true{% else %}false{% endif %}">Day {{ n.day }}</a>
             {% endfor %}
           </div>
