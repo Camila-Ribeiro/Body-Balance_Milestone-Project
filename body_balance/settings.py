@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     #others
     'crispy_forms',
     'storages',
-    'django_better_admin_arrayfield',
 ]
 
 MIDDLEWARE = [

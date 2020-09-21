@@ -1,23 +1,46 @@
 [
-    {
-      "pk": 1,
-      "model": "nutrition.nutrition",
-      "fields": {
-        "week": 1,
-        "day": 1,
-        "breakfast": "1 serving Avocado-Egg Toast (271 calories).",
-        "am_snack": "1 medium orange (62 calories)",
-        "lunch": "1 serving Butternut Squash Soup with Avocado & Chickpeas (402 calories)",
-        "pm_snack": "1 medium kiwi (42 calories)",
-        "dinner": "1 serving Citrus Poached Salmon with Asparagus with 3/4 cup Cauliflower Rice (451 calories)",
-        "daily_total_cal": "1.228",
-        "protein": "58g",
-        "carbohydrates": "126g",
-        "fiber": "30g",
-        "fat": "59g",
-        "sodium": "1.709",
-        "image_url": "https://i.imgur.com/10PgiC6.png",
-        "image_file": "DAY_1.png"
-      }
-    } 
-  ]
+  {
+    "pk": 1,
+    "model": "nutrition.nutrition",
+    "plan_name": "1 Month",
+    "fields": {
+      "week": 1,
+      "day": 1,
+      "breakfast": "1 serving Avocado-Egg Toast (271 calories).",
+      "am_snack": "1 medium orange (62 calories)",
+      "lunch": "1 serving Butternut Squash Soup with Avocado & Chickpeas (402 calories)",
+      "pm_snack": "1 medium kiwi (42 calories)",
+      "dinner": "1 serving Citrus Poached Salmon with Asparagus with 3/4 cup Cauliflower Rice (451 calories)",
+      "daily_total_cal": "1.228",
+      "protein": "58g",
+      "carbohydrates": "126g",
+      "fiber": "30g",
+      "fat": "59g",
+      "sodium": "1.709",
+      "image_url": "https://i.imgur.com/9qCiaMW.jpg",
+      "image_file": "1-month.jpg"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "nutrition.nutrition",
+    "plan_name": "1 Month",
+    "fields": {
+      "week": 1,
+      "day": 2,
+      "breakfast": "1 serving Avocado-Egg Toast (271 calories).",
+      "am_snack": "1 medium orange (62 calories)",
+      "lunch": "1 serving Butternut Squash Soup with Avocado & Chickpeas (402 calories)",
+      "pm_snack": "1 medium kiwi (42 calories)",
+      "dinner": "1 serving Citrus Poached Salmon with Asparagus with 3/4 cup Cauliflower Rice (451 calories)",
+      "daily_total_cal": "1.228",
+      "protein": "58g",
+      "carbohydrates": "126g",
+      "fiber": "30g",
+      "fat": "59g",
+      "sodium": "1.709",
+      "image_url": "https://i.imgur.com/9qCiaMW.jpg",
+      "image_file": "1-month.jpg"
+    }
+  }
+]

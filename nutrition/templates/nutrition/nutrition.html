@@ -10,35 +10,42 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <section class="margin-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col text-center mt-3">
-                    <h2 class="">Nutrition Plan</h2>
-                    <hr class="w-25 mt-1 mb-2">
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-4">
-                <div class="col mb-6">
-                  <div class="card">
-                    <img src="{{ MEDIA_URL }}1-month.jpg"" class="card-img-top" alt="...">
-                    <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
-                </div>
-                <div class="col mb-6">
-                  <div class="card">
-                    <img src="{{ MEDIA_URL }}3-month.png"" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                  </div>
-                </div> 
+  <div class="overlay"></div>
+  <section class="margin-section">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col text-center mt-3">
+              <h2 class="">Nutrition Plan</h2>
+              {{ plan_name}}
+              <hr class="w-25 mt-1 mb-2">
+          </div>
+      </div>
+      <div class="row row-cols-1
+       row-cols-md-4">
+        {% for plan in context %}
+          <div class="col mb-6">
+            <div class="card">
+              {% if plan.image_file %}
+                <img src="{{ plan.image_file.url }}" class="card-img-top" alt="{{ plan.plan_name }}">
+              </a>
+              {% else %}
+                  <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ plan.plan_name }}">
+              </a>
+              {% endif %}
+              <div class="card-body">
+                <h6 class="card-title">{{ plan.plan_name }}</h6>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               </div>
-        </div>
-    </section>
-    
-     
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+                <small><i class="fas fa-shopping-bag fa-lg mr-3"></i></small>
+                <input type="submit" class="btn btn-style btn-lg active w-100 text-left" value="Add to Bag">
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>  
 {% endblock %}

@@ -1,14 +1,34 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+
 from .models import Nutrition
 from .forms import AddNutritionPlanForm
 
 
 def shop_nutrition_plan(request):
-    """ A view to return the index page """
+    """ A view to show all nutritional plans available to purchase """
 
-    return render(request, 'nutrition/nutrition.html')
+    purchase_plan = Nutrition.objects.all()
+
+    context = {
+        'purchase_plan': purchase_plan,
+    }
+    return render(request, 'nutrition/nutrition.html', context)
+
+
+def get_plan_detail(request, plan_id):
+    """ A view to show individual plan details """
+    nutrition_obj = Nutrition.objects.all()
+    nutrition = get_object_or_404(Nutrition, pk=plan_id)
+
+    context = {
+        'nutrition': nutrition,
+        'nutrition_obj': nutrition_obj,
+    }
+
+    return render(request, 'nutrition/get_plan_detail.html', context)
+
 
 @login_required
 def add_nutrition_plan_admin(request):
