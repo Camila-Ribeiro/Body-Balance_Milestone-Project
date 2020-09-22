@@ -13,8 +13,6 @@ from shop_bag.contexts import bag_products
 import stripe
 import json
 
-# Create your views here.
-
 
 @require_POST
 def cache_checkout(request):

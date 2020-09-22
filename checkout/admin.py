@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models import ProductOrder, ProductLineOrder
 
-# Register your models here.
-
 
 class ProductOrderAdminInline(admin.TabularInline):
     model = ProductLineOrder

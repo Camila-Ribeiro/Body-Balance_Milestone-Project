@@ -9,9 +9,6 @@ from django_countries.fields import CountryField
 from products.models import Product
 from user_profile.models import UserProfile
 
-# Create your models here.
-
-
 
 class ProductOrder(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
