@@ -35,7 +35,16 @@
               <div class="card-body">
                 <h6 class="card-title">{{ plan.plan_duration }}</h6>
                 <p class="card-text">{{ plan.description}}.</p>
-                <a href="#" id="buy_now_btn" class="btn btn-primary">Buy Now</a>
+                {% if user.is_authenticated %}
+                  <a href="#" class="{% if request.user.is_superuser %} d-none {% endif %}" id="buy_now_btn" class="btn btn-primary">Buy Now</a>
+                {% else %}
+                  <a class="btn btn-primary" href="{% url 'account_signup' %}">Register to Buy</a> 
+                {% endif %}
+                {% if request.user.is_superuser %}
+                <small class="ml-3">
+                    <a href="{% url 'edit_plan_admin' plan.id %}">Edit</a>
+                </small>
+            {% endif %}
               </div>
             </div>
           </div>
@@ -44,7 +53,6 @@
     </div>
   </section>  
 {% endblock %}
-
 
 {% block postloadjs %}
     {{ block.super }}
@@ -78,6 +86,7 @@
       })
     </script>
 {% endblock %}
+
 
 
 

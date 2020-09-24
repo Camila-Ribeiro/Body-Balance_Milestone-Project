@@ -11,4 +11,4 @@ class Plan(models.Model):
     image_file = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.plan_duration
+        return self.plan_name

@@ -10,17 +10,5 @@
       "image_url": "https://i.imgur.com/9qCiaMW.jpg",
       "image_file": "1-month.jpg"
     }
-  },
-  {
-    "pk": 2,
-    "model": "subscriptions.plan",
-    "fields": {
-      "plan_duration": "3 Months",
-      "plan_name": "3-months",
-      "description": "Camila Linda.",
-      "price":  55.90,
-      "image_url": "https://i.imgur.com/mv37PAA.png",
-      "image_file": "3-month.png"
-    }
   }
 ]

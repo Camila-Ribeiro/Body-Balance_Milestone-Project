@@ -81,6 +81,17 @@ def stripe_webhook(request):
     return HttpResponse(status=200)
 
 
+def get_plan_id(request, plan_id):
+
+    plan_id = get_object_or_404(Plan, pk=plan_id)
+    print(plan_id)
+    context = {
+        'plan_id': plan_id,
+    }
+
+    return render(request, 'subscriptions/edit_plan_admin.html', context)
+
+
 @login_required
 def add_plan_admin(request):
     """ Add a subscription plan available to purchase """
@@ -93,15 +104,48 @@ def add_plan_admin(request):
         if form.is_valid():
             subscription_plan = form.save()
             messages.success(request, 'Subscription Plan added successfully!')
-            return redirect(reverse('shop_subscription_plan'))
+            return redirect(reverse('get_plan_id', args=[plan.id]))
         else:
             messages.error(request, 'Failed! Please ensure you added the Subscription Plan correctly!')
     else:
         form = AddPlanForm()
 
     template = 'subscriptions/add_plan_admin.html'
+    
     context = {
         'form': form,
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_plan_admin(request, plan_id):
+    """ Edit a subscription plan  """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners have the permission to edit the subscription plan.')
+        return redirect(reverse('home'))
+
+    plan = get_object_or_404(Plan, pk=plan_id)
+    if request.method == 'POST':
+        print(plan)
+        form = AddPlanForm(request.POST, request.FILES, instance=plan)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated plan!')
+            return redirect('shop_subscription_plan')
+        else:
+            messages.error(request, 'Failed to upda§te plan. Please ensure the form is valid.')
+    else:
+        form = AddPlanForm(instance=plan)
+        messages.info(request, f'You are editing {plan.plan_name}')
+
+    template = 'subscriptions/edit_plan_admin.html'
+    context = {
+        'form': form,
+        'plan': plan,
+    }
+
+    return render(request, template, context)
+
+
