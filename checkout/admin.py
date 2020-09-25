@@ -32,7 +32,7 @@ class ProductOrderAdmin(admin.ModelAdmin):
 
 class SubscriptionOrderAdmin(admin.ModelAdmin):
 
-    readonly_fields = ('order_number', 'date', 'plan_name', 'stripe_pid',)
+    readonly_fields = ('order_number', 'date', 'stripe_pid',)
 
     fields = ('order_number', 'date', 'plan_name', 'user_profile',
               'full_name', 'email', 'price', 'stripe_pid',)

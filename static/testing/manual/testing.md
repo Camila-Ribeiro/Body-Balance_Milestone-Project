@@ -10,31 +10,33 @@ I tested to make sure the following worked as designed and All passed
 - My Account
    - Product Management
    - Nutrition Management
+   - Subscription Management
    - My Profile
    - Logout
-- Bag Icon
-- ??? User Nav - Username (redirect the user to My recipes page) & Log Out
+- Shop Bag icon
+
 
 All the views are working accordingly:
-1. Click on Index which is 'Body Balance' logo (view to '/').
+1. Click on Index which is 'Body Balance' logo (url path to '/').
 2. Click on Nutrition (url path to /subscriptions).
 3. Click on Products (url path to /products/).
 4. Click on My Account
    - Product Management (url path to /products/add_product/)
    - Nutrition Management (url path to /nutrition/add_nutrition_plan/)
+   - Subscrition Management (url path to /subscriptions/edit_plan_admin/1)
    - My Profile (url path to /user_profile/)
    - Logout (url path to /accounts/logout/)
-5. Click on Bag Icon (url path to /shop_bag/).
+5. Click on Bag icon (url path to /shop_bag/).
 
-###### When logged in as USER, the user sees the following pages:
+###### When logged in as a REGISTERED USER, the user sees the following pages:
 - Index
 - Nutrition
 - Products
 - My Account
-   - Register
-   - Login
-- Bag Icon
-- ??? User Nav - Username (redirect the user to My recipes page) & Log Out
+   - My profile
+   - Logout
+- Bag icon
+
 
 All the views are working accordingly:
 1. Click on Index which is 'Body Balance' logo (view to '/').
@@ -45,7 +47,7 @@ All the views are working accordingly:
    - Logout (url path to /accounts/logout/)
 5. Click on Bag Icon (url path to /shop_bag/).  
 
-###### When not logged in, the user sees the following pages:
+###### When ANONYMOUS USER, the user sees the following pages:
 - Index
 - Nutrition
 - Products
@@ -53,7 +55,6 @@ All the views are working accordingly:
    - Register
    - Login
 - Bag Icon
-- ??? User Nav - Username (redirect the user to My recipes page) & Log Out
 
 All the views are working accordingly:
 1. Click on Index which is 'Body Balance' logo (url path to '/').
@@ -66,22 +67,24 @@ All the views are working accordingly:
 
 
 #### Index(url path to '/')
-###### Logged In users and anonimous users can:
+###### Logged In users, anonymous users and superusers can:
 1. Click on Index which is 'Boby Balance' logo (url path to '/').
 
 
 #### Nutrition (url path to /subscriptions)
 ###### SUPERUSER(OWNER/ADMINISTRATOR) users can:
-1.
+1. 
 2.
 3.
 
-###### Logged In users can:
-1.
-2.
-3.
+###### Logged In users:
+ - Who have a subscription plan can:
+1. Click on "Your Nutrition Plan" button
 
-###### Anonimous users can:
+ - Who don't have subscription plan can: 
+1. Click on "Subscribe" button
+
+###### Anonymous users can:
 1.
 2.
 3.
@@ -98,7 +101,7 @@ All the views are working accordingly:
 2.
 3.
 
-###### Anonimous users can:
+###### Anonymous users can:
 1.
 2.
 3.
@@ -138,7 +141,7 @@ All the views are working accordingly:
 3.
 
 
-###### Anonimous users can see:
+###### anonymous users can see:
 #### Register (url path to /accounts/signup/):
 1. Click on "Register".
 2. Try to insert a username. 

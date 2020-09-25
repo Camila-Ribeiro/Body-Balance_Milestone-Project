@@ -2,15 +2,20 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Plan
-from .forms import AddPlanForm
+import stripe
 
-from django.urls import reverse
+from user_profile.forms import UserProfileForm
+from user_profile.models import UserProfile
+from .models import Plan
+from checkout.models import SubscriptionOrder
+
+from .forms import AddPlanForm, SubscriptionOrderForm
+
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-import stripe
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_SUB
@@ -32,6 +37,23 @@ def thanks(request):
 
 @csrf_exempt
 def checkout_plan(request):
+
+    if request.user.is_authenticated:
+        try:
+            profile = UserProfile.objects.get(user=request.user)
+            # plan = Plan.objects.get(plan_name=plan_name)
+            order_form = SubscriptionOrderForm(initial={
+                'full_name': profile.user.get_full_name(),
+                'email': profile.user.email,
+                # 'plan_name': plan.plan_name,
+            })
+            print(order_form)
+        except UserProfile.DoesNotExist:
+            order_form = SubscriptionOrderForm()
+    else:
+        order_form = SubscriptionOrderForm()
+
+
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
@@ -39,16 +61,19 @@ def checkout_plan(request):
             'quantity': 1,
         }],
         mode='payment',
-        success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}',
+       success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url=request.build_absolute_uri(reverse('shop_subscription_plan')),
     )
 
     return JsonResponse({
+        # 'order_form':order_form,
         'session_id' : session.id,
         'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
     })
+   
 
 
+ 
 @csrf_exempt
 def stripe_webhook(request):
 

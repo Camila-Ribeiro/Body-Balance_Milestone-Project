@@ -13,7 +13,6 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 2. [**UX**](#ux)
   - [**User Stories**](#user-stories)
   - [**Design**](#design)
-    - [**Libraries**](#libraries)
     - [**Color Scheme**](#color-scheme)
     - [**Typography**](#typography)
   - [**Wireframes**](#wireframes)
@@ -34,6 +33,7 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 
  
 5. [**Technologies Used**](#technologies-used)
+    - [**Libraries**](#libraries)
 
  
 6. [**Databases Used**](#databases-used)
@@ -68,75 +68,66 @@ Body Balance was built using [Python](https://www.python.org/) - programming lan
  
 ## UX
  
-Body Balance is an online web application designed for users with interest in gathering information about fitness healthy lifestyle as Nutritional and Workout plans and also Gym Equipments and Activewear. The application is designed for two types of users: 
+Body Balance is an online web application designed for users with interest in gathering information about fitness healthy lifestyle as Nutritional plans and also Gym Equipments and Activewear. The website is simple and structured in a way that is easy and intuitive to navigate through. The application is designed for two types of users: 
 
 - The site owner/ administrator (logging as a special user - superuser) and external users (as anonymous user, or logged in users).
 
-The anonymous user (users not logged in) can:
- - Navigate through the website and see Nutrition, Workout and Products page.
+
+- The anonymous user (users not logged in) can:
+ - Navigate through the website and see Nutrition and Products page.
  - Search for products
- - Search for nutrition and workout plan
- - Purchase products, nutrition and workout plan
+ - Purchase products and nutrition plan
  - Register an account
 
-The user can:
+
+- The user can:
  - Register an account
  - If registered already, user can log in into their account
  - Search for products
- - Search for nutrition and workout plan
- - Purchase products, nutrition and workout plan
+ - Purchase products and nutrition plan
  - Access "My profile" page
  - Access Order history
  - Access weekly nutritional plan
- - Access weekly workout plan
 
-The site owner/administrator (superuser) can:
+
+- The site owner/administrator (superuser) can:
  - log in into their account
  - Search for products
- - Search for nutrition and workout plan
- - Purchase products, nutrition and workout plan
+ - Purchase products and nutrition plan
  - Access "Product Management" page
+ - Access "Nutrition Management" page
+ - Access "Subscription Management" page
  - Access "My profile" page
  - Access Order history
  - Access weekly nutritional plan
- - Access weekly workout plan
  - Add, edit and delete product and all it's specifications
- - Through `https://body-balance-milestone-project.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
+ - Add, edit and delete nutrition plan details
+ - Edit subscription plan details 
+ - Access the Django Admin page through `https://body-balance-milestone-project.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
     - Add, edit and delete product and all it's specifications
+    - Add, edit and delete nutrition plan details
+    - Edit subscription plan details 
     - Access Accounts
     - Access Authentication and Authorization
     - Access a list of Product Orders
-    - Access a list of Plans Orders
+    - Access a list of Subscriptions Orders
     - Access a list of Products and Products Categories 
     
     
     
 
-
-
-
-
-The website is simple and structured in a way that is easy to navigate through and find recipes.
  
 ### User Stories
- 
-- As a user I want to search recipes filtered by allergen type, to perform this action I clicked on All recipes page, then I clicked on filter "Allergens", doing that I achieved my goal to see only recipes that were peanut free and I'm allergic to it.
- 
-- As a user I want to store my own recipes, to perform this action I registered into the website, then I clicked on "Add recipes", doing that I achieved my goal to store only recipes that were created by myself and have a list of my own recipes.
- 
-- As a user I want to edit my own recipes, to perform this action I logged into the website, then I clicked on "My recipes" and then on "Edit recipes", doing that I achieved my goal to edit and update recipes.
+
+See a list of [User Stories](static/UX/My-cookbook-desktop-wireframe.pdf) built in an Agile method.
+
+
  
 ### Design
  
 A standard layout is fully responsive on mobile devices and larger screens.
  
-#### Libraries
- 
-- [Bootstrap 4](https://getbootstrap.com/) - is a framework for building responsive, mobile-first websites.
-- [FontAwesome](https://fontawesome.com/) - is a font and icon toolkit based on CSS and Less. It was used to provide icons across the website.
-- [jQuery](https://jquery.com/download/) - is a lightweight, "write less, do more", JavaScript library. The purpose of jQuery is to make it much easier to use JavaScript on your website.
-- [psycopg2](https://pypi.org/project/psycopg2/) - is the most popular PostgreSQL database adapter for the Python programming language.
-- [Bootsrap Select](https://developer.snapappointments.com/bootstrap-select/) - is a jQuery plugin that brings select elements into the 21st century with intuitive multiselection, searching, and much more.
+
  
 #### Color Scheme
  
@@ -157,8 +148,8 @@ A standard layout is fully responsive on mobile devices and larger screens.
  
 My wireframes for this project can be found in the UX folder.
  
-- [Desktop Wireframe](static/UX/My-cookbook-desktop-wireframe.pdf)
-- [Mobile Wireframe](static/UX/My-cookbook-mobile-wireframe.pdf)
+- [Desktop Wireframe](static/UX/body-balance-desktop-wireframe.pdf)
+- [Mobile Wireframe](static/UX/body-balance-mobile-wireframe.pdf)
  
 ##### back to [top](#table-of-contents)
  
@@ -167,28 +158,53 @@ My wireframes for this project can be found in the UX folder.
 ## Features
  
 ### Existing Features
-- Index - this page the "Get Inspired" section displays a carousel with recipes from Spoonacular API and the user can get inspired flicking forward and backwards through cards. There are two additional sections, "Make your own Cookbook" (user logged in - where the user has a different path to add, edit and share their recipes) and "How this website works" (user not logged in - where guides the user which steps to take to use the website properly).
+- Index - simple page containing an image, small text and navigation.
 
-- All recipes - this page displays filters such as Cuisines, allergens, diet label and meal type where the user can filter the recipe they want to see according to the filter selected. There are also " Inspiration recipes" cards to see different options then the chosen ones using filters. If a user is logged in it will display "Recipes by User" where the user can see their own recipes already added.
+- Nutrition - this page displays a Nutrition Plan available for subscription. 
+   - Registared users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
+   - For anonimous users it displays a "Subscribe" button where redirects the user to the "Register"page.
+   - For superusers it displays an "Edit" button where redirects to the "Edit Plan"page.
 
-- My recipes - this page displays the user profile card with the avatar chosen when registered, also the number of recipes the user has added. Beside it there are displayed recipe's cards that the user created, which has the options to view the recipe clicking on recipe's name, edit or delete.
+- Products - this page displays all products:
+   - it can be filtered by category, price, rating or show all products
+   - There is a search input where the user can search keyword found on product name or product description
+   - Also users can sort products by price (low to high or high to low), rating (low to high or high to low), name (A-Z or Z-a) and category (A-Z or Z-a).
+   - Users, anonimous users and superuser can see the same content described above.
 
-- Add recipes - this page allows the user to add new recipes and all fields are required. The user can choose 1 option of cuisines, and multiple options (up to 4) of allergen, meals type and diet label. Add recipe name, recipe image, preparation time and number of servings. The ingredients and instructions fields have the feature to add more inputs. After all information inserted just click the "ADD recipe" button.
+- Products Details - this page displays product details such as produc name, rating, category, price, size, quantity and a button "buy" which redirect the user to the "shop bag" page.
+   - Registared users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
+   - For anonimous users it displays the same content.
+   - For superusers it displays the same content described above plus an "Edit" button where redirects to the "Edit Product"page.
 
-- Edit recipes - this page allows the user to edit their own recipes and all fields are required. The fields are filled already with information from the recipe addded, The user can then edit the desired fields. The user can choose 1 option of cuisines, and multiple options (up to 4) of allergen, meals type and diet label. Add recipe name, recipe image, preparation time and number of servings. The ingredients and instructions fields have the feature to add more inputs. After all information inserted just click the "ADD recipe" button.
+- User Profile - this page displays the user profile details, Order history and a Weekly Nutritional Plan detail (for subscribers only).
+  - Registered user and superuser can:
+     - Update their personal details
+     - Check their Product Order history
+     - Subscribers can access to their weekly Nutritional Plan detail
+  - Anonimus don't have access to this page.
+  
 
-- Recipe details - this page displays detailed information about recipes from the Spoonacular API. There is recipe image, preparation time, servings, diets type, meal type. The list of ingredients and equipments are displayed in images. There are instructions steps and also pairing wine section with wine options and a link where to buy it.
+- Product Management - this page is designed only for superusers. It allows them to add products. 
 
-- User recipe details - this page displays detailed information about recipes added by the user using MongoDB to store it. There is recipe image, preparation time, servings, diets type, meal type, list of ingredients and instructions steps. It's also available the option to edit and delete the recipe.
+- Nutrition Management - this page is designed only for superusers. It allows them to add nutrition details to the Nutrition Plan.
 
-- Log In - this page has two inputs, username and password. Underneath the submit button there is a link which redirects to the Register page in case the user is not already registered. The cancel icon redirects back to index.
+- Subscription Management - this page is designed only for superusers. It allows them to edit the Nutrition Plan Subscription such as plan name, description, and price.
 
-- Register - this page has two inputs, username and enter password. The user can choose between two avatars and underneath the submit button there is a link which redirects to Log In page in case the user is already registered. The cancel icon redirects back to index.
+- Register - this page has five inputs: e-mail address, e-mail address confirmation, username, password and password(again). It also displays two buttons:
+  - "Back to Login" button where redirects the user to the Login page
+  - "Sign Up" where redirects the user to a corfirmation e-mail page with a message " We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes." After user confirms the e-mail (link sent to their email address), the user can log in.
+
+- Log In - this page has two inputs, username or e-mail and password. It also displays two buttons:
+  - "Home" button where redirects the user to the index page
+  - "Sigh In" button where redirects the user to the index page
+  - Underneath those buttons there is a link "Forgot Password?" which redirects to a "Password Reset" page where the user have to type in their e-mail address and click on the "Reset My Password" button, then wait for an e-mail to arrive with instructions to reset the password.
+
+- Log out - this page displays a question "Are you sure you want to sign out?" and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
 
 - Error page - this page handles an error page in case the route wasn't found. There is a link to redirect the user back to index.
  
 ### Features Left to Implement
-- Edit recipes - if user had already added image and does't want to edit, I would like the to keep the image instead the user have upload again.
+- Add additional Nutrition Plans - ???/
 
 ##### back to [top](#table-of-contents)
  
@@ -200,23 +216,30 @@ My wireframes for this project can be found in the UX folder.
 
 ### Data Models
 
+#### Nutrition App Model
+- Within the `nutrition app`:
+   - the `Nutrition model` holds all the data needed for nutrition plan details (available for subscribers only) in the "My profile" page.
+
+#### Subscriptions App Model
+- Within the `subscriptions app`:
+   - the `Plan model` holds all the fields needed to populate the "Nutrition" page which contain the nutrition plan card where users can subscribe to it.
+
 #### Products App Model
 - Within the `products app`:
    - the `Product model` holds all the data needed for the products in the shop bag.
    - the `Category model` holds all the categories needed to insert products in it.
 
-#### Shop Bag App Model
-
 #### Checkout App Model
 - Within the `checkout app`:
-   - the `ProductOrder model` holds all the fields needed for ...
-   - the `ProductLineOrder model` holds all the ... needed to ...
+   - the `ProductOrder model` holds all the data needed to generate a product order number and additional fields to have an order summary.
+   - the `ProductLineOrder model` holds all the data needed to generate a product line order inside the Product Order (admin).
+   - the `SubscriptionOrder model` holds all the data needed to generate a subscription order number and additional fields to have an order summary.
 
 #### User Profile App Model
 The User model utilized for this project is the standard one provided by `django.contrib.auth.models`
 - Within the `user_profile app`:
-   - the `UserProfile model` maintain default
-    delivery information and order history
+   - the `UserProfile model` maintain default delivery information order history.
+
 
 ##### back to [top](#table-of-contents)
 
@@ -227,14 +250,22 @@ The User model utilized for this project is the standard one provided by `django
  
 <b>Built with</b>
  
-1. ![Bson](https://img.shields.io/badge/Bson-Version%201.1-blue)
- - [Bson](http://bsonspec.org/) - short for Bin­ary JSON, is a bin­ary-en­coded seri­al­iz­a­tion of JSON-like doc­u­ments.
+1. ![AWS S3 Bucket](https://img.shields.io/badge/Bson-Version%201.1-blue)
+ - [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3) -  is an object storage service that offers industry-leading scalability, data availability, security, and performance.
+2. ![Boto3](https://img.shields.io/badge/Bson-Version%201.1-blue)
+ - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - is the Amazon Web Services (AWS) SDK for Python. It enables Python developers to create, configure, and manage AWS services, such as EC2 and S3.
 2. ![Chrome Developer Tools](https://img.shields.io/badge/Chrome%20Dev%20Tools-Google%20Chrome-blue)
  - [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - is a set of web developer tools built directly into the Google Chrome browser.
 3. ![CSS3](https://img.shields.io/static/v1?label=CSS&message=3&color=1572B6&logo=css3&logoColor=ffffff)
  - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3) - Used as the base for cascading styles.
-4. ![django3](https://docs.djangoproject.com/en/3.1/)
- - [django3](https://docs.djangoproject.com/en/3.1/) - is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+4. ![Django3](https://docs.djangoproject.com/en/3.1/)
+ - [Django3](https://django-crispy-forms.readthedocs.io/en/latest/) - is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+4. ![Django-Allauth](https://docs.djangoproject.com/en/3.1/)
+ - [Django-Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - is an integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication. A very well written library thanks to Raymond Penners. 
+4. ![Django Crispy Forms](https://docs.djangoproject.com/en/3.1/)
+ - [Django Crispy Forms](https://docs.djangoproject.com/en/3.1/) - is an application that helps to manage Django forms.
+4. ![Django Storages](https://docs.djangoproject.com/en/3.1/)
+ - [Django Storages](https://django-storages.readthedocs.io/en/latest/) -  is a collection of custom storage backends for Django to work with boto3 and AWS S3.
 4. ![Flask](https://img.shields.io/badge/Flask-Version%201.1.2-orange)
  - [Flask](https://flask.palletsprojects.com/en/1.1.x/) - is a web framework, it provides you with tools, libraries and technologies that allow you to build a web application.
 5. ![Flask-Bcrypt](https://img.shields.io/badge/Flask--Bcrypt-0.7.1-orange)
@@ -257,16 +288,18 @@ The User model utilized for this project is the standard one provided by `django
  - [Heroku](https://dashboard.heroku.com/) - lets you deploy, run and manage applications written in Ruby, Node.js, Java, Python, Clojure, Scala, Go and PHP.
 13. ![HTML5](https://img.shields.io/static/v1?label=HTML&message=5&color=E34F26&logo=html5&logoColor=ffffff)
  - [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) - used as the base for markup text.
+14. ![JavaScript](https://img.shields.io/badge/jQuery-3.5.1-yellowgreen)
+ - [JavaScript](https://www.javascript.com/) -  is a scripting or programming language that allows you to implement complex features on web pages.
 14. ![jQuery](https://img.shields.io/badge/jQuery-3.5.1-yellowgreen)
  - [jQuery](https://jquery.com/) - is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
 15. ![Jinja](https://img.shields.io/badge/Jinja2-2.11.2-red)
  - [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) - a full featured template engine for Python.
-16. ![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-4.4-green)
- - [MongoDB Atlas](https://www.mongodb.com/) - is a document database with the scalability and flexibility that you want with the querying and indexing that you need.
+16. ![Pillow](https://img.shields.io/badge/MongoDB%20Atlas-4.4-green)
+ - [Pillow](https://pillow.readthedocs.io/en/stable/) -  is the friendly PIL fork by Alex Clark and Contributors. PIL is the Python Imaging Library by Fredrik Lundh and Contributors.
+18. ![PIP](https://img.shields.io/badge/PyMongo-2.3.0-green)
+ - [PIP](https://pip.pypa.io/en/stable/installing/) - is the standard package manager for Python. It allows you to install and manage additional packages that are not part of the Python standard library.
 17. ![Phyton](https://img.shields.io/badge/Python-3.8.3-blue)
  - [Python](https://www.python.org/downloads/release/python-383/) - is a scripting language.
-18. ![PyMongo](https://img.shields.io/badge/PyMongo-2.3.0-green)
- - [PyMongo](https://docs.mongodb.com/drivers/pymongo) - is a MongoDB driver for Python used to access the MongoDB database.
 21. ![psycopg2](https://pypi.org/project/psycopg2/)
  - [psycopg2](https://pypi.org/project/psycopg2/) - is the most popular PostgreSQL database adapter for the Python programming language.
 19. ![Werkzeug](https://img.shields.io/badge/Werkzeug-WSGI%20-yellow)
@@ -274,6 +307,14 @@ The User model utilized for this project is the standard one provided by `django
 20. ![WTforms](https://img.shields.io/badge/WTforms-0.14.3-blue)
  - [WTforms](https://pypi.org/project/WTForms/) - is  a framework agnostic library handling web forms in python.
 
+
+#### Libraries
+ 
+- [Bootstrap 4](https://getbootstrap.com/) - is a framework for building responsive, mobile-first websites.
+- [FontAwesome](https://fontawesome.com/) - is a font and icon toolkit based on CSS and Less. It was used to provide icons across the website.
+- [jQuery](https://jquery.com/download/) - is a lightweight, "write less, do more", JavaScript library. The purpose of jQuery is to make it much easier to use JavaScript on your website.
+- [Psycopg2](https://pypi.org/project/psycopg2/) - is the most popular PostgreSQL database adapter for the Python programming language.
+- [Bootsrap Select](https://developer.snapappointments.com/bootstrap-select/) - is a jQuery plugin that brings select elements into the 21st century with intuitive multiselection, searching, and much more.
 ##### back to [top](#table-of-contents)
  
 ---
@@ -294,7 +335,7 @@ The SQLite file format is stable, cross-platform, and backwards compatible and t
  
 I have also created a database schema:
 ![Diagram of database schema](static/img/MongoDB-Schema.png)
- 
+
 ##### back to [top](#table-of-contents)
  
 ---
@@ -425,13 +466,13 @@ To allow you to access all functionality on the site locally, ensure you have cr
  
 ### Content
  
-- [Spoonacular API](https://spoonacular.com/) - Database content
+- [Stipe API](https://stripe.com/) - Database payment integration
  
 ### Media
  
-- [Spoonacular API](https://spoonacular.com/) - Database images
+
 - [Unsplash](https://unsplash.com/) - Photo by Brook Lark
-- [Freepik](https://freepik.com/) - logo and avatars
+- [Freepik](https://freepik.com/) -
  
 ### Acknowledgements
  

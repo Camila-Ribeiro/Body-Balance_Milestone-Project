@@ -59,7 +59,7 @@ nav a {
 }
   
 .sidenav a:hover {
-    color: #a8b662;
+    color: #FFCCD2;
 }
 
 .margin-section{
@@ -81,7 +81,7 @@ nav a {
     z-index: 9999;
     height: 50px;
     width: 50px;
-    background-color: #a8b662;
+    background-color: #FFCCD2;
     text-align: center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -111,13 +111,13 @@ height: 900px;
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: #a8b662;
+	background: #FFCCD2;
 	z-index: -1;
     
 }
 
-.product-detail-section{
-    background: #e2e3dd;
+.product-detail-section {
+    background: #ffffff;
     border-radius: 5px;
     margin-top: 130px;
 }

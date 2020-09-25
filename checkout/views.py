@@ -5,13 +5,15 @@ from django.conf import settings
 
 from .forms import ProductOrderForm
 from .models import ProductOrder, ProductLineOrder
+
+import stripe
+import json
+
 from products.models import Product
 from user_profile.forms import UserProfileForm
 from user_profile.models import UserProfile
 from shop_bag.contexts import bag_products
 
-import stripe
-import json
 
 
 @require_POST

@@ -70,6 +70,20 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    <h1> Subscription </h1>
+                    
+                    
+                    {% for order in subscription_order %}
+                    <a href="{% url 'subscription_order_history' order.order_number %}"
+                    title="{{ order.order_number }}">
+                        {{ order.order_number|truncatechars:6 }}
+                    </a>
+                    <div>
+                        <p>Order number: : {{order.order_number|truncatechars:6}}</p>
+                        <p>Plan Name:{{order.plan_name}}</p>
+                        
+                    </div>
+                    {% endfor%}
                 </div>
             </div>
         </div>
