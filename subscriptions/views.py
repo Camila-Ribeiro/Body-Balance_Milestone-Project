@@ -6,7 +6,7 @@ from django.conf import settings
 import stripe
 
 from user_profile.models import UserProfile
-# from checkout.models import SubscriptionOrder
+from checkout.models import SubscriptionOrder
 from .models import Plan
 from .forms import AddPlanForm, SubscriptionOrderForm
 from django.http import JsonResponse, HttpResponse
@@ -24,6 +24,7 @@ from django.http import JsonResponse, HttpResponse
 stripe.api_key = settings.STRIPE_SECRET_KEY
 endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_SUB
 
+
 def shop_subscription_plan(request):
     """ A view to show all subscription plans available to purchase """
 
@@ -34,32 +35,34 @@ def shop_subscription_plan(request):
     }
     return render(request, 'subscriptions/subscriptions.html', context)
 
+
+
 def thanks(request):
-    return render(request, 'subscriptions/thanks.html')
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        form_database_sub = {
+            'full_name': profile,
+            'email': profile.user.email,
+            'user_profile': profile
+        }
+
+        order_form_ = SubscriptionOrderForm(form_database_sub)
+        if order_form_.is_valid():
+            order_form_ = order_form_.save(commit=False)
+            pay_intent_id = stripe.api_key.split('_secret')[0]
+            order_form_.stripe_pid = pay_intent_id
+            order_form_.save()
+            subscription_order_last = SubscriptionOrder.objects.latest('order_number')
+    template = 'subscriptions/thanks.html'
+    context = {
+        'subscription_order': subscription_order_last,
+        'from_user_profile': True,
+    }
+
+    return render(request, template, context)
+
 
 def checkout_plan(request):
-    if request.user.is_authenticated:
-        try:
-            profile = UserProfile.objects.get(user=request.user)
-            if request.method == 'POST':
-                plan = Plan.objects.all()
-                
-                order_form_ = SubscriptionOrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
-                    'email': profile.user.email,
-                    'price': plan.price,
-                })
-                print(order_form_)
-        except UserProfile.DoesNotExist:
-            order_form_ = SubscriptionOrderForm()
-    else:
-        order_form_ = SubscriptionOrderForm()
-        print(order_form_)
-        order_ = order_form_.save(commit=False)
-        pay_intent_id = stripe.api_key.split('_secret')[0]
-        order_.stripe_pid = pay_intent_id
-        order_.save()
-
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
@@ -72,10 +75,10 @@ def checkout_plan(request):
     )
 
     return JsonResponse({
-        # 'order_form':order_form,
-        'session_id' : session.id,
-        'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
+        'session_id': session.id,
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY
     })
+
 
 def stripe_webhook(request):
     print('WEBHOOK!')

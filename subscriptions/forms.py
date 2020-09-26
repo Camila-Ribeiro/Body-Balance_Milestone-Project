@@ -17,8 +17,8 @@ class AddPlanForm(forms.ModelForm):
 class SubscriptionOrderForm(forms.ModelForm):
     class Meta:
         model = SubscriptionOrder
-        fields = ('full_name', 'email', 'price',)
+        fields = ('full_name', 'email', 'user_profile',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        plan = Plan.objects.all()
+        # plan = Plan.objects.all()

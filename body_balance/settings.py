@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['body-balance-milestone-project.herokuapp.com', '127.0.0.1', 'localhost',]
 
-
+# AUTH_PROFILE_MODULE = 'subscriptions.UserProfile'
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'user_profile',
     'nutrition',
     'subscriptions',
-    
+
     #others
     'crispy_forms',
     'storages',
@@ -137,7 +137,6 @@ else:
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3'
         }
-        
     }
 
 
@@ -219,7 +218,7 @@ STRIPE_WEBHOOK_SECRET_SUB = os.getenv('STRIPE_WEBHOOK_SECRET_SUB', '')
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'bodybalance@example.com'
+    DEFAULT_FROM_EMAIL = 'noreply@ebodybalance.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True

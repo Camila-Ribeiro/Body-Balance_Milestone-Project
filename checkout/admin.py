@@ -35,11 +35,9 @@ class SubscriptionOrderAdmin(admin.ModelAdmin):
     readonly_fields = ('order_number', 'date', 'stripe_pid',)
 
     fields = ('order_number', 'date', 'user_profile',
-              'full_name', 'email', 'price', 'stripe_pid',)
-            
+              'full_name', 'email', 'stripe_pid',)
 
-    list_display = ('order_number', 'date', 'full_name',
-                    'price',)
+    list_display = ('order_number', 'date', 'full_name',)
 
     ordering = ('-date',)
 
