@@ -26,10 +26,10 @@
           <div class="col">
             <div class="card">
               {% if plan.image_file %}
-                <img src="{{ plan.image_file.url }}" class="card-img-top" alt="{{ plan.plan_name }}">
+                <img src="{{ plan.image_file.url }}" class="card-img-top" alt="{{ plan.plan_duration }}">
               </a>
               {% else %}
-                  <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ plan.plan_name }}">
+                  <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ plan.plan_duration }}">
               </a>
               {% endif %}
               <div class="card-body">
@@ -70,7 +70,7 @@
         .then((result) => { return result.json() })
         .then((data) => {
           var stripe = Stripe(data.stripe_public_key);
-    
+          
           stripe.redirectToCheckout({
           // Make the id field from the Checkout Session creation API response
           // available to this file, so you can provide it as parameter here

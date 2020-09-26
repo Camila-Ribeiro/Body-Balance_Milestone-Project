@@ -1,25 +1,28 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 import stripe
 
-from user_profile.forms import UserProfileForm
 from user_profile.models import UserProfile
+# from checkout.models import SubscriptionOrder
 from .models import Plan
-from checkout.models import SubscriptionOrder
-
 from .forms import AddPlanForm, SubscriptionOrderForm
-
-from django.conf import settings
 from django.http import JsonResponse, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import csrf_exempt
 
+# from django.db import connection
+# cursor = connection.cursor()
+# cursor.execute("alter table subscriptions_plan DROP column plan_name")
 
+# from django.db import connection
+# tables = connection.introspection.table_names()
+# seen_models = connection.introspection.installed_models(tables)
+# print(seen_models)
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_SUB
-
 
 def shop_subscription_plan(request):
     """ A view to show all subscription plans available to purchase """
@@ -34,25 +37,28 @@ def shop_subscription_plan(request):
 def thanks(request):
     return render(request, 'subscriptions/thanks.html')
 
-
-@csrf_exempt
 def checkout_plan(request):
-
     if request.user.is_authenticated:
         try:
             profile = UserProfile.objects.get(user=request.user)
-            # plan = Plan.objects.get(plan_name=plan_name)
-            order_form = SubscriptionOrderForm(initial={
-                'full_name': profile.user.get_full_name(),
-                'email': profile.user.email,
-                # 'plan_name': plan.plan_name,
-            })
-            print(order_form)
+            if request.method == 'POST':
+                plan = Plan.objects.all()
+                
+                order_form_ = SubscriptionOrderForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'price': plan.price,
+                })
+                print(order_form_)
         except UserProfile.DoesNotExist:
-            order_form = SubscriptionOrderForm()
+            order_form_ = SubscriptionOrderForm()
     else:
-        order_form = SubscriptionOrderForm()
-
+        order_form_ = SubscriptionOrderForm()
+        print(order_form_)
+        order_ = order_form_.save(commit=False)
+        pay_intent_id = stripe.api_key.split('_secret')[0]
+        order_.stripe_pid = pay_intent_id
+        order_.save()
 
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
@@ -61,7 +67,7 @@ def checkout_plan(request):
             'quantity': 1,
         }],
         mode='payment',
-       success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}',
+        success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url=request.build_absolute_uri(reverse('shop_subscription_plan')),
     )
 
@@ -70,13 +76,8 @@ def checkout_plan(request):
         'session_id' : session.id,
         'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
     })
-   
 
-
- 
-@csrf_exempt
 def stripe_webhook(request):
-
     print('WEBHOOK!')
     # You can find your endpoint's secret in your webhook settings
     # endpoint_secret = 'settings.STRIPE_WEBHOOK_SECRET_SUB'
@@ -105,9 +106,7 @@ def stripe_webhook(request):
 
     return HttpResponse(status=200)
 
-
 def get_plan_id(request, plan_id):
-
     plan_id = get_object_or_404(Plan, pk=plan_id)
     print(plan_id)
     context = {
@@ -163,7 +162,7 @@ def edit_plan_admin(request, plan_id):
             messages.error(request, 'Failed to upda§te plan. Please ensure the form is valid.')
     else:
         form = AddPlanForm(instance=plan)
-        messages.info(request, f'You are editing {plan.plan_name}')
+        messages.info(request, f'You are editing {plan.plan_duration}')
 
     template = 'subscriptions/edit_plan_admin.html'
     context = {
@@ -172,5 +171,3 @@ def edit_plan_admin(request, plan_id):
     }
 
     return render(request, template, context)
-
-
