@@ -96,9 +96,6 @@
                                                     <a class="text-danger" href="{% url 'delete_product_admin' product.id %}">Delete</a>
                                                 </small>
                                             {% endif %}
-                                                <div class="col-6">
-                                                    <div class="float-right">Total 123,45</div>
-                                                </div>
                                             </div>
                                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                     {% endwith %}

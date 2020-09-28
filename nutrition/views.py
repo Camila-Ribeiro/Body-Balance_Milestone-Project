@@ -6,15 +6,14 @@ from .models import Nutrition
 from .forms import AddNutritionPlanForm
 
 
-# def shop_nutrition_plan(request):
-#     """ A view to show all nutritional plans available to purchase """
+def nutrition(request):
+    nutrition_obj = Nutrition.objects.all()
 
-#     purchase_plan = Nutrition.objects.all()
+    context = {
+        'nutrition_obj': nutrition_obj,
+    }
 
-#     context = {
-#         'purchase_plan': purchase_plan,
-#     }
-#     return render(request, 'nutrition/nutrition.html', context)
+    return render(request, 'nutrition/nutrition.html', context)
 
 
 def get_plan_detail(request, plan_id):
