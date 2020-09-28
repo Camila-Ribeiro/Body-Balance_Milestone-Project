@@ -3,8 +3,6 @@ from django.contrib import messages
 
 from products.models import Product
 
-# Create your views here.
-
 
 def shop_bag(request):
     """ A view that renders the shopping bag page """
@@ -77,7 +75,7 @@ def update_quantity_bag(request, product_id):
     return redirect(reverse('shop_bag'))
 
 
-def remove_product_from_bag(request, product_id):
+def remove_product(request, product_id):
     """Remove the product from the shopping bag"""
 
     try:

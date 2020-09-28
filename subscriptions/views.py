@@ -10,16 +10,6 @@ from checkout.models import SubscriptionOrder
 from .models import Plan
 from .forms import AddPlanForm, SubscriptionOrderForm
 from django.http import JsonResponse, HttpResponse
-# from django.views.decorators.csrf import csrf_exempt
-
-# from django.db import connection
-# cursor = connection.cursor()
-# cursor.execute("alter table subscriptions_plan DROP column plan_name")
-
-# from django.db import connection
-# tables = connection.introspection.table_names()
-# seen_models = connection.introspection.installed_models(tables)
-# print(seen_models)
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_SUB
@@ -27,14 +17,15 @@ endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_SUB
 
 def shop_subscription_plan(request):
     """ A view to show all subscription plans available to purchase """
-
+    # profile = UserProfile.objects.get(user=request.user)
     subscriptions = Plan.objects.all()
-
+    subscription_order = SubscriptionOrder.objects.all()
     context = {
         'subscriptions': subscriptions,
+        'subscription_order': subscription_order,
+        # 'from_user_profile': True,
     }
     return render(request, 'subscriptions/subscriptions.html', context)
-
 
 
 def thanks(request):
@@ -52,8 +43,8 @@ def thanks(request):
             pay_intent_id = stripe.api_key.split('_secret')[0]
             order_form_.stripe_pid = pay_intent_id
             order_form_.save()
-            subscription_order_last = SubscriptionOrder.objects.latest('order_number')
-    template = 'subscriptions/thanks.html'
+        subscription_order_last = SubscriptionOrder.objects.latest('order_number')
+        template = 'subscriptions/thanks.html'
     context = {
         'subscription_order': subscription_order_last,
         'from_user_profile': True,
@@ -109,6 +100,7 @@ def stripe_webhook(request):
 
     return HttpResponse(status=200)
 
+
 def get_plan_id(request, plan_id):
     plan_id = get_object_or_404(Plan, pk=plan_id)
     print(plan_id)
@@ -138,7 +130,7 @@ def add_plan_admin(request):
         form = AddPlanForm()
 
     template = 'subscriptions/add_plan_admin.html'
-    
+
     context = {
         'form': form,
     }

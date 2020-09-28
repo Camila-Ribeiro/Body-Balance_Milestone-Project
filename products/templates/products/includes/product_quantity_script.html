@@ -1,51 +1,44 @@
-<!--https://codepen.io/zeyan/pen/PqXBZN-->
-
 <script type="text/javascript">
-    (function() {
 
-    window.inputNumber = function(el) {
+    // Disable +/- buttons outside 1-99 range
+    function handleEnableDisable(itemId) {
+        var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > 98;
+        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
 
-    var min = el.attr('min') || false;
-    var max = el.attr('max') || false;
+    // Ensure proper enabling/disabling of all inputs on page load
+    var allQtyInputs = $('.qty_input');
+    for(var i = 0; i < allQtyInputs.length; i++){
+        var itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
 
-    var els = {};
-
-    els.dec = el.prev();
-    els.inc = el.next();
-
-    el.each(function() {
-        init($(this));
+    // Check enable/disable every time the input is changed
+    $('.qty_input').change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
     });
 
-    function init(el) {
+    // Increment quantity
+    $('.increment-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue + 1);
+       var itemId = $(this).data('item_id');
+       handleEnableDisable(itemId);
+    });
 
-        els.dec.on('click', decrement);
-        els.inc.on('click', increment);
-
-         // Decrement quantity
-        function decrement() {
-        var value = el[0].value;
-        value--;
-        if(!min || value >= min) {
-            el[0].value = value;
-        }
-        }
-
-         // Increment quantity
-        function increment() {
-        var value = el[0].value;
-        value++;
-        if(!max || value <= max) {
-            el[0].value = value++;
-        }
-        }
-    }
-    }
-    })();
-
-    inputNumber($('.input-number'));
+    // Decrement quantity
+    $('.decrement-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue - 1);
+       var itemId = $(this).data('item_id');
+       handleEnableDisable(itemId);
+    });
 </script>
-
-// Disable +/- buttons outside 1-99 range
-// Ensure proper enabling/disabling of all inputs on page load
-// Check enable/disable every time the input is changed

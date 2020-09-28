@@ -28,8 +28,8 @@
     {% block corejs %}
     <!-- FontAwsome Kit, jQuery, then Popper.js, then Bootstrap JS -->
     <script src="https://kit.fontawesome.com/2976f97c65.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Stripe -->
@@ -53,6 +53,9 @@
                 </div>
                 <div class="col col--lg-8 hidden-md hidden-sm hidden-xs align-text-center">
                     <nav>
+                        {% if user.is_authenticated %}
+                            <p class="text-white">You're logged in as {{ user }}</p>
+                        {% endif %}
                         <ul class="nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'shop_subscription_plan' %}">NUTRITION</a>

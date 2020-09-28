@@ -5,6 +5,7 @@ class Nutrition(models.Model):
 
     class Meta:
         verbose_name_plural = 'Nutrition'
+        ordering = ('day',)
 
     plan_name = models.CharField(max_length=100, null=True)
     week = models.DecimalField(max_digits=2, decimal_places=0, null=True)

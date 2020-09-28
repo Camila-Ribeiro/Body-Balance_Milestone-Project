@@ -19,19 +19,94 @@
               <hr class="w-25 mt-1 mb-2">
           </div>
       </div>
-      <section>
+      <section class="container">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            {% for n in nutrition_obj %} 
-            {{n.plan_name}}
+            {% for n in nutrition_obj %}
               <a class="nav-link {% if n.day == 1 %}active{% endif %}" id="{{ n.day }}" data-toggle="tab" href="#tab-{{ n.day }}" role="tab" aria-controls="tab-{{ n.day }}" aria-selected="{% if n.day == 1 %}true{% else %}false{% endif %}">Day {{ n.day }}</a>
             {% endfor %}
           </div>
         </nav> 
         <div class="tab-content" id="nav-tabContent">
           {% for n in nutrition_obj %} 
+        
           {% if n.day == 1 %}
-            <div class="tab-pane fade show active" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
+            <div class="tab-pane fade show active bg-white" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
+              <div class="container">
+                <div class="img-container">
+                    {% if n.image_file %}
+                        <a href="{{ n.image_file.url }}" target="_blank">
+                            <img class="card-img-top img-fluid" src="{{ n.image_file.url }}" alt="{{ n.plan_name }}">
+                        </a>
+                    {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ n.plan_name }}">
+                        </a>
+                    {% endif %}
+                </div>
+              
+                <div>
+                  <h4>Daily Total Cal</h4>
+                  <p>{{ n.daily_total_cal }}</p>
+                </div>
+
+                <div>
+                  <h4>Protein</h4>
+                  <p>{{ n.protein }}</p>
+                </div>
+                <div>
+                  <h4>Carbohydrates</h4>
+                  <p>{{ n.carbohydrates }}</p>
+                </div>
+                <div>
+                  <h4>Fiber</h4>
+                  <p>{{ n.fiber }}</p>
+                </div>
+                <div>
+                  <h4>Fat</h4>
+                  <p>{{ n.fat }}</p>
+                </div>
+                <div>
+                  <h4>Sodium</h4>
+                  <p>{{ n.sodium }}</p>
+                </div>
+            
+                <div>
+                  
+                  <h4>Breakfast</h4>
+                  <ul>
+                    {% for n in nutrition_obj %}
+                    {% if n.day == 1 %}
+                    <li>
+                    
+                      {{ n.breakfast }}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                  
+                </div>
+                <div>
+                  <h4>AM Snack</h4>
+                  <p>{{ n.am_snack }}</p>
+                </div>
+                <div>
+                  <h4>Lunch</h4>
+                  <p>{{ n.lunch }}</p>
+                </div>
+                <div>
+                  <h4>PM Snack</h4>
+                  <p>{{ n.pm_snack }}</p>
+                </div>
+                <div>
+                  <h4>Dinner</h4>
+                  <p>{{ n.dinner }}</p>
+                </div>
+              </div>
+            </div>
+          {% else %}
+          <div class="tab-pane fade bg-white" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
+            <div class="container">
               <div>
                 <h4>Breakfast</h4>
                 <p>{{ n.breakfast }}</p>
@@ -53,34 +128,11 @@
                 <p>{{ n.dinner }}</p>
               </div>
             </div>
-          {% else %}
-          <div class="tab-pane fade" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
-            <div>
-              <h4>Breakfast</h4>
-              <p>{{ n.breakfast }}</p>
-            </div>
-            <div>
-              <h4>AM Snack</h4>
-              <p>{{ n.am_snack }}</p>
-            </div>
-            <div>
-              <h4>Lunch</h4>
-              <p>{{ n.lunch }}</p>
-            </div>
-            <div>
-              <h4>PM Snack</h4>
-              <p>{{ n.pm_snack }}</p>
-            </div>
-            <div>
-              <h4>Dinner</h4>
-              <p>{{ n.dinner }}</p>
-            </div>
           </div>
           {% endif %}
+          
           {% endfor %}
         </div>
-  
-
       </section>
   </section>  
 {% endblock %}

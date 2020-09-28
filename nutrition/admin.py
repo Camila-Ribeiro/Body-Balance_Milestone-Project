@@ -9,5 +9,8 @@ class Nutrition_Plan_Admin(admin.ModelAdmin):
         'day',
         # 'image_file',
     )
+    
+    ordering = ('-week', '-day',)
+
 
 admin.site.register(Nutrition, Nutrition_Plan_Admin)

@@ -13,29 +13,18 @@
   <div class="overlay"></div>
   <section class="margin-section">
     <div class="container">
-      <div class="row">
+      <!-- <div class="row">
           <div class="col text-center mt-3">
-              <h2 class="">Subscription Plan: {{ subscription_order.plan_duration}}</h2>
-              <p>order No: {{subscription_order.order_number}}</p>
-              {{order_number}}
+              <h2 class="">Subscription Plan </h2>
               <hr class="w-25 mt-1 mb-2">
           </div>
-      </div>
+      </div> -->
       <div class="container">
-        <div class="header clearfix">
-          <nav>
-            <ul class="nav nav-pills float-right">
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'shop_subscription_plan' %}">Home <span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-          </nav>
-          <h3 class="text-muted">Store</h3>
-        </div>
-  
         <div class="jumbotron">
           <h1 class="display-3">Thank You</h1>
-          <p class="lead">You will receive a link to The Product in your email.</p>
+          <p class="lead">Your subscription order number is {{subscription_order.order_number}}.</p> 
+          <p class="lead"><a href="{% url 'nutrition' %}">Click Here</a> to see your Nutrition Plan.</p>
         </div>
+      </div>
   </section>  
 {% endblock %}
