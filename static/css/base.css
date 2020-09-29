@@ -30,6 +30,17 @@ nav a {
     margin-top: 300px;
     margin-left: 0px;
 }
+
+footer {
+    background-color: #333C3C;
+    position: fixed;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
  /* ---- Code From ckz8780 /boutique_ado_v1 -------*/
 .overlay {
 	height: 100%;
@@ -101,6 +112,7 @@ color: rgb(6, 6, 6);
 #container{
 height: 900px;
 }
+
 
 /* ---------------------------------- Nutrition */
 .subscription p {
@@ -393,9 +405,28 @@ input[name='q']::placeholder {
   }
 }
 
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}
+
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .product-container {
         margin-top: 250px;
+    }
+
+    .header-container {
+        padding-top: 116px;
     }
 }

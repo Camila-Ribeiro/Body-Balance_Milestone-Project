@@ -46,17 +46,14 @@
     <header class="header">
         <div class="container">
             <div class="row">
-                <div class="col col--lg-2 col--md-4 col--sm-3 col--xs-3">
+                <div class="col-md-3">
                     <a class="header-logo" href="{% url 'home' %}">
                         <img src="https://placehold.co/200x60" alt="logo">
                     </a>
                 </div>
-                <div class="col col--lg-8 hidden-md hidden-sm hidden-xs align-text-center">
+                <div class="col-md-9">
                     <nav>
-                        {% if user.is_authenticated %}
-                            <p class="text-white text-right">You're logged in as {{ user }}</p>
-                        {% endif %}
-                        <ul class="nav">
+                        <ul class="nav float-right">
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'shop_subscription_plan' %}">NUTRITION</a>
                             </li>
@@ -137,4 +134,9 @@
     {% endblock %}
 
   </body>
+  <footer>
+    <div>
+        <p class="text-white m-2">Copyright</p>
+    </div>
+</footer>
 </html>
