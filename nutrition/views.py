@@ -16,18 +16,6 @@ def nutrition(request):
     return render(request, 'nutrition/nutrition.html', context)
 
 
-def get_plan_detail(request, plan_id):
-    """ A view to show individual plan details """
-    nutrition_obj = Nutrition.objects.all().order_by('day')
-    nutrition = get_object_or_404(Nutrition, pk=plan_id)
-
-    context = {
-        'nutrition': nutrition,
-        'nutrition_obj': nutrition_obj,
-    }
-    return render(request, 'nutrition/get_plan_detail.html', context)
-
-
 @login_required
 def add_nutrition_plan_admin(request):
     """ Add a nutriton plan available to purchase """

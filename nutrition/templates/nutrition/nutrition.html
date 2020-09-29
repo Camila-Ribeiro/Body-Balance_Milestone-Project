@@ -44,12 +44,10 @@
                         </a>
                     {% endif %}
                 </div>
-              
                 <div>
                   <h4>Daily Total Cal</h4>
                   <p>{{ n.daily_total_cal }}</p>
                 </div>
-
                 <div>
                   <h4>Protein</h4>
                   <p>{{ n.protein }}</p>
@@ -70,21 +68,9 @@
                   <h4>Sodium</h4>
                   <p>{{ n.sodium }}</p>
                 </div>
-            
                 <div>
-                  
                   <h4>Breakfast</h4>
-                  <ul>
-                    {% for n in nutrition_obj %}
-                    {% if n.day == 1 %}
-                    <li>
-                    
-                      {{ n.breakfast }}
-                    </li>
-                    {% endif %}
-                    {% endfor %}
-                  </ul>
-                  
+                    <p>{{ n.breakfast }}</p>
                 </div>
                 <div>
                   <h4>AM Snack</h4>
@@ -132,7 +118,7 @@
           {% endif %}
           
           {% endfor %}
-        </div>
+            </div>
       </section>
   </section>  
 {% endblock %}
