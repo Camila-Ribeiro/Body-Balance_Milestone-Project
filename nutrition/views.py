@@ -17,7 +17,7 @@ def nutrition(request):
 
 
 @login_required
-def add_nutrition_plan_admin(request):
+def add_menu_admin(request):
     """ Add a nutriton plan available to purchase """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners have the permission to add Nutrition Details.')
@@ -34,7 +34,7 @@ def add_nutrition_plan_admin(request):
     else:
         form = AddNutritionPlanForm()
 
-    template = 'nutrition/add_nutrition_plan_admin.html'
+    template = 'nutrition/add_menu_admin.html'
     context = {
         'form': form,
     }

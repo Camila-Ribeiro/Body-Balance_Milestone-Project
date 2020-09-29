@@ -38,7 +38,7 @@
                 <p class="mt-2">{{ plan.description}}</p>
                 {% if request.user.is_superuser %}
                   <small class="ml-3">
-                      <a href="{% url 'edit_plan_admin' plan.id %}">Edit</a>
+                      <a href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
                   </small>
                 {% elif user.is_authenticated %}
                     {% with subscription_order as order %}

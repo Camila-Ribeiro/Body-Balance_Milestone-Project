@@ -108,38 +108,11 @@ def get_plan_id(request, plan_id):
         'plan_id': plan_id,
     }
 
-    return render(request, 'subscriptions/edit_plan_admin.html', context)
+    return render(request, 'subscriptions/edit_subscription_admin.html', context)
 
 
 @login_required
-def add_plan_admin(request):
-    """ Add a subscription plan available to purchase """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners have the permission to add Subscription Plans.')
-        return redirect(reverse('home'))
-
-    if request.method == 'POST':
-        form = AddPlanForm(request.POST, request.FILES)
-        if form.is_valid():
-            subscription_plan = form.save()
-            messages.success(request, 'Subscription Plan added successfully!')
-            return redirect(reverse('get_plan_id', args=[plan.id]))
-        else:
-            messages.error(request, 'Failed! Please ensure you added the Subscription Plan correctly!')
-    else:
-        form = AddPlanForm()
-
-    template = 'subscriptions/add_plan_admin.html'
-
-    context = {
-        'form': form,
-    }
-
-    return render(request, template, context)
-
-
-@login_required
-def edit_plan_admin(request, plan_id):
+def edit_subscription_admin(request, plan_id):
     """ Edit a subscription plan  """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners have the permission to edit the subscription plan.')
@@ -159,7 +132,7 @@ def edit_plan_admin(request, plan_id):
         form = AddPlanForm(instance=plan)
         messages.info(request, f'You are editing {plan.plan_duration}')
 
-    template = 'subscriptions/edit_plan_admin.html'
+    template = 'subscriptions/edit_subscription_admin.html'
     context = {
         'form': form,
         'plan': plan,

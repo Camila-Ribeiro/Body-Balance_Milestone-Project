@@ -102,20 +102,20 @@
                             {% endfor %}
                         </div> 
                     </table>
-                        <div class="row">
+                        <div class="mt-5 mb-3 container">
                             <div class="text-right small--text-center">
-                                <span>Subtotal</span>
-                                <span>€{{ total_items|floatformat:2 }}</span>
-                                <h6>Delivery: ${{ delivery_fee|floatformat:2 }}</h6>
+                                <h5>Subtotal €{{ total_items|floatformat:2 }}</h5>
+                                <p>Shipping calculated at checkout</p>
+                                <!-- <h6>Delivery: ${{ delivery_fee|floatformat:2 }}</h6>
                                 <h4 class="mt-4"><strong>Total: €{{ shop_total|floatformat:2 }}</strong></h4>
                                 {% if free_delivery_delta > 0 %}
                                     <p class="mb-1 text-danger">
                                         You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
                                     </p>
-                                {% endif %} 
+                                {% endif %}  -->
                             </div>
                         </div>
-                        <div class="row mb-5 float-right">
+                        <div class="row mt-5 mb-5 float-right">
                             <tr>
                                 <td colspan="5">
                                     <a href="{% url 'shop_products' %}" class="btn btn-outline-black rounded-0 btn-lg border m-2">
