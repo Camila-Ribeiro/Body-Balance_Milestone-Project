@@ -52,9 +52,14 @@ footer {
 	z-index: -1;
 }
 
+/* ---------------------------------- Nutrition */
+.subscription p {
+    font-size: 1.125rem;
+}
+
  /* ---------------------------------- Products */
 
-.sidenav {
+ .sidenav {
     background: #ffff;
     overflow-x: hidden;
     padding: 8px 0;
@@ -82,43 +87,6 @@ footer {
     font-size: 1.125rem;
 }
 
- /* https://codepen.io/phoenixzqy/pen/oLLVGq  */
-.btn-backToTop{
-    display: none;
-    position: fixed;
-    bottom: 100px;
-    right: 50px;
-    font-size: 3em;
-    z-index: 9999;
-    height: 50px;
-    width: 50px;
-    background-color: #FFCCD2;
-    text-align: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.btn-backToTop i{
-position: absolute;
-top: 0px;
-left: 10px;
-color: #fff;
-}
-
-.btn-backToTop i:hover{
-color: rgb(6, 6, 6);
-}
-
-#container{
-height: 900px;
-}
-
-
-/* ---------------------------------- Nutrition */
-.subscription p {
-    font-size: 1.125rem;
-}
-
 /* ---------------------------------- Product Detail */
 .overlay-color{
     height: 100%;
@@ -126,7 +94,7 @@ height: 900px;
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: #FFCCD2;
+	background: #e9ecef;
 	z-index: -1;
     
 }
@@ -166,6 +134,37 @@ height: 900px;
 .btn-style {
     background-color:#f3bf26;
     color: black;
+}
+
+ /* https://codepen.io/phoenixzqy/pen/oLLVGq  */
+ .btn-backToTop{
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    font-size: 3em;
+    z-index: 9999;
+    height: 50px;
+    width: 50px;
+    background-color: #FFCCD2;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.btn-backToTop i{
+position: absolute;
+top: 0px;
+left: 10px;
+color: #fff;
+}
+
+.btn-backToTop i:hover{
+color: rgb(6, 6, 6);
+}
+
+#container{
+height: 900px;
 }
 
 /* -------------------------------- Shop Bag */
