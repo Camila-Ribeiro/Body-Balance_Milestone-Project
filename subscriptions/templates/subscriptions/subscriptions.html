@@ -43,7 +43,7 @@
                 {% elif user.is_authenticated %}
                     {% with subscription_order as order %}
                         {% for order in subscription_order %} 
-                          {% if order.user_profile.user %}
+                          {% if user == order.userprofile.user %}
                             <p><strong>You already has a subscription</strong></p>
                             <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
                             {% else %}
