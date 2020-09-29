@@ -15,28 +15,27 @@
     <div class="container">
       <div class="row">
           <div class="col text-center mt-3">
-              <h2 class="">Subscriptions</h2>
+              <h2 class="">Subscription</h2>
 
               <hr class="w-25 mt-1 mb-2">
           </div>
       </div>
-      <div class="row row-cols-1
-       row-cols-md-4">
+    <section class="container">
+      <div class="mt-5">
         {% for plan in subscriptions %}
-          <div class="col">
-            <div class="card">
               {% if plan.image_file %}
-                <img src="{{ plan.image_file.url }}" class="card-img-top" alt="{{ plan.plan_duration }}">
+              <a>
+                <img src="{{ plan.image_file.url }}" class="img-fluid" alt="{{ plan.plan_duration }}">
               </a>
               {% else %}
                   <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ plan.plan_duration }}">
               </a>
               {% endif %}
-              <div class="card-body">
-                <h6 class="card-title">{{ plan.plan_duration }}</h6>
-                <p class="card-text">{{ plan.description}}</p>
-
-                
+            </div>
+          </section>
+              <div class="container subscription">
+                <h4 class="mt-5">{{ plan.plan_duration }}</h4>
+                <p class="mt-2">{{ plan.description}}</p>
                 {% if request.user.is_superuser %}
                   <small class="ml-3">
                       <a href="{% url 'edit_plan_admin' plan.id %}">Edit</a>
@@ -45,23 +44,21 @@
                     {% with subscription_order as order %}
                         {% for order in subscription_order %} 
                           {% if order.user_profile.user %}
-                            <p>You already has a subscription</p>
-                            <a href="{% url 'nutrition' %}">See your plan</a>
-                          {% else %}
-                            <a href="#"  id="buy_now_btn" class="btn btn-primary">Subscribe</a>
+                            <p><strong>You already has a subscription</strong></p>
+                            <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
+                            {% else %}
+                            <a class="btn btn-primary" href="#"  id="buy_now_btn" role="button">Subscribe</a>
                           {% endif %}
                         {% endfor%}
                     {% endwith %}    
                 {% else %} 
-                  <a class="btn btn-primary" href="{% url 'account_signup' %}">Register to Buy</a> 
+                  <a class="btn btn-primary" href="{% url 'account_signup' %}" role="button">Register to Buy</a> 
                 {% endif %} 
-                
-              </div>
-            </div>
-          </div>
+              </div>   
         {% endfor %}
-      </div>
-    </div>
+     
+<hr/>
+    
     <p>Get user {{user}}</p>
 
     {% for u in subscription_order %}

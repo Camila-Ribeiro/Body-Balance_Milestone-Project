@@ -3,11 +3,11 @@
     "pk": 1,
     "model": "subscriptions.plan",
     "fields": {
-      "plan_duration": "1 Month",
-      "description": "1 serving Avocado-Egg Toast (271 calories).",
+      "plan_duration": "1 Month Subscription",
+      "description": "My nutrition plan is specifically designed to be simple to follow, and to deliver deliciousness! My meal plan doesn’t require any special skills to follow, and you’ll get detailed descriptions of how to prepare everything.Each week I’ll provide you with meals and snacks for your day. It’s that easy!",
       "price":  29.90,
-      "image_url": "https://i.imgur.com/9qCiaMW.jpg",
-      "image_file": "1-month.jpg"
+      "image_url": "https://i.imgur.com/M6MPajj.jpg",
+      "image_file": "food1.jpg"
     }
   }
 ]

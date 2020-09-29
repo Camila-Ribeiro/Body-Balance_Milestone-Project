@@ -54,7 +54,7 @@
                 <div class="col col--lg-8 hidden-md hidden-sm hidden-xs align-text-center">
                     <nav>
                         {% if user.is_authenticated %}
-                            <p class="text-white">You're logged in as {{ user }}</p>
+                            <p class="text-white text-right">You're logged in as {{ user }}</p>
                         {% endif %}
                         <ul class="nav">
                             <li class="nav-item">
@@ -91,9 +91,9 @@
                                         <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                         <p class="my-0">
                                             {% if shop_total %}
-                                                ${{ shop_total|floatformat:2 }}
+                                                €{{ shop_total|floatformat:2 }}
                                             {% else %}
-                                                $0.00
+                                                €0.00
                                             {% endif %}
                                         </p>
                                     </div>

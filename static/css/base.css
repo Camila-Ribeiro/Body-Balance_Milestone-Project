@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: url('../../media/girls.jpg') no-repeat center center fixed;
+    background: url('../../media/homepage.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 300px);  
     color: rgb(3, 3, 3);
@@ -27,8 +27,8 @@ nav a {
 }
 
 .text-margin{
-    margin-top: 500px;
-    margin-left: 700px;
+    margin-top: 300px;
+    margin-left: 0px;
 }
  /* ---- Code From ckz8780 /boutique_ado_v1 -------*/
 .overlay {
@@ -37,7 +37,7 @@ nav a {
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: #e2e3dd;
+	background: #e9ecef;
 	z-index: -1;
 }
 
@@ -102,7 +102,10 @@ color: rgb(6, 6, 6);
 height: 900px;
 }
 
-
+/* ---------------------------------- Nutrition */
+.subscription p {
+    font-size: 1.125rem;
+}
 
 /* ---------------------------------- Product Detail */
 .overlay-color{
@@ -371,7 +374,15 @@ input[name='q']::placeholder {
     border-left: none;
     border-radius: 0 4px 4px 0;
 }
-  
+
+
+
+/*images tabs*/
+#nav-tabContent .tab-pane img{
+    object-fit: cover;
+    max-height: 300px;
+    object-position: center;
+}
 
 /* -------------------------------- Media Queries */
 

@@ -44,8 +44,8 @@
                     </form>
                    
                 </div>
-                <div class=" col-md-9 tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <p class="text-muted">Order History</p>
+                <div class="col-md-12 tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <p class="text-muted lead">Order History</p>
                     <div class="order-history table-responsive">
                         <table class="table table-sm table-borderless">
                             <thead>
@@ -62,7 +62,7 @@
                                         <td>
                                             <a href="{% url 'product_order_history' order.order_number %}"
                                             title="{{ order.order_number }}">
-                                                {{ order.order_number|truncatechars:6 }}
+                                                {{ order.order_number|truncatechars:10 }}
                                             </a>
                                         </td>
                                         <td>{{ order.date }} </td>
@@ -77,7 +77,7 @@
                                                 {% endfor %}
                                             </ul>
                                         </td>
-                                        <td>${{ order.shop_total }}</td>
+                                        <td>€{{ order.shop_total }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -86,24 +86,38 @@
                 </div>
                 {% with subscription_order as order %}
                     {% if order %}
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                            
-                            <h1> Subscription </h1>
-                        
-                            {% for order in subscription_order %}
-                                <a href="{% url 'subscription_order_history' order.order_number %}"
-                                title="{{ order.order_number }}">
-                                    {{ order.order_number|truncatechars:6 }}
-                                </a>
-                                <div>
-                                    <p>Order number: : {{order.order_number|truncatechars:6}}</p>
-                                    <p>Plan Name:{{order.plan_duration}}</p>
-                                   
+                        <div class="col-md-12 tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <p class="text-muted lead">Subscription</p>
+                            <div class="subscription-order table-responsive">
+                                <table class="table table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>Order Number</th>
+                                            <th>Date</th>
+                                            <th>Plan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in subscription_order %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{% url 'subscription_order_history' order.order_number %}"
+                                                    title="{{ order.order_number }}">
+                                                        {{ order.order_number|truncatechars:15 }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ order.date }} </td>
+                                                <td>Nutrition</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="mx-auto text-center mt-5">
+                                    <p class="lead">Please check here your subsciption plan</p>
+                                    <a class=" btn btn-primary" href="{% url 'nutrition' %}">SEE YOUR PLAN</a>
                                 </div>
-                                <p>Please check here your subsciption plan</p>
-                                <a href="{% url 'nutrition' %}">See your plan</a>
-                            {% endfor%}
-                           
+                                
+                            </div>
                         </div>
                     {% endif %}
                 {% endwith %}
