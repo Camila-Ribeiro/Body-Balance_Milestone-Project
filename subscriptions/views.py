@@ -51,7 +51,7 @@ def thanks(request):
             subscription_order_last = SubscriptionOrder.objects.latest('order_number')
             template = 'subscriptions/thanks.html'
         else:
-            return redirect(reverse('home'))
+            return redirect(reverse('shop_subscription_plan'))
 
     context = {
         'subscription_order': subscription_order_last,

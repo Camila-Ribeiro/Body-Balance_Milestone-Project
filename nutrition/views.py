@@ -2,18 +2,31 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from subscriptions.views import filter_user_has_order
+
+from checkout.models import SubscriptionOrder
+from user_profile.models import UserProfile
 from .models import Nutrition
+
 from .forms import AddNutritionPlanForm
 
 
 def nutrition(request):
     nutrition_obj = Nutrition.objects.all()
+    subscription_order = SubscriptionOrder.objects.all()
+    online_user = UserProfile.objects.get(user=request.user)
+    has_order = filter_user_has_order(online_user, subscription_order)
+
+    if has_order is None:
+        template = 'nutrition/nutrition.html'
+    else:
+        return redirect(reverse('shop_subscription_plan'))
 
     context = {
         'nutrition_obj': nutrition_obj,
     }
 
-    return render(request, 'nutrition/nutrition.html', context)
+    return render(request, template, context)
 
 
 @login_required
