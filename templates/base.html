@@ -53,7 +53,11 @@
                 </div>
                 <div class="col-md-9">
                     <nav>
+                        {% if user.is_authenticated %}
+                        <p class="text-white">you're logged in as {{ user }}</p>
+                        {% endif %}
                         <ul class="nav float-right">
+                         
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'shop_subscription_plan' %}">NUTRITION</a>
                             </li>

@@ -88,7 +88,6 @@ class SubscriptionOrder(models.Model):
                                      null=True, blank=True, related_name='subscription_order')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
-    # price = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def get_order_number_(self):

@@ -17,20 +17,25 @@ endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_SUB
 
 def shop_subscription_plan(request):
     """ A view to show all subscription plans available to purchase """
-    # profile = UserProfile.objects.get(user=request.user)
     subscriptions = Plan.objects.all()
     subscription_order = SubscriptionOrder.objects.all()
+    online_user = UserProfile.objects.get(user=request.user)
+    has_order = filter_user_has_order(online_user, subscription_order)
+
     context = {
         'subscriptions': subscriptions,
         'subscription_order': subscription_order,
-        # 'from_user_profile': True,
+        'has_order': has_order,
     }
     return render(request, 'subscriptions/subscriptions.html', context)
 
 
 def thanks(request):
     if request.user.is_authenticated:
+        subscription_order = SubscriptionOrder.objects.all()
         profile = UserProfile.objects.get(user=request.user)
+        has_order = filter_user_has_order(profile, subscription_order)
+        
         form_database_sub = {
             'full_name': profile,
             'email': profile.user.email,
@@ -38,15 +43,19 @@ def thanks(request):
         }
 
         order_form_ = SubscriptionOrderForm(form_database_sub)
-        if order_form_.is_valid():
+        if order_form_.is_valid() and has_order is None:
             order_form_ = order_form_.save(commit=False)
             pay_intent_id = stripe.api_key.split('_secret')[0]
             order_form_.stripe_pid = pay_intent_id
             order_form_.save()
-        subscription_order_last = SubscriptionOrder.objects.latest('order_number')
-        template = 'subscriptions/thanks.html'
+            subscription_order_last = SubscriptionOrder.objects.latest('order_number')
+            template = 'subscriptions/thanks.html'
+        else:
+            return redirect(reverse('home'))
+
     context = {
         'subscription_order': subscription_order_last,
+        'has_order': has_order,
         'from_user_profile': True,
     }
 
@@ -139,3 +148,11 @@ def edit_subscription_admin(request, plan_id):
     }
 
     return render(request, template, context)
+
+
+def filter_user_has_order(user, order):
+    has_order = []
+    for name in order:
+        if str(name.full_name) == str(user):
+            has_order = name
+    return has_order

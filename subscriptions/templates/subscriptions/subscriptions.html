@@ -25,15 +25,16 @@
         {% for plan in subscriptions %}
               {% if plan.image_file %}
               <a>
-                <img src="{{ plan.image_file.url }}" class="img-fluid" alt="{{ plan.plan_duration }}">
+                <img src="{{ plan.image_file.url }}" class="img-fluid" alt="{{ plan.plan_duration }}" style="max-height: 300px; object-fit: cover; width: 100%; ">
               </a>
               {% else %}
                   <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ plan.plan_duration }}">
               </a>
               {% endif %}
             </div>
-          </section>
-              <div class="container subscription">
+   
+          
+              <div class="container subscription mb-5">
                 <h4 class="mt-5">{{ plan.plan_duration }}</h4>
                 <p class="mt-2">{{ plan.description}}</p>
                 {% if request.user.is_superuser %}
@@ -41,35 +42,21 @@
                       <a href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
                   </small>
                 {% elif user.is_authenticated %}
-                    {% with subscription_order as order %}
-                        {% for order in subscription_order %} 
-                          {% if user == order.userprofile.user %}
+                  
+                        {% if has_order %}
                             <p><strong>You already has a subscription</strong></p>
                             <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
                             {% else %}
                             <a class="btn btn-primary" href="#"  id="buy_now_btn" role="button">Subscribe</a>
                           {% endif %}
-                        {% endfor%}
-                    {% endwith %}    
+                    
                 {% else %} 
                   <a class="btn btn-primary" href="{% url 'account_signup' %}" role="button">Register to Buy</a> 
                 {% endif %} 
               </div>   
         {% endfor %}
      
-<hr/>
-    
-    <p>Get user {{user}}</p>
 
-    {% for u in subscription_order %}
-        {{u.user_profile}}
-      {% endfor %}
-<hr/>
-    {% for order in subscription_order %}
-      
-      <h1>{{order.user_profile}}</h1>
-      <h1>{{order.order_number}}</h1>
-    {% endfor %}
   </section>  
 {% endblock %}
 

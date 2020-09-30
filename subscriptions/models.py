@@ -3,6 +3,9 @@ from django.db import models
 
 class Plan(models.Model):
 
+    class Meta:
+        verbose_name_plural = 'Plan'
+
     plan_duration = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     price = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
