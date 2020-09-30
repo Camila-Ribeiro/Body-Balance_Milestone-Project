@@ -1,5 +1,5 @@
 # Body Balance
-### [Heroku App](https://body-balance-milestone-project.herokuapp.com/)
+### [Heroku App](https://body-balance-ms4.herokuapp.com/)
 ### [GitHub](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project)
  
 ![devices image](static/img/web-app-devices.png)
@@ -103,7 +103,7 @@ Body Balance is an online web application designed for users with interest in ga
  - Add, edit and delete product and all it's specifications
  - Add, edit and delete nutrition plan details
  - Edit subscription plan details 
- - Access the Django Admin page through `https://body-balance-milestone-project.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
+ - Access the Django Admin page through `https://body-balance-ms4.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
     - Add, edit and delete product and all it's specifications
     - Add, edit and delete nutrition plan details
     - Edit subscription plan details 
@@ -162,18 +162,18 @@ My wireframes for this project can be found in the UX folder.
 
 - Nutrition - this page displays a Nutrition Plan available for subscription. 
    - Registared users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
-   - For anonimous users it displays a "Subscribe" button where redirects the user to the "Register"page.
+   - For anonymous users it displays a "Subscribe" button where redirects the user to the "Register"page.
    - For superusers it displays an "Edit" button where redirects to the "Edit Plan"page.
 
 - Products - this page displays all products:
    - it can be filtered by category, price, rating or show all products
    - There is a search input where the user can search keyword found on product name or product description
    - Also users can sort products by price (low to high or high to low), rating (low to high or high to low), name (A-Z or Z-a) and category (A-Z or Z-a).
-   - Users, anonimous users and superuser can see the same content described above.
+   - Users, anonymous users and superuser can see the same content described above.
 
 - Products Details - this page displays product details such as produc name, rating, category, price, size, quantity and a button "buy" which redirect the user to the "shop bag" page.
    - Registared users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
-   - For anonimous users it displays the same content.
+   - For anonymous users it displays the same content.
    - For superusers it displays the same content described above plus an "Edit" button where redirects to the "Edit Product"page.
 
 - User Profile - this page displays the user profile details, Order history and a Weekly Nutritional Plan detail (for subscribers only).
@@ -181,7 +181,7 @@ My wireframes for this project can be found in the UX folder.
      - Update their personal details
      - Check their Product Order history
      - Subscribers can access to their weekly Nutritional Plan detail
-  - Anonimus don't have access to this page.
+  - Anonymous don't have access to this page.
   
 
 - Product Management - this page is designed only for superusers. It allows them to add products. 
@@ -392,7 +392,7 @@ Doing this meant after a while the error codes became more familiar to me. And f
 
 ### Deploying to Heroku
  
-[Body Balance](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project) was developed  locally using **VS Code**, and all commits were pushed to [**Heroku**](https://body-balance-milestone-project.herokuapp.com/) using [**Git**](https://git-scm.com/).
+[Body Balance](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project) was developed  locally using **VS Code**, and all commits were pushed to [**Heroku**](https://body-balance-ms4.herokuapp.com/) using [**Git**](https://git-scm.com/).
  
 In order to get the application ready for deployment I followed the next steps:
 1. I removed all my hard-coded environment variables from app.py to protect my Database name, URI and secret-key and placed them in the env.py for development and entered it into herouku's Config Var for production.
