@@ -26,10 +26,10 @@
               <a class="nav-link {% if n.day == 1 %}active{% endif %}" id="{{ n.day }}" data-toggle="tab" href="#tab-{{ n.day }}" role="tab" aria-controls="tab-{{ n.day }}" aria-selected="{% if n.day == 1 %}true{% else %}false{% endif %}">Day {{ n.day }}</a>
             {% endfor %}
           </div>
-        </nav> 
+        </nav>
         <div class="tab-content" id="nav-tabContent">
-          {% for n in nutrition_obj %} 
-        
+          {% for n in nutrition_obj %}
+
           {% if n.day == 1 %}
             <div class="tab-pane fade show active bg-white" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
               <div class="">
@@ -189,11 +189,11 @@
           </div>
           </div>
           {% endif %}
-          
+
           {% endfor %}
             </div>
       </section>
-  </section>  
+  </section>
 {% endblock %}
 
 {% block postloadjs %}

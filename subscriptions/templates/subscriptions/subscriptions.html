@@ -15,7 +15,7 @@
     <div class="container">
       <div class="row">
           <div class="col text-center mt-3">
-              <h2 class="">Subscribe to a Nutrition Plan</h2>
+              <h2 class="">Subscription</h2>
 
               <hr class="w-25 mt-1 mb-2">
           </div>
@@ -32,8 +32,7 @@
               </a>
               {% endif %}
             </div>
-   
-          
+
               <div class="container subscription mb-5">
                 <h4 class="mt-5">{{ plan.plan_duration }}</h4>
                 <p class="mt-2">{{ plan.description}}</p>
@@ -42,22 +41,19 @@
                       <a href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
                   </small>
                 {% elif user.is_authenticated %}
-                  
-                        {% if has_order %}
-                            <p><strong>You already has a subscription</strong></p>
-                            <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
-                            {% else %}
-                            <a class="btn btn-primary" href="#"  id="buy_now_btn" role="button">Subscribe</a>
-                          {% endif %}
-                    
-                {% else %} 
-                  <a class="btn btn-primary" href="{% url 'account_signup' %}" role="button">Register to Buy</a> 
-                {% endif %} 
-              </div>   
+                    {% if user_has_order != 'anonymous' and user_has_order != 'no-subscribed' %}
+                        <p><strong>You already has a subscription</strong></p>
+                        <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
+                        {% else %}
+                        <a class="btn btn-primary" href="#"  id="buy_now_btn" role="button">Subscribe</a>
+                      {% endif %}
+                {% else %}
+                  <a class="btn btn-primary" href="{% url 'account_signup' %}" role="button">Register to Buy</a>
+                {% endif %}
+              </div>
         {% endfor %}
-     
 
-  </section>  
+  </section>
 {% endblock %}
 
 {% block postloadjs %}
@@ -65,10 +61,11 @@
     <script>
       // var stripe = Stripe('{{stripe_public_key}}')
       const buy_now_button = document.querySelector('#buy_now_btn')
-    
-      buy_now_button.addEventListener('click', event => {   
+
+    if (buy_now_button) {
+      buy_now_button.addEventListener('click', event => {
         fetch('{% url "checkout_plan" %}', {
-          headers : { 
+          headers : {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           }
@@ -76,7 +73,7 @@
         .then((result) => { return result.json() })
         .then((data) => {
           var stripe = Stripe(data.stripe_public_key);
-          
+
           stripe.redirectToCheckout({
           // Make the id field from the Checkout Session creation API response
           // available to this file, so you can provide it as parameter here
@@ -88,8 +85,9 @@
             // error, display the localized error message to your customer
             // using `result.error.message`.
           });
-        }) 
+        })
       })
+    }
     </script>
 {% endblock %}
 

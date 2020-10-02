@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from subscriptions.views import filter_user_has_order
+from subscriptions.views import is_not_anonymous
 
 from checkout.models import SubscriptionOrder
 from user_profile.models import UserProfile
@@ -14,10 +14,9 @@ from .forms import AddNutritionPlanForm
 def nutrition(request):
     nutrition_obj = Nutrition.objects.all()
     subscription_order = SubscriptionOrder.objects.all()
-    online_user = UserProfile.objects.get(user=request.user)
-    has_order = filter_user_has_order(online_user, subscription_order)
+    user_has_order = is_not_anonymous(request)
 
-    if has_order is None:
+    if user_has_order != 'anonymous' and user_has_order != 'no-subscribed':
         template = 'nutrition/nutrition.html'
     else:
         return redirect(reverse('shop_subscription_plan'))
@@ -31,7 +30,7 @@ def nutrition(request):
 
 @login_required
 def add_menu_admin(request):
-    """ Add a nutriton plan available to purchase """
+    """ Add a nutrition plan available to purchase """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners have the permission to add Nutrition Details.')
         return redirect(reverse('home'))
