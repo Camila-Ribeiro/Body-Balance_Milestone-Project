@@ -80,7 +80,7 @@ def checkout(request):
                             product_line_order.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "There is a product in your shop bag that bag wasn't found in our database. "
+                        "There is a product in your shop bag that wasn't found in our database. "
                         "Please get in contact with us for further assistance!")
                     )
                     order.delete()
@@ -132,7 +132,7 @@ def checkout(request):
 
     template = 'checkout/checkout.html'
     context = {
-        'order_form':order_form,
+        'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
@@ -182,4 +182,3 @@ def checkout_success(request, order_number):
 
     return render(request, template, context)
 
- 

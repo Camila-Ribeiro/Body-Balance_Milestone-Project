@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
+from checkout.webhook_handler import StripeWebhookHandler
+
 import stripe
 
 from user_profile.models import UserProfile
@@ -14,7 +16,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
-endpoint_secret = settings.STRIPE_WEBHOOK_SECRET_SUB
+endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 
 
 def is_not_anonymous(request):
@@ -72,11 +74,11 @@ def thanks(request):
     #         template = 'subscriptions/thanks.html'
     #     else:
     #         return redirect(reverse('shop_subscription_plan'))
-
+    
     context = {
         # 'subscription_order': subscription_order_last,
         # 'has_order': has_order,
-        'from_user_profile': True,
+        # 'from_user_profile': True,
     }
 
     return render(request, 'subscriptions/thanks.html', context)
@@ -88,13 +90,15 @@ def checkout_plan(request):
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
-            'price': 'price_1HUY3FEcvV2absiRjrCdirZO',
+            'price': 'price_1HYucdEcvV2absiRYT8BZha0',
             'quantity': 1,
         }],
         mode='payment',
         success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url=request.build_absolute_uri(reverse('shop_subscription_plan')),
     )
+
+    
 
     return JsonResponse({
         'session_id': session.id,
@@ -105,15 +109,16 @@ def checkout_plan(request):
 @require_POST
 @csrf_exempt
 def stripe_webhook(request):
-    print('WEBHOOK!')
+    """Listen for webhooks from Stripe"""
+    # Setup
+    print('WEBHOOK!', 'working')
     # You can find your endpoint's secret in your webhook settings
-    endpoint_secret = 'settings.STRIPE_WEBHOOK_SECRET_SUB'
+    endpoint_secret = 'settings.STRIPE_WEBHOOK_SECRET'
 
+    # Get the webhook data and verify its signature
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
-
-    
 
     try:
         event = stripe.Webhook.construct_event(
@@ -126,28 +131,42 @@ def stripe_webhook(request):
         # Invalid signature
         return HttpResponse(status=400)
 
-    # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
-        print(session)
-        line_items = stripe.checkout.Session.list_line_items(session['id'], limit=1)
-        print(line_items)
+    subscription = StripeWebhookHandler(request)
 
-    paymentId = payload['object']['id']
-    amount = payload['object']['amount']
-    paid = payload['object']['paid']
+    event_map = {
+        'payment_intent.succeeded': subscription.handle_webhook_payment_intent_succeeded,
+        'payment_intent.payment_failed': subscription.handle_webhook_payment_intent_failed,
+    }
 
-    print('PAY ID', paymentId)
-    print('AMOUNT', amount)
-    print('PAID', paid)
+    event_type = event['type']    
 
-    StripePayment.objects.create(
-        paymentId=paymentId,
-        amount=amount,
-        paid=paid,
-    )
+    event_handler = event_map.get(event_type, subscription.handle_webhook_event)
+    response = event_handler(event)
+    print(response)
+    return response
 
-    return HttpResponse(status=200)
+    # # Handle the checkout.session.completed event
+    # if event['type'] == 'checkout.session.completed':
+    #     session = event['data']['object']
+    #     print(session)
+    #     line_items = stripe.checkout.Session.list_line_items(session['id'], limit=1)
+    #     print(line_items)
+    # print(event_type)
+    # paymentId = payload['object']['id']
+    # amount = payload['object']['amount']
+    # paid = payload['object']['paid']
+
+    # print('PAY ID', paymentId)
+    # print('AMOUNT', amount)
+    # print('PAID', paid)
+
+    # StripePayment.objects.create(
+    #     paymentId=paymentId,
+    #     amount=amount,
+    #     paid=paid,
+    # )
+
+    # return HttpResponse(status=200)
 
 
 def get_plan_id(request, plan_id):
