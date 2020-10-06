@@ -49,7 +49,7 @@ def shop_subscription_plan(request):
 
 def thanks(request):
     stripe_session = stripe_webhook(request)
-    print(stripe_session)
+    print(request)
     # if request.user.is_authenticated:
     #     subscription_order = SubscriptionOrder.objects.all()
     #     profile = UserProfile.objects.get(user=request.user)
@@ -117,6 +117,7 @@ def stripe_webhook(request):
 
     # Get the webhook data and verify its signature
     payload = request.body
+    print(payload)
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
 
@@ -131,42 +132,43 @@ def stripe_webhook(request):
         # Invalid signature
         return HttpResponse(status=400)
 
-    subscription = StripeWebhookHandler(request)
+    # webhook_handler = StripeWebhookHandler(request)
 
-    event_map = {
-        'payment_intent.succeeded': subscription.handle_webhook_payment_intent_succeeded,
-        'payment_intent.payment_failed': subscription.handle_webhook_payment_intent_failed,
-    }
+    # event_map = {
+    #     'payment_intent.succeeded': webhook_handler.handle_webhook_payment_intent_succeeded,
+    #     'payment_intent.payment_failed': webhook_handler.handle_webhook_payment_intent_failed,
+    # }
 
-    event_type = event['type']    
+    # event_type = event['type']    
 
-    event_handler = event_map.get(event_type, subscription.handle_webhook_event)
-    response = event_handler(event)
-    print(response)
-    return response
+    # event_handler = event_map.get(event_type, webhook_handler.handle_webhook_event)
+    # response = event_handler(event)
+    # print(response)
+    # return response
 
-    # # Handle the checkout.session.completed event
-    # if event['type'] == 'checkout.session.completed':
-    #     session = event['data']['object']
-    #     print(session)
-    #     line_items = stripe.checkout.Session.list_line_items(session['id'], limit=1)
-    #     print(line_items)
-    # print(event_type)
-    # paymentId = payload['object']['id']
-    # amount = payload['object']['amount']
-    # paid = payload['object']['paid']
+    # Handle the checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        print(session)
+        line_items = stripe.checkout.Session.list_line_items(session['id'], limit=1)
+        print(line_items)
+        print(event_type)
+    
+    paymentId = payload['object']['id']
+    amount = payload['object']['amount']
+    paid = payload['object']['paid']
 
-    # print('PAY ID', paymentId)
-    # print('AMOUNT', amount)
-    # print('PAID', paid)
+    print('PAY ID', paymentId)
+    print('AMOUNT', amount)
+    print('PAID', paid)
 
-    # StripePayment.objects.create(
-    #     paymentId=paymentId,
-    #     amount=amount,
-    #     paid=paid,
-    # )
+    StripePayment.objects.create(
+        paymentId=paymentId,
+        amount=amount,
+        paid=paid,
+    )
 
-    # return HttpResponse(status=200)
+    return HttpResponse(status=200)
 
 
 def get_plan_id(request, plan_id):

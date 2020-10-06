@@ -26,8 +26,9 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 4. [**Information Architecture**](#information-architecture)
    - [**Database choice**](#database-choice)
    - [**Data Models**](#data-models)
+     - [**Nutrition App Model**](#nutrition-app-model)
+     - [**Subscriptions App Model**](#subscriptions-app-model)
      - [**Products App Model**](#products-app-model)
-     - [**Shop Bag App Model**](#shop-bag-app-model)
      - [**Checkout App Model**](#checkout-app-model)
      - [**User Profile App Model**](#user-profile-app-model)
 
@@ -68,12 +69,10 @@ Body Balance was built using [Python](https://www.python.org/) - programming lan
  
 ## UX
  
-Body Balance is an online web application designed for users with interest in gathering information about fitness healthy lifestyle as Nutritional plans and also Gym Equipments and Activewear. The website is simple and structured in a way that is easy and intuitive to navigate through. The application is designed for two types of users: 
-
-- The site owner/ administrator (logging as a special user - superuser) and external users (as anonymous user, or logged in users).
+Body Balance is an online web application designed for users with interest in gathering information about fitness healthy lifestyle as Nutritional plans and also Gym Equipments and Activewear. The website is simple and structured in a way that is easy and intuitive to navigate through. The application is designed for three types of users, the site owner/ administrator (login as superuser) and external users (login as anonymous user, or registered users).
 
 
-- The anonymous user (users not logged in) can:
+- The anonymous user (users that are not logged in) can:
  - Navigate through the website and see Nutrition and Products page.
  - Search for products
  - Purchase products and nutrition plan
@@ -82,16 +81,16 @@ Body Balance is an online web application designed for users with interest in ga
 
 - The user can:
  - Register an account
- - If registered already, user can log in into their account
  - Search for products
  - Purchase products and nutrition plan
- - Access "My profile" page
- - Access Order history
- - Access weekly nutritional plan
+ - If registered already, user can log in into their account and:
+    - Access "My profile" page
+    - Access Order history
+    - Access weekly nutritional plan
 
 
 - The site owner/administrator (superuser) can:
- - log in into their account
+ - Log in into their account
  - Search for products
  - Purchase products and nutrition plan
  - Access "Product Management" page
@@ -102,11 +101,11 @@ Body Balance is an online web application designed for users with interest in ga
  - Access weekly nutritional plan
  - Add, edit and delete product and all it's specifications
  - Add, edit and delete nutrition plan details
- - Edit subscription plan details 
+ - Edit subscription plan  
  - Access the Django Admin page through `https://body-balance-ms4.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
     - Add, edit and delete product and all it's specifications
     - Add, edit and delete nutrition plan details
-    - Edit subscription plan details 
+    - Edit subscription plan 
     - Access Accounts
     - Access Authentication and Authorization
     - Access a list of Product Orders
@@ -119,7 +118,7 @@ Body Balance is an online web application designed for users with interest in ga
  
 ### User Stories
 
-See a list of [User Stories](static/UX/My-cookbook-desktop-wireframe.pdf) built in an Agile method.
+See a list of [User Stories](static/UX/My-cookbook-desktop-wireframe.pdf) built in using Agile method.
 
 
  
@@ -186,20 +185,20 @@ My wireframes for this project can be found in the UX folder.
 
 - Product Management - this page is designed only for superusers. It allows them to add products. 
 
-- Nutrition Management - this page is designed only for superusers. It allows them to add nutrition details to the Nutrition Plan.
+- Nutrition Management - this page is designed only for superusers. It allows them to add nutrition details to the Subscription Plan.
 
-- Subscription Management - this page is designed only for superusers. It allows them to edit the Nutrition Plan Subscription such as plan name, description, and price.
+- Subscription Management - this page is designed only for superusers. It allows them to edit the Subscription Plan such as plan name, description, and price.
 
 - Register - this page has five inputs: e-mail address, e-mail address confirmation, username, password and password(again). It also displays two buttons:
   - "Back to Login" button where redirects the user to the Login page
   - "Sign Up" where redirects the user to a corfirmation e-mail page with a message " We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes." After user confirms the e-mail (link sent to their email address), the user can log in.
 
-- Log In - this page has two inputs, username or e-mail and password. It also displays two buttons:
+- Login - this page has two inputs, username or e-mail and password. It also displays two buttons:
   - "Home" button where redirects the user to the index page
   - "Sigh In" button where redirects the user to the index page
   - Underneath those buttons there is a link "Forgot Password?" which redirects to a "Password Reset" page where the user have to type in their e-mail address and click on the "Reset My Password" button, then wait for an e-mail to arrive with instructions to reset the password.
 
-- Log out - this page displays a question "Are you sure you want to sign out?" and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
+- Logout - this page displays a question "Are you sure you want to sign out?" and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
 
 - Error page - this page handles an error page in case the route wasn't found. There is a link to redirect the user back to index.
  
@@ -218,11 +217,11 @@ My wireframes for this project can be found in the UX folder.
 
 #### Nutrition App Model
 - Within the `nutrition app`:
-   - the `Nutrition model` holds all the data needed for nutrition plan details (available for subscribers only) in the "My profile" page.
+   - the `Nutrition model` holds all the data needed for the nutrition menu details (available for subscribers only) in the "My profile" page.
 
 #### Subscriptions App Model
 - Within the `subscriptions app`:
-   - the `Plan model` holds all the fields needed to populate the "Nutrition" page which contain the nutrition plan card where users can subscribe to it.
+   - the `Plan model` holds all the fields needed to populate the "Nutrition" page which contain the subscription plan card where users can subscribe to it.
 
 #### Products App Model
 - Within the `products app`:
@@ -250,61 +249,84 @@ The User model utilized for this project is the standard one provided by `django
  
 <b>Built with</b>
  
-1. ![AWS S3 Bucket](https://img.shields.io/badge/Bson-Version%201.1-blue)
+1. ![AWS S3 Bucket](https://img.shields.io/badge/AWS-S3-orange)
  - [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3) -  is an object storage service that offers industry-leading scalability, data availability, security, and performance.
-2. ![Boto3](https://img.shields.io/badge/Bson-Version%201.1-blue)
+
+2. ![Boto3](https://img.shields.io/badge/boto-3-orange)
  - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) - is the Amazon Web Services (AWS) SDK for Python. It enables Python developers to create, configure, and manage AWS services, such as EC2 and S3.
-2. ![Chrome Developer Tools](https://img.shields.io/badge/Chrome%20Dev%20Tools-Google%20Chrome-blue)
+
+3. ![Chrome Developer Tools](https://img.shields.io/badge/Chrome%20Dev%20Tools-Google%20Chrome-blue)
  - [Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools) - is a set of web developer tools built directly into the Google Chrome browser.
-3. ![CSS3](https://img.shields.io/static/v1?label=CSS&message=3&color=1572B6&logo=css3&logoColor=ffffff)
+
+4. ![CSS3](https://img.shields.io/static/v1?label=CSS&message=3&color=1572B6&logo=css3&logoColor=ffffff)
  - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3) - Used as the base for cascading styles.
-4. ![Django3](https://docs.djangoproject.com/en/3.1/)
- - [Django3](https://django-crispy-forms.readthedocs.io/en/latest/) - is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
-4. ![Django-Allauth](https://docs.djangoproject.com/en/3.1/)
+
+5. ![Django3](https://img.shields.io/badge/django-3-green)
+ - [Django3](https://www.djangoproject.com/) - is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+
+6. ![Django-Allauth](https://img.shields.io/badge/django--allauth-%20-green)
  - [Django-Allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - is an integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication. A very well written library thanks to Raymond Penners. 
-4. ![Django Crispy Forms](https://docs.djangoproject.com/en/3.1/)
- - [Django Crispy Forms](https://docs.djangoproject.com/en/3.1/) - is an application that helps to manage Django forms.
-4. ![Django Storages](https://docs.djangoproject.com/en/3.1/)
+
+7. ![Django Crispy Forms](https://img.shields.io/badge/django--crispy--forms-%20-green)
+ - [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) - is an application that helps to manage Django forms.
+
+8. ![Django Storages](https://img.shields.io/badge/django--storages-%20-green)
  - [Django Storages](https://django-storages.readthedocs.io/en/latest/) -  is a collection of custom storage backends for Django to work with boto3 and AWS S3.
-4. ![Flask](https://img.shields.io/badge/Flask-Version%201.1.2-orange)
+
+9. ![Flask](https://img.shields.io/badge/Flask-Version%201.1.2-orange)
  - [Flask](https://flask.palletsprojects.com/en/1.1.x/) - is a web framework, it provides you with tools, libraries and technologies that allow you to build a web application.
-5. ![Flask-Bcrypt](https://img.shields.io/badge/Flask--Bcrypt-0.7.1-orange)
+
+10. ![Flask-Bcrypt](https://img.shields.io/badge/Flask--Bcrypt-0.7.1-orange)
  - [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/latest/) - is a Flask extension that provides bcrypt hashing utilities for your application.
-6. ![Flask PyMongo](https://img.shields.io/badge/Flask--PyMongo-mongodb-blue)
+
+11. ![Flask PyMongo](https://img.shields.io/badge/Flask--PyMongo-2.3.0-blue)
  - [Flask PyMongo](https://flask-pymongo.readthedocs.io/en/latest/) - Bridges between Flask and PyMongo.
-7. ![Flask Session](https://img.shields.io/badge/Flask--Session-session%20object-orange)
- - [Flask Session](https://flask.palletsprojects.com/en/1.1.x/api/#flask.session) - Flask-Session is an extension for Flask that adds support for Server-side Session to your application.
-8. ![Flask WTF](https://img.shields.io/badge/Flask--WTF-0.14.3-blue)
+
+
+13. ![Flask WTF](https://img.shields.io/badge/Flask--WTF-0.14.3-blue)
  - [Flask WTF](https://flask-wtf.readthedocs.io/en/stable/) - Simple integration of Flask and WTForms, including CSRF, file upload, and reCAPTCHA.
-9. ![Git](https://img.shields.io/badge/Git-----fast--version--control-orange)
+
+14. ![Git](https://img.shields.io/badge/Git-----fast--version--control-orange)
  - [Git](https://git-scm.com/) - open source distributed version control system.
-10. ![GitHub](https://img.shields.io/badge/GitHub-Git%20repository%20hosting%20service-lightgrey)
+
+15. ![GitHub](https://img.shields.io/badge/GitHub-Git%20repository%20hosting%20service-lightgrey)
  - [GitHub](https://github.com/) - is a Web-based hosting service for version control using Git.
-11. ![GitIgnore](https://img.shields.io/badge/GitIgnore-files-royalblue)
+
+16. ![GitIgnore](https://img.shields.io/badge/GitIgnore-files-royalblue)
  - [GitIgnore](https://github.com/toptal/gitignore.io) - is a web service designed to help you create .gitignore files for your Git repositories.
-22. ![gunicorn](https://pypi.org/project/gunicorn/)
+
+17. ![gunicorn](https://img.shields.io/badge/gunicorn-20.0.4-blue)
  - [gunicorn](https://pypi.org/project/gunicorn/) - is a Python WSGI HTTP Server for UNIX. It’s a pre-fork worker model ported from Ruby’s Unicorn project. The Gunicorn server is broadly compatible with various web frameworks, simply implemented, light on server resource usage, and fairly speedy.
-12. ![Heroku](https://img.shields.io/badge/Heroku-Deployment-blueviolet)
+
+18. ![Heroku](https://img.shields.io/badge/Heroku-Deployment-blueviolet)
  - [Heroku](https://dashboard.heroku.com/) - lets you deploy, run and manage applications written in Ruby, Node.js, Java, Python, Clojure, Scala, Go and PHP.
-13. ![HTML5](https://img.shields.io/static/v1?label=HTML&message=5&color=E34F26&logo=html5&logoColor=ffffff)
+
+19. ![HTML5](https://img.shields.io/static/v1?label=HTML&message=5&color=E34F26&logo=html5&logoColor=ffffff)
  - [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) - used as the base for markup text.
-14. ![JavaScript](https://img.shields.io/badge/jQuery-3.5.1-yellowgreen)
+
+20. ![JavaScript](https://img.shields.io/badge/javaScript--yellow)
  - [JavaScript](https://www.javascript.com/) -  is a scripting or programming language that allows you to implement complex features on web pages.
-14. ![jQuery](https://img.shields.io/badge/jQuery-3.5.1-yellowgreen)
+
+21. ![jQuery](https://img.shields.io/badge/jQuery-3.5.1-yellowgreen)
  - [jQuery](https://jquery.com/) - is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
-15. ![Jinja](https://img.shields.io/badge/Jinja2-2.11.2-red)
+
+22. ![Jinja](https://img.shields.io/badge/Jinja2-2.11.2-red)
  - [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) - a full featured template engine for Python.
-16. ![Pillow](https://img.shields.io/badge/MongoDB%20Atlas-4.4-green)
+
+23. ![Pillow](https://img.shields.io/badge/pillow--blue)
  - [Pillow](https://pillow.readthedocs.io/en/stable/) -  is the friendly PIL fork by Alex Clark and Contributors. PIL is the Python Imaging Library by Fredrik Lundh and Contributors.
-18. ![PIP](https://img.shields.io/badge/PyMongo-2.3.0-green)
+
+24. ![PIP](https://img.shields.io/badge/pip-3-blue)
  - [PIP](https://pip.pypa.io/en/stable/installing/) - is the standard package manager for Python. It allows you to install and manage additional packages that are not part of the Python standard library.
-17. ![Phyton](https://img.shields.io/badge/Python-3.8.3-blue)
+
+25. ![Phyton](https://img.shields.io/badge/Python-3.8.3-blue)
  - [Python](https://www.python.org/downloads/release/python-383/) - is a scripting language.
-21. ![psycopg2](https://pypi.org/project/psycopg2/)
- - [psycopg2](https://pypi.org/project/psycopg2/) - is the most popular PostgreSQL database adapter for the Python programming language.
-19. ![Werkzeug](https://img.shields.io/badge/Werkzeug-WSGI%20-yellow)
- - [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/) - is a WSGI utility library for Python
-20. ![WTforms](https://img.shields.io/badge/WTforms-0.14.3-blue)
+
+
+27. ![Werkzeug](https://img.shields.io/badge/Werkzeug-WSGI%20-yellow)
+ - [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/) - is a WSGI utility library for Python.
+
+28. ![WTforms](https://img.shields.io/badge/WTforms-2.3.1-blue)
  - [WTforms](https://pypi.org/project/WTForms/) - is  a framework agnostic library handling web forms in python.
 
 
@@ -332,9 +354,7 @@ The User model utilized for this project is the standard one provided by `django
 
 The SQLite file format is stable, cross-platform, and backwards compatible and the developers pledge to keep it that way through at least the year 2050. SQLite database files are commonly used as containers to transfer rich content between systems [1] [2] [3] and as a long-term archival format for data [4]. 
 
- 
-I have also created a database schema:
-![Diagram of database schema](static/img/MongoDB-Schema.png)
+
 
 ##### back to [top](#table-of-contents)
  
@@ -413,25 +433,25 @@ Congratulations! Your project should be deployed successfully on Heroku's app! :
 
 ### Local Development
 To run this project locally on your own system, users can clone to their desktop by completing the following steps:
-1.Go to [my GitHub repository](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project).
-2.Click on 'Code'(green button) placed beside Gitpod button.
-3.Copy the clone URL for the repository in the 'Clone with HTTPs section'.
-4.Open 'Git Bash' in your local IDE.
-5.Change the current working directory to the location where you want the cloned directory to be made. (e.g. cd projects).
-6.Type git clone, then paste the URL you copied in Step 3: git clone `https://github.com/USERNAME/REPOSITORY`
-7.Press Enter to complete the process and create your local clone.
-8.Create a `.env,py` file with your own credentials and import this into the `settings.py` file.
-9.Install the requirements.txt file by running the below command in your CLI Terminal:
+1. Go to [my GitHub repository](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project).
+2. Click on 'Code'(green button) placed beside Gitpod button.
+3. Copy the clone URL for the repository in the 'Clone with HTTPs section'.
+4. Open 'Git Bash' in your local IDE.
+5. Change the current working directory to the location where you want the cloned directory to be made. (e.g. cd projects).
+6. Type git clone, then paste the URL you copied in Step 3: git clone `https://github.com/USERNAME/REPOSITORY`
+7. Press Enter to complete the process and create your local clone.
+8. Create a `.env,py` file with your own credentials and import this into the `settings.py` file.
+9. Install the requirements.txt file by running the below command in your CLI Terminal:
 `pip3 install -r requirements.txt`.
-10.Run one of the following commands in your Terminal to launch the Django project:
+10. Run one of the following commands in your Terminal to launch the Django project:
 `python3 manage.py runserver`
-11.Click the `http:// link` that loads, and the project should load. If it doesn't load when you click the link, copy and paste it into a new browser tab instead.
-12.Run the following commands to migrate the database models and create a super user:
+11. Click the `http:// link` that loads, and the project should load. If it doesn't load when you click the link, copy and paste it into a new browser tab instead.
+12. Run the following commands to migrate the database models and create a super user:
 `python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py createsuperuser`
-13.In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
-14.Set the following config vars in heroku :
+13. In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
+14. Set the following config vars in heroku :
 
 ![devices image](static/img/heroku_congig_vars.png)
 
@@ -469,14 +489,25 @@ To allow you to access all functionality on the site locally, ensure you have cr
 - [Stipe API](https://stripe.com/) - Database payment integration
  
 ### Media
- 
+- [Alexia Clark](https://alexia-clark.com/) - all texts used in the homepage and nutrition page
+- [Very Well Fit](https://www.verywellfit.com/an-example-of-a-healthy-balanced-meal-plan-2506647#day-1) - recipes used on nutrition menu 
+- [Unsplash](https://unsplash.com/) 
+  - Photo by Scott Webb - Homepage
+  - Photo by Louis Hanse - Nutrition page
+  - Photo by Brook Lark - Menu/Day 1
+  - Photo by Ella Olsson - Menu/Day 2
+  - Photo by Clarissa Carbungco - Menu/Day 3
+  - Photo by Louis Hansel - Menu/Day 4
+  - Photo by Brenda Godinez - Menu/Day 5
+  - Photo by Jannis Brandt - Menu/Day 6
+  - Photo by Ella Olsson - Menu/Day 7
 
-- [Unsplash](https://unsplash.com/) - Photo by Brook Lark
-- [Freepik](https://freepik.com/) -
+
+
  
 ### Acknowledgements
  
-I received inspiration for this project from Code Institute - Project Ideas
+I received inspiration for this project from Code Institute - Project Ideas and specially the Boutique Ado Project from Chris Zielinski.
  
 ##### back to [top](#table-of-contents)
  
