@@ -7,8 +7,6 @@ from django.db.models.functions import Lower
 from .models import Product, Category
 from .forms import AddProductForm
 
-# Create your views here.
-
 
 def shop_all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -25,7 +23,7 @@ def shop_all_products(request):
             sort = sort_key
             if sort_key == 'name':
                 sort_key = 'lower_name'
-                shop_products = shop_products.annotate(lower_name=Lower('name'))
+                shop_products = shop_products.annotate(lower_name=Lower('product_name'))
             if sort_key == 'category':
                 sort_key = 'category__category_name'
             if 'direction' in request.GET:

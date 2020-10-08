@@ -73,7 +73,7 @@
                                             <a href="{% url 'add_product_admin' %}" class="dropdown-item">Product Management</a>
                                         {% endif %}
                                         {% if request.user.is_superuser %}
-                                            <a href="{% url 'add_menu_admin' %}" class="dropdown-item">Nutrition Management</a>
+                                            <a href="{% url 'nutrition' %}" class="dropdown-item">Nutrition Management</a>
                                         {% endif %}
                                         {% if request.user.is_superuser %}
                                             <a href="{% url 'edit_subscription_admin' '1' %}" class="dropdown-item">Subscription Management</a>

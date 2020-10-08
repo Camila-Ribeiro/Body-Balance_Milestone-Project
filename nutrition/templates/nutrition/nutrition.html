@@ -33,7 +33,12 @@
           {% if n.day == 1 %}
             <div class="tab-pane fade show active bg-white" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
               <div class="">
-                <div class="img-fluid">
+              <div class="img-fluid {% if request.user.is_superuser %} position-relative {% endif %}">
+                  {% if request.user.is_superuser %}
+                  <button class="btn btn-primary">
+                    <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
+                  </button>
+                  {% endif %}
                     {% if n.image_file %}
                         <a href="{{ n.image_file.url }}" target="_blank">
                             <img class="card-img-top img-fluid" src="{{ n.image_file.url }}" alt="{{ n.plan_name }}">
@@ -112,7 +117,12 @@
           {% else %}
           <div class="tab-pane fade show bg-white" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
             <div class="">
-              <div class="img-fluid">
+              <div class="img-fluid {% if request.user.is_superuser %} position-relative {% endif %}">
+                {% if request.user.is_superuser %}
+                <button class="btn btn-primary">
+                  <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
+                </button>
+                {% endif %}
                   {% if n.image_file %}
                       <a href="{{ n.image_file.url }}" target="_blank">
                           <img class="card-img-top img-fluid" src="{{ n.image_file.url }}" alt="{{ n.plan_name }}">
