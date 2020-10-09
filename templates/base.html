@@ -18,12 +18,13 @@
     <link rel="shortcut icon" href="{% static 'media/favicon.ico' %}"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&family=Roboto:ital,wght@1,300&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&family=Roboto:ital,wght@1,300&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
-    {% endblock %} 
+    {% endblock %}
 
     {% block corejs %}
     <!-- FontAwsome Kit, jQuery, then Popper.js, then Bootstrap JS -->
@@ -38,26 +39,26 @@
 
     {% block extra_js%}
     {% endblock %}
-    
+
     <title>Body Balance {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    
+
     <header class="header">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <a class="header-logo" href="{% url 'home' %}">
-                        <img src="https://placehold.co/200x60" alt="logo">
-                    </a>
-                </div>
-                <div class="col-md-9">
-                    <nav>
-                        {% if user.is_authenticated %}
+                <nav class="navbar navbar-dark bg-dark bg-home navbar-expand-lg fixed-top">
+                    {% if user.is_authenticated %}
                         <p class="text-white">you're logged in as {{ user }}</p>
-                        {% endif %}
-                        <ul class="nav float-right">
-                         
+                    {% endif %}
+                    <a class="header-logo" href="{% url 'home' %}">
+                        <img src="{% static 'media/logo.png' %}" alt="logo"/>
+                    </a>
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'shop_subscription_plan' %}">NUTRITION</a>
                             </li>
@@ -66,14 +67,13 @@
                             </li>
                             <li class="list-inline-item  dropdown">
                                 <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MY ACCOUNT</a>
-                            
                                 <div class="dropdown-menu border-0" aria-labelledby="user-options">
                                     {% if request.user.is_authenticated %}
                                         {% if request.user.is_superuser %}
                                             <a href="{% url 'add_product_admin' %}" class="dropdown-item">Product Management</a>
                                         {% endif %}
                                         {% if request.user.is_superuser %}
-                                            <a href="{% url 'nutrition' %}" class="dropdown-item">Nutrition Management</a>
+                                        <a href="{% url 'nutrition' %}" class="dropdown-item">Nutrition Management</a>
                                         {% endif %}
                                         {% if request.user.is_superuser %}
                                             <a href="{% url 'edit_subscription_admin' '1' %}" class="dropdown-item">Subscription Management</a>
@@ -86,23 +86,24 @@
                                     {% endif %}
                                 </div>
                             </li>
-                            <li class="list-inline-item">
-                                <a class="{% if shop_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'shop_bag' %}">
-                                    <div class="text-center">
-                                        <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-                                        <p class="my-0">
-                                            {% if shop_total %}
-                                                €{{ shop_total|floatformat:2 }}
-                                            {% else %}
-                                                €0.00
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>     
-                    </nav>
-                </div>
+                        </ul>
+                    </div>
+                    <div class="list-inline-item">
+                        <a class="nav-link position-relative" href="{% url 'shop_bag' %}">
+                            <div class="text-center">
+                                <span class="badge">{{ product_count }}</span>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H19C19.5523 4 20 4.44771 20 5V19C20 19.5523 19.5523 20 19 20H5C4.44772 20 4 19.5523 4 19V5C4 4.44772 4.44771 4 5 4ZM2 5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5ZM12 12C9.23858 12 7 9.31371 7 6H9C9 8.56606 10.6691 10 12 10C13.3309 10 15 8.56606 15 6H17C17 9.31371 14.7614 12 12 12Z" fill="currentColor" /> </svg>
+                                <p class="my-0">
+                                    {% if shop_total %}
+                                        €{{ shop_total|floatformat:2 }}
+                                    {% else %}
+                                        €0.00
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </nav>
             </div>
         </div>
     </header>
