@@ -22,5 +22,13 @@
       "category_name": "special_offers",
       "category_friendly_name": "Special Offers"
     }
+  },
+    {
+      "pk": 4,
+      "model": "products.category",
+      "fields": {
+        "category_name": "nutrition_plan",
+        "category_friendly_name": "Nutrition Plan"
+    }
   }
 ]

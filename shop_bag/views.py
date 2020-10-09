@@ -17,8 +17,8 @@ def add_products_to_bag(request, product_id):
     product_quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     size = None
-    if 'product_item_size' in request.POST:
-        size = request.POST['product_item_size']
+    if 'product_size' in request.POST:
+        size = request.POST['product_size']
     shop_bag = request.session.get('shop_bag', {})
    
     if size:
@@ -50,8 +50,8 @@ def update_quantity_bag(request, product_id):
     shop_product = get_object_or_404(Product, pk=product_id)
     product_quantity = int(request.POST.get('quantity'))
     size = None
-    if 'product_item_size' in request.POST:
-        size = request.POST['product_item_size']
+    if 'product_size' in request.POST:
+        size = request.POST['product_size']
     shop_bag = request.session.get('shop_bag', {})
 
     if size:
@@ -81,8 +81,8 @@ def remove_product(request, product_id):
     try:
         shop_product = get_object_or_404(Product, pk=product_id)
         size = None
-        if 'product_item_size' in request.POST:
-            size = request.POST['product_item_size']
+        if 'product_size' in request.POST:
+            size = request.POST['product_size']
         shop_bag = request.session.get('shop_bag', {})
 
         if size:

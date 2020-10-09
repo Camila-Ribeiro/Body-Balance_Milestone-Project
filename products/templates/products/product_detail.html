@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <p class="mt-3">{{ product.description }}</p>
-                        <p class="price text-left">‎<small>€</small>{{ product.price }} <small> +shipping costs </small></p>  
+                        <p class="price text-left">‎<small>€</small>{{ product.price }} <span class="{% if product.category.category_name == 'nutrition_plan' %} d-none {% endif %}"><small> + shipping </small></span></p>
                         <form class="form" action="{% url 'add_products_to_bag' product.id %}" method="POST">
                             {% csrf_token %}
                                 <div class="form-row">
@@ -65,7 +65,7 @@
                                         {% if size %}
                                             <div class="col-12">
                                                 <p class="mt-3 mb-0">Size</p>
-                                                <select class="form-control rounded-0 w-50" name="product_item_size" id='id_product_item_size'>
+                                                <select class="form-control rounded-0 w-50" name="product_size" id='id_product_size'>
                                                     <option value="xs">XS</option>
                                                     <option value="s">S</option>
                                                     <option value="m" selected>M</option>
@@ -74,7 +74,7 @@
                                                 </select>
                                             </div>
                                         {% endif %}
-                                            <div class="col-12">
+                                            <div class="col-12 {% if product.category.category_name == 'nutrition_plan' %} d-none {% endif %}">
                                                 <p class="mt-3 mb-0">Quantity</p>
                                                 <div class="form-group w-50">
                                                     <div class="input-group">

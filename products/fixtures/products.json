@@ -250,5 +250,19 @@
       "image_url": "https://i.imgur.com/Mg493ZX.jpg",
       "image_file": "019.jpg"
     }
+  },
+  {
+    "pk": 20,
+    "model": "products.product",
+    "fields": {
+      "sku": "ff5003090187",
+      "product_name": "1 month Nutrition Plan",
+      "description": "With my nutrition plan you’ll learn how to eat well and fuel your body properly in order to get the results you want. ",
+      "price": 29.900,
+      "category": 4,
+      "rating": 5,
+      "image_url": "https://i.imgur.com/M6MPajj.jpg",
+      "image_file": "food1.jpg"
+    }
   }
 ]

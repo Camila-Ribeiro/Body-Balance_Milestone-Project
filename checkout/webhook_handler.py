@@ -51,10 +51,17 @@ class StripeWebhookHandler:
         pay_intent_id = intent.id
         shop_bag = intent.metadata.shop_bag
         save_user_info = intent.metadata.save_user_info
+        subscription = intent.metadata.subscription
 
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         shop_total = round(intent.charges.data[0].amount / 100, 2)
+        
+        if subscription:
+            profile = None
+            username = intent.metadata.username
+            print(event)
+
 
         if shop_bag:
             print('shop bag')

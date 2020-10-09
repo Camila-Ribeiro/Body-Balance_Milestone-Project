@@ -15,7 +15,6 @@ from user_profile.models import UserProfile
 from shop_bag.contexts import bag_products
 
 
-
 @require_POST
 def cache_checkout(request):
     try:
@@ -24,6 +23,7 @@ def cache_checkout(request):
         stripe.PaymentIntent.modify(pay_intent_id, 
             metadata={
                 'shop_bag': json.dumps(request.session.get('shop_bag', {})),
+                'subscription': json.dumps(request.session.get('subscription', {})),
                 'save_user_info': request.POST.get('save_user_info'),
                 'username': request.user,
             })

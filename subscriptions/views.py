@@ -144,7 +144,7 @@ def checkout_plan(request):
 #     # return response
 
 #     # Handle the checkout.session.completed event
-#     # if event['type'] == 'checkout.session.completed':
+#     # if event_type == 'checkout.session.completed':
 #     #     session = event['data']['object']
 #     #     line_items = stripe.checkout.Session.list_line_items(session['id'], limit=1)
 #     #     print(line_items)

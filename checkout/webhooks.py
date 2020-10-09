@@ -32,8 +32,7 @@ def webhook(request):
         return HttpResponse(status=400)
     except Exception as e:
         return HttpResponse(content=e, status=400)
-
-    
+ 
     # Set up a webhook handler
     webhook_handler = StripeWebhookHandler(request)
 
@@ -46,10 +45,19 @@ def webhook(request):
     # Get the webhook type from Stripe
     event_type = event['type']
 
-    # If there's a handler for it, get it from the event map
-    # Use the generic one by default
-    event_handler = event_map.get(event_type, webhook_handler.handle_webhook_event)
+    # Handle the checkout.session.completed event
+    if event_type == "checkout.session.completed":
+        event_handler = event_map.get(event_type, webhook_handler.handle_webhook_event)
 
-    # Call the event handler with the event
-    response = event_handler(event)
-    return response
+        # Call the event handler with the event
+        response = event_handler(event)
+        print(response)
+        # return "Success", 200
+    else:
+        # If there's a handler for it, get it from the event map
+        # Use the generic one by default
+        event_handler = event_map.get(event_type, webhook_handler.handle_webhook_event)
+
+        # Call the event handler with the event
+        response = event_handler(event)
+        return response
