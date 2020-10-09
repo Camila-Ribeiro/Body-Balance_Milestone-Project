@@ -57,7 +57,7 @@
                                         <p class="my-0"><strong>{{ product_item.product.product_name }}</strong></p>
                                         <p class="my-0 small text-muted">SKU {{ product_item.product.sku|upper }}</p>
                                         <p class="my-0 {% if product_item.product.id == 20 %} d-none {% endif %}"><strong>Size </strong>{% if product_item.product.product_sizes %}{{ product_item.size|upper }}{% else %}N/A{% endif %}</p>
-                                        <!-- <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.product_size }}"><small>Remove</small></a> -->
+                                        
                                     </td>
                                     <td class="py-2">
                                         <p class="my-0">€{{ product_item.product.price }}</p>
@@ -94,7 +94,7 @@
                                             </div>
                                         </form>
                                         <a class="update-link btn btn-black rounded-0 btn-lg border m-2"><small>UPDATE</small></a>
-                                        <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.product_size }}"><small>Remove</small></a>
+                                        <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a>
                                     </td>
                                     <td class="text-right py-2">
                                         <p class="my-0">€{{ product_item.product.price | calc_productXquantity:product_item.product_quantity }}</p>
