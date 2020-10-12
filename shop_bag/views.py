@@ -6,7 +6,6 @@ from products.models import Product
 
 def shop_bag(request):
     """ A view that renders the shopping bag page """
-
     return render(request, 'shop_bag/shop-bag.html')
 
 
@@ -20,7 +19,10 @@ def add_products_to_bag(request, product_id):
     if 'product_size' in request.POST:
         size = request.POST['product_size']
     shop_bag = request.session.get('shop_bag', {})
-   
+
+    # print(shop_product.category)
+    # print(shop_product)
+    # print(product_quantity)
     if size:
         if product_id in list(shop_bag.keys()):
             if size in shop_bag[product_id]['items_by_size'].keys():
@@ -31,15 +33,19 @@ def add_products_to_bag(request, product_id):
                 messages.success(request, f'Added size {size.upper()} {shop_product.product_name} to your bag')
         else:
             shop_bag[product_id] = {'items_by_size': {size: product_quantity}}
-            messages.success(request, f'Added size {size.upper()} {shop_product.product_name} to your bag')
+            messages.success(request, f'Added size {size.upper()}, {shop_product.product_name} to your bag')
     else:
         if product_id in list(shop_bag.keys()):
-            shop_bag[product_id] += product_quantity
+
+            if product_id == '20':
+                product_quantity == 1
+            else:
+                shop_bag[product_id] += product_quantity
             messages.success(request, f'{shop_product.product_name} quantity is updated to {shop_bag[product_id]}!')
         else:
             shop_bag[product_id] = product_quantity
             messages.success(request, f'{shop_product.product_name} is added to your bag!')
-
+    
     request.session['shop_bag'] = shop_bag
     return redirect(redirect_url)
 
@@ -57,12 +63,12 @@ def update_quantity_bag(request, product_id):
     if size:
         if product_quantity > 0:
             shop_bag[product_id]['items_by_size'][size] = product_quantity
-            messages.success(request, f'Updated size {size.upper()} {shop_product.product_name} quantity to {shop_bag[product_id]["items_by_size"][size]}')
+            messages.success(request, f'Product: {shop_product.product_name}, Size: {size.upper()}, Quantity: {shop_bag[product_id]["items_by_size"][size]}')
         else:
             del shop_bag[product_id]['items_by_size'][size]
             if not shop_bag[product_id]['items_by_size']:
                 shop_bag.pop(product_id)
-            messages.success(request, f'Size {size.upper()} {shop_product.product_name} is removed from your bag')
+            messages.success(request, f'Product: {shop_product.product_name}, Size: {size.upper()} is removed from your bag')
     else:
         if product_quantity > 0:
             shop_bag[product_id] = product_quantity
@@ -89,7 +95,7 @@ def remove_product(request, product_id):
             del shop_bag[product_id]['items_by_size'][size]
             if not shop_bag[product_id]['items_by_size']:
                 shop_bag.pop(product_id)
-            messages.success(request, f'Size {size.upper()} {shop_product.product_name} is removed from your bag')
+            messages.success(request, f'Product: {shop_product.product_name}, Size: {size.upper()} is removed from your bag')
 
         else:
             shop_bag.pop(product_id)

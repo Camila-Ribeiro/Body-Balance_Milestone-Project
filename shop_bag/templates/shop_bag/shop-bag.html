@@ -36,7 +36,7 @@
                                 <th>Product</th>
                                 <th>Details</th>
                                 <th>Price</th>
-                                <th class="text-center {% if product.category == 'nutrition_plan' %} d-none {% endif %}">Quantity</th>
+                                <th class="text-center">Quantity</th>
                                 <th class="text-right">Total</th>
                             </tr>
                         </thead>
@@ -45,7 +45,6 @@
                         <div class="row ">
                             {% for product_item in bag_items %} 
                                 <tr class="border border-top-0 border-right-0 border-left-0">
-                                    {{ product_item.product.id }}
                                     <td class="py-2 w-25 mt-2 mb-2">
                                         {% if product_item.product.image_file %}
                                             <img class="img-thumbnail" src="{{ product_item.product.image_file.url }}" alt="{{ product_item.product.product_name }}">
@@ -57,7 +56,7 @@
                                         <p class="my-0"><strong>{{ product_item.product.product_name }}</strong></p>
                                         <p class="my-0 small text-muted">SKU {{ product_item.product.sku|upper }}</p>
                                         <p class="my-0 {% if product_item.product.id == 20 %} d-none {% endif %}"><strong>Size </strong>{% if product_item.product.product_sizes %}{{ product_item.size|upper }}{% else %}N/A{% endif %}</p>
-                                        
+                                        <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a>
                                     </td>
                                     <td class="py-2">
                                         <p class="my-0">€{{ product_item.product.price }}</p>
@@ -65,7 +64,7 @@
                                     <td class="text-center py-2">
                                         <form class="form update-form" method="POST" action="{% url 'update_quantity_bag' product_item.product_id %}">
                                             {% csrf_token %}
-                                            <div class="form-group {% if product_item.product.id == 20 %} d-none {% endif %}">
+                                            <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <button class="decrement-qty btn btn-sm btn-black rounded-0" 
@@ -76,11 +75,11 @@
                                                         </button>
                                                     </div>
                                                     <input class="form-control form-control-sm qty_input" type="number"
-                                                        name="quantity" value="{{ product_item.product_quantity }}" min="1" max="99"
+                                                        name="quantity" value="{{ product_item.product_quantity }}" min="1" max="{% if product_item.product.category.category_name == 'nutrition_plan' %}1{% else %}99{% endif %}"
                                                         data-item_id="{{ product_item.product_id }}"
                                                         id="id_qty_{{ product_item.product_id }}">
                                                     <div class="input-group-append">
-                                                        <button class="increment-qty btn btn-sm btn-black rounded-0"
+                                                        <button class="{% if product_item.product.category.category_name == 'nutrition_plan' %} btn btn-sm btn-black rounded-0  {% else %} increment-qty btn btn-sm btn-black rounded-0 {% endif %}"
                                                             data-item_id="{{ product_item.product_id }}" id="increment-qty_{{ product_item.product_id }}">
                                                             <span>
                                                                 <i class="fas fa-plus fa-sm"></i>
@@ -88,17 +87,26 @@
                                                         </button>
                                                     </div>
                                                     {% if product_item.product.product_sizes %}
-                                                        <input type="hidden" name="product_size" value="{{ product_item.size }} ">
+                                                        <input type="hidden" name="product_size" value="{{ product_item.size }}">
                                                     {% endif %}
                                                 </div>
                                             </div>
                                         </form>
                                         <a class="update-link btn btn-black rounded-0 btn-lg border m-2"><small>UPDATE</small></a>
-                                        <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a>
+                                        <!-- <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a> -->
                                     </td>
-                                    <td class="text-right py-2">
-                                        <p class="my-0">€{{ product_item.product.price | calc_productXquantity:product_item.product_quantity }}</p>
-                                    </td>
+                                    {% for new in new_shop_bag %}
+                                    {% if product_item.product.category == 'nutrition_plan' %} 
+                                    {{ new }}
+                                        <td class="text-right py-2">
+                                            <p class="my-0">€{{ product_item.product.price }}</p>
+                                        </td>
+                                    {% else %}
+                                        <td class="text-right py-2">
+                                            <p class="my-0">€{{ product_item.product.price | calc_productXquantity:product_item.product_quantity }}</p>
+                                        </td>
+                                    {% endif %}
+                                    {% endfor %}
                                 </tr>
                             {% endfor %}
                         </div> 
@@ -173,7 +181,7 @@
 
         $.post(url, data)
          .done(function() {
-             location.reload();
+            location.reload();
          });
     })
 </script>

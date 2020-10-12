@@ -7,6 +7,8 @@ from django.db.models.functions import Lower
 from .models import Product, Category
 from .forms import AddProductForm
 
+from shop_bag.contexts import bag_products
+
 
 def shop_all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -62,11 +64,22 @@ def get_product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    
+    is_added = bag_products(request)
+    # print(is_added)
+    for item in is_added:
+        print(item)
+        print(is_added[item])
+        # for x in is_added[item]:
+        #     print(x.bag_items)
+       
+
 
     context = {
         'product': product,
+        'is_added': is_added,
     }
-
+    # print(product.category)
     return render(request, 'products/product_detail.html', context)
 
 
