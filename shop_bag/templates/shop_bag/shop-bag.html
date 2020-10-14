@@ -95,9 +95,9 @@
                                         <a class="update-link btn btn-black rounded-0 btn-lg border m-2"><small>UPDATE</small></a>
                                         <!-- <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a> -->
                                     </td>
-                                    {% for new in new_shop_bag %}
+                                   
                                     {% if product_item.product.category == 'nutrition_plan' %} 
-                                    {{ new }}
+                                   
                                         <td class="text-right py-2">
                                             <p class="my-0">€{{ product_item.product.price }}</p>
                                         </td>
@@ -106,7 +106,7 @@
                                             <p class="my-0">€{{ product_item.product.price | calc_productXquantity:product_item.product_quantity }}</p>
                                         </td>
                                     {% endif %}
-                                    {% endfor %}
+                                    
                                 </tr>
                             {% endfor %}
                         </div> 

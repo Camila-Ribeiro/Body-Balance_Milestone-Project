@@ -9,10 +9,6 @@ from shop_bag.contexts import bag_products
 from .models import Product, Category
 from .forms import AddProductForm
 
-# from checkout.views import checkout
-# from shop_bag.views import add_products_to_bag
-# from checkout.models import ProductOrder
-
 def check_user(request):
     """ check if user has nutrition plan """
 

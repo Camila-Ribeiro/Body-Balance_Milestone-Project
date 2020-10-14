@@ -1,18 +1,17 @@
+import json
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
-from .forms import ProductOrderForm
-from .models import ProductOrder, ProductLineOrder
-
 import stripe
-import json
 
 from products.models import Product
-from user_profile.forms import UserProfileForm
 from user_profile.models import UserProfile
+from user_profile.forms import UserProfileForm
 from shop_bag.contexts import bag_products
+from .forms import ProductOrderForm
+from .models import ProductOrder, ProductLineOrder
 
 
 @require_POST
@@ -145,7 +144,6 @@ def checkout_success(request, order_number):
     Handle successful checkouts
     """
     save_user_info = request.session.get('save_user_info')
-    print(save_user_info)
     order = get_object_or_404(ProductOrder, order_number=order_number)
 
     if request.user.is_authenticated:
