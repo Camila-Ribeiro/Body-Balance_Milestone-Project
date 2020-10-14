@@ -4,34 +4,19 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-from checkout.webhook_handler import StripeWebhookHandler
-
-import stripe
-
 from user_profile.models import UserProfile
 from .models import Plan
-from django.http import JsonResponse, HttpResponse
+from products.views import check_user
 
-
-# def is_not_anonymous(request):
-#     if request.user.is_authenticated:
-#         subscription_order = SubscriptionOrder.objects.all()
-#         online_user = UserProfile.objects.get(user=request.user)
-
-#         for user in subscription_order:
-#             if online_user != user.user_profile:
-#                 return('no-subscribed')
-#             else:
-#                 return filter_user_has_order(user.user_profile, subscription_order)
-#     else:
-#         return('anonymous')
 
 def shop_subscription_plan(request):
     """ A view to show all subscription plans available to purchase """
     subscriptions = Plan.objects.all()
+    has_plan = check_user(request)
 
     context = {
         'subscriptions': subscriptions,
+        'has_plan': has_plan,
     }
     return render(request, 'subscriptions/subscriptions.html', context)
 

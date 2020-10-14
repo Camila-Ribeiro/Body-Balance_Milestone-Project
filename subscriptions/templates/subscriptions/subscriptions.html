@@ -23,35 +23,32 @@
     <section class="container">
       <div class="mt-5">
         {% for plan in subscriptions %}
-              {% if plan.image_file %}
-              <a>
-                <img src="{{ plan.image_file.url }}" class="img-fluid" alt="{{ plan.plan_duration }}" style="max-height: 300px; object-fit: cover; width: 100%; ">
-              </a>
-              {% else %}
-                  <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ plan.plan_duration }}">
-              </a>
-              {% endif %}
-            </div>
+          {% if plan.image_file %}
+              <img src="{{ plan.image_file.url }}" class="img-fluid" alt="{{ plan.plan_duration }}" style="max-height: 300px; object-fit: cover; width: 100%;" />
+          {% else %}
+              <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ plan.plan_duration }}" />
+          {% endif %}
+      
 
-              <div class="container subscription mb-5">
-                <h4 class="mt-5">{{ plan.plan_duration }}</h4>
-                <p class="mt-2">{{ plan.description}}</p>
-                {% if request.user.is_superuser %}
-                  <small class="ml-3">
-                      <a href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
-                  </small>
-                <!-- {% elif user.is_authenticated %}
-                    {% if user_has_order != 'anonymous' and user_has_order != 'no-subscribed' %} -->
-                        <!-- <p><strong>You already has a subscription</strong></p>
-                        <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
-                        {% else %}
-                        <a class="btn btn-primary" href="{% url 'shop_products' %}?category=nutrition_plan " role="button">Buy Nutrition Plan</a>
-                      {% endif %} -->
-                {% else %}
-                  <a class="btn btn-primary" href="{% url 'shop_products' %}?category=nutrition_plan " role="button">Buy Nutrition Plan</a>
-                {% endif %}
-              </div>
+          <div class="container subscription mb-5">
+            <h4 class="mt-5">{{ plan.plan_duration }}</h4>
+            <p class="mt-2">{{ plan.description}}</p>
+            {% if request.user.is_superuser %}
+              <small class="ml-3">
+                  <a href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
+              </small>
+            {% endif %}
+
+            {% if has_plan == True %}
+              <p><strong>You already has a subscription</strong></p>
+              <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
+            {% elif has_plan == 'AnonymousUser' %}
+              <a class="btn btn-primary" href="{% url 'account_signup' %}?category=nutrition_plan " role="button">Register to Buy</a>
+            {% else %}
+              <a class="btn btn-primary" href="{% url 'shop_products' %}?category=nutrition_plan" role="button">Buy Nutrition Plan</a>
+            {% endif %}
+          </div>
         {% endfor %}
-
+      </div>
   </section>
 {% endblock %}
