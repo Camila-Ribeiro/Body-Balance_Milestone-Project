@@ -205,7 +205,7 @@ if 'USE_AWS' in os.environ:
     MEDIAFILES_LOCATION = 'media'
 
     # Override static and media URLs in production
-    # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 
@@ -217,7 +217,7 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '')
 STRIPE_WEBHOOK_SECRET_SUB = os.getenv('STRIPE_WEBHOOK_SECRET_SUB', '')
-APPEND_SLASH = False
+# APPEND_SLASH = False
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

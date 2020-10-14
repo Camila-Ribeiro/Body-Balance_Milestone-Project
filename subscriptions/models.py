@@ -15,14 +15,14 @@ class Plan(models.Model):
     def __str__(self):
         return self.plan_duration
 
-class StripePayment(models.Model):
+# class StripePayment(models.Model):
 
-    class Meta:
-        verbose_name_plural = 'Plan Payment'
+#     class Meta:
+#         verbose_name_plural = 'Plan Payment'
 
-    paymentId = models.CharField(max_length=150)
-    amount = models.CharField(max_length=150)
-    paid = models.BooleanField()
+#     paymentId = models.CharField(max_length=150)
+#     amount = models.CharField(max_length=150)
+#     paid = models.BooleanField()
 
-    def __str__(self):
-        return self.paymentId
+#     def __str__(self):
+#         return self.paymentId

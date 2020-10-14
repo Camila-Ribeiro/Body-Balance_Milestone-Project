@@ -4,10 +4,24 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 
+from user_profile.models import UserProfile
+from shop_bag.contexts import bag_products
 from .models import Product, Category
 from .forms import AddProductForm
 
-from shop_bag.contexts import bag_products
+# from checkout.views import checkout
+# from shop_bag.views import add_products_to_bag
+# from checkout.models import ProductOrder
+
+
+def check_user(request):
+
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
+        orders = profile.orders.all()
+        return orders
+    else:
+        return('no-order')
 
 
 def shop_all_products(request):
@@ -18,6 +32,7 @@ def shop_all_products(request):
     categories = None
     sort = None
     direction = None
+    anon_message = ''
 
     if request.GET:
         if 'sort' in request.GET:
@@ -39,6 +54,12 @@ def shop_all_products(request):
             shop_products = shop_products.filter(category__category_name__in=categories)
             categories = Category.objects.filter(category_name__in=categories)
 
+            #display message to AnonymousUser
+            for c in categories:
+                if 'AnonymousUser' and c == 'nutrition_plan':
+                    return anon_message
+
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -47,6 +68,9 @@ def shop_all_products(request):
 
             queries = Q(product_name__icontains=query) | Q(description__icontains=query)
             shop_products = shop_products.filter(queries)
+            
+    orders = check_user(request)
+    print(orders)
 
     selected_sorting = f'{sort}_{direction}'
 
@@ -55,6 +79,8 @@ def shop_all_products(request):
         'search_term': query,
         'selected_categories': categories,
         'selected_sorting': selected_sorting,
+        'orders': orders,
+        'anon_message': anon_message,
     }
 
     return render(request, 'products/products.html', context)
@@ -64,22 +90,20 @@ def get_product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
-    
-    is_added = bag_products(request)
-    # print(is_added)
-    for item in is_added:
-        print(item)
-        print(is_added[item])
-        # for x in is_added[item]:
-        #     print(x.bag_items)
-       
 
+    current_bag = bag_products(request)
+    bag_items = current_bag['bag_items']
+    nutrition_in_bag = False
+
+    for item in bag_items:
+        if item["product_id"] == str(product_id):
+            nutrition_in_bag = True
 
     context = {
         'product': product,
-        'is_added': is_added,
+        'nutrition_in_bag': nutrition_in_bag,
     }
-    # print(product.category)
+
     return render(request, 'products/product_detail.html', context)
 
 

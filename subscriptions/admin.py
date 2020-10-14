@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Plan, StripePayment
+from .models import Plan
 
 
 class Subscription_Admin(admin.ModelAdmin):
@@ -12,14 +12,14 @@ class Subscription_Admin(admin.ModelAdmin):
     )
 
 
-class Stripe_Admin(admin.ModelAdmin):
+# class Stripe_Admin(admin.ModelAdmin):
 
-    def has_add_permission(self, request):
-        return False
+#     def has_add_permission(self, request):
+#         return False
 
-    list_display = (
-        'paid',
-    )
+#     list_display = (
+#         'paid',
+#     )
 
 admin.site.register(Plan, Subscription_Admin)
-admin.site.register(StripePayment, Stripe_Admin)
+# admin.site.register(StripePayment, Stripe_Admin)

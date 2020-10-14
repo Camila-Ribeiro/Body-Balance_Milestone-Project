@@ -145,9 +145,11 @@ def checkout_success(request, order_number):
     Handle successful checkouts
     """
     save_user_info = request.session.get('save_user_info')
+    print(save_user_info)
     order = get_object_or_404(ProductOrder, order_number=order_number)
 
     if request.user.is_authenticated:
+        
         profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
         order.user_profile = profile

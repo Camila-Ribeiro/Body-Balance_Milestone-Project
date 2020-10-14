@@ -36,11 +36,7 @@ def add_products_to_bag(request, product_id):
             messages.success(request, f'Added size {size.upper()}, {shop_product.product_name} to your bag')
     else:
         if product_id in list(shop_bag.keys()):
-
-            if product_id == '20':
-                product_quantity == 1
-            else:
-                shop_bag[product_id] += product_quantity
+            shop_bag[product_id] += product_quantity
             messages.success(request, f'{shop_product.product_name} quantity is updated to {shop_bag[product_id]}!')
         else:
             shop_bag[product_id] = product_quantity

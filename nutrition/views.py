@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from subscriptions.views import is_not_anonymous
+# from subscriptions.views import is_not_anonymous
 
-from checkout.models import SubscriptionOrder
+# from checkout.models import SubscriptionOrder
 from user_profile.models import UserProfile
 from .models import Nutrition
 
@@ -13,16 +13,16 @@ from .forms import AddNutritionPlanForm
 
 def nutrition(request):
     nutrition_obj = Nutrition.objects.all()
-    subscription_order = SubscriptionOrder.objects.all()
-    user_has_order = is_not_anonymous(request)
+    # subscription_order = SubscriptionOrder.objects.all()
+    # user_has_order = is_not_anonymous(request)
 
-    if request.user.is_superuser:
-        template = 'nutrition/nutrition.html'
+    # if request.user.is_superuser:
+    template = 'nutrition/nutrition.html'
 
-    elif user_has_order != 'anonymous' and user_has_order != 'no-subscribed':
-        template = 'nutrition/nutrition.html'
-    else:
-        return redirect(reverse('shop_subscription_plan'))
+    # elif user_has_order != 'anonymous' and user_has_order != 'no-subscribed':
+    #     template = 'nutrition/nutrition.html'
+    # else:
+    #     return redirect(reverse('shop_subscription_plan'))
 
     context = {
         'nutrition_obj': nutrition_obj,

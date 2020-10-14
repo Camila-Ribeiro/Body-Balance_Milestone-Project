@@ -81,29 +81,29 @@ class ProductLineOrder(models.Model):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
 
 
-class SubscriptionOrder(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
-    order_number = models.CharField(max_length=32, null=False, editable=False)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='subscription_order')
-    full_name = models.CharField(max_length=50, null=False, blank=False)
-    email = models.EmailField(max_length=254, null=False, blank=False)
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+# class SubscriptionOrder(models.Model):
+#     date = models.DateTimeField(auto_now_add=True)
+#     order_number = models.CharField(max_length=32, null=False, editable=False)
+#     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+#                                      null=True, blank=True, related_name='subscription_order')
+#     full_name = models.CharField(max_length=50, null=False, blank=False)
+#     email = models.EmailField(max_length=254, null=False, blank=False)
+#     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
-    def get_order_number_(self):
-        """
-        Generate a random, unique order number using UUID
-        """
-        return uuid.uuid4().hex.upper()
+#     def get_order_number_(self):
+#         """
+#         Generate a random, unique order number using UUID
+#         """
+#         return uuid.uuid4().hex.upper()
 
-    def save(self, *args, **kwargs):
-        """
-        Override the original save method to set the order number
-        if it hasn't been set already.
-        """
-        if not self.order_number:
-            self.order_number = self.get_order_number_()
-        super().save(*args, **kwargs)
+#     def save(self, *args, **kwargs):
+#         """
+#         Override the original save method to set the order number
+#         if it hasn't been set already.
+#         """
+#         if not self.order_number:
+#             self.order_number = self.get_order_number_()
+#         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.order_number
+#     def __str__(self):
+#         return self.order_number
