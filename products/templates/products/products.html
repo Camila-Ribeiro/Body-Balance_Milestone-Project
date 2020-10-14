@@ -49,23 +49,14 @@
                                             <a href="{% url 'shop_products' %}?category=gym_equipment">Gym Equipment</a>
                                             <a href="{% url 'shop_products' %}?category=special_offers">Special Offers</a>
 
-                                            {% if user_profile.orders == user.is_authenticated %}
-                                                {% for order in orders %}
-                                                    {% for o in order.lineorders.all %}
-                                                        {% if o.product.category.category_name == 'nutrition_plan' %}
-                                                        <a href="{% url 'shop_products' %}?category=nutrition_plan">Nutrition Plan</a>
-                                                            <!-- <a href="">You already subscribed</a> -->
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                {% endfor %}
+                                            {% if has_plan == True %}
+                                                <p class="d-none">You already subscribed</p>
+                                            {% elif has_plan == 'AnonymousUser' %}
+                                                <a href="{% url 'account_signup' %}"> {{anon_message}}</a>
                                             {% else %}
-                                            <p> {{anon_message}}</p>
+                                                <a href="{% url 'shop_products' %}?category=nutrition_plan">Nutrition Plan</a>
                                             {% endif %}
 
-                                            <!-- {% if user.is_authenticated %}
-                                            <a href="{% url 'shop_products' %}?category=nutrition_plan">Nutrition Plan</a>
-                                            {% endif %} -->
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +94,7 @@
                         <div class="row">
                             {% for product in products %}
                             
-                                <div class="col-md-4 mb-4 ">
+                                <div class="{% if product.category.category_name == 'nutrition_plan' and has_plan == True %} d-none {% elif product.category.category_name == 'nutrition_plan' and has_plan == 'AnonymousUser' %}d-none {% else %}col-md-4 mb-4{% endif %}">
                                     <div class="card h-100">
                                         {% if product.image_file %}
                                             <a href="{% url 'get_product_detail' product.id %}">

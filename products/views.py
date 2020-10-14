@@ -13,15 +13,15 @@ from .forms import AddProductForm
 # from shop_bag.views import add_products_to_bag
 # from checkout.models import ProductOrder
 
-
 def check_user(request):
+    """ check if user has nutrition plan """
 
     if request.user.is_authenticated:
         profile = get_object_or_404(UserProfile, user=request.user)
-        orders = profile.orders.all()
-        return orders
+        has_plan = profile.has_plan
+        return has_plan
     else:
-        return('no-order')
+        return ('AnonymousUser')
 
 
 def shop_all_products(request):
@@ -32,7 +32,7 @@ def shop_all_products(request):
     categories = None
     sort = None
     direction = None
-    anon_message = ''
+    anon_message = 'Register to Buy Nutrition Plan'
 
     if request.GET:
         if 'sort' in request.GET:
@@ -54,12 +54,6 @@ def shop_all_products(request):
             shop_products = shop_products.filter(category__category_name__in=categories)
             categories = Category.objects.filter(category_name__in=categories)
 
-            #display message to AnonymousUser
-            for c in categories:
-                if 'AnonymousUser' and c == 'nutrition_plan':
-                    return anon_message
-
-
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -68,10 +62,9 @@ def shop_all_products(request):
 
             queries = Q(product_name__icontains=query) | Q(description__icontains=query)
             shop_products = shop_products.filter(queries)
-            
-    orders = check_user(request)
-    print(orders)
-
+    
+    #check if user has nutrition plan
+    has_plan = check_user(request)
     selected_sorting = f'{sort}_{direction}'
 
     context = {
@@ -79,7 +72,7 @@ def shop_all_products(request):
         'search_term': query,
         'selected_categories': categories,
         'selected_sorting': selected_sorting,
-        'orders': orders,
+        'has_plan': has_plan,
         'anon_message': anon_message,
     }
 

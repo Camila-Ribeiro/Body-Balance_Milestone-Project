@@ -40,13 +40,13 @@
                   <small class="ml-3">
                       <a href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
                   </small>
-                {% elif user.is_authenticated %}
-                    {% if user_has_order != 'anonymous' and user_has_order != 'no-subscribed' %}
-                        <p><strong>You already has a subscription</strong></p>
+                <!-- {% elif user.is_authenticated %}
+                    {% if user_has_order != 'anonymous' and user_has_order != 'no-subscribed' %} -->
+                        <!-- <p><strong>You already has a subscription</strong></p>
                         <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
                         {% else %}
                         <a class="btn btn-primary" href="{% url 'shop_products' %}?category=nutrition_plan " role="button">Buy Nutrition Plan</a>
-                      {% endif %}
+                      {% endif %} -->
                 {% else %}
                   <a class="btn btn-primary" href="{% url 'shop_products' %}?category=nutrition_plan " role="button">Buy Nutrition Plan</a>
                 {% endif %}
@@ -55,42 +55,3 @@
 
   </section>
 {% endblock %}
-
-{% block postloadjs %}
-    {{ block.super }}
-    <!-- <script>
-      // var stripe = Stripe('{{stripe_public_key}}')
-      const buy_now_button = document.querySelector('#buy_now_btn')
-
-    if (buy_now_button) {
-      buy_now_button.addEventListener('click', event => {
-        fetch('{% url "checkout_plan" %}', {
-          headers : {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
-        })
-        .then((result) => { return result.json() })
-        .then((data) => {
-          var stripe = Stripe(data.stripe_public_key);
-
-          stripe.redirectToCheckout({
-          // Make the id field from the Checkout Session creation API response
-          // available to this file, so you can provide it as parameter here
-          // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-            sessionId: data.session_id
-            // sessionId: '{{session_id}}'
-          }).then(function (result) {
-            // If `redirectToCheckout` fails due to a browser or network
-            // error, display the localized error message to your customer
-            // using `result.error.message`.
-          });
-        })
-      })
-    }
-    </script> -->
-{% endblock %}
-
-
-
-
