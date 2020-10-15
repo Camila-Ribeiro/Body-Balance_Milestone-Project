@@ -182,7 +182,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 FREE_DELIVERY = 40
-DELIVERY_FIXED_PRICE = 5
+DELIVERY_PERCENTAGE = 10
 
 if 'USE_AWS' in os.environ:
     # Cache control
@@ -211,7 +211,7 @@ if 'USE_AWS' in os.environ:
 
 # Stripe
 FREE_DELIVERY = 40
-DELIVERY_FIXED_PRICE = 5
+DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')

@@ -38,20 +38,21 @@
             </div>
             <div class="row">
                 <div class="col">
+                    {% if product.category.category_name == 'nutrition_plan' %} 
+                    <strong><p class="mt-3 mb-1 text-black">
+                        Total: 
+                        <span class="float-right">€{{ total_items|floatformat:2 }}</span>
+                    </p></strong>
+                    {% else %}
                     <strong><p class="mt-3 mb-1 text-black">
                         Total{% if free_delivery_delta > 0 %} (Exc. delivery_fee){% endif %}: 
                         <span class="float-right">€{{ total_items|floatformat:2 }}</span>
                     </p></strong>
+                    {% endif %}
                     {% if free_delivery_delta > 0 %}
-                        {% if product.category.category_name == 'nutrition_plan' %}
-                        <p class="mb-0 p-2 bg-warning shadow-sm text-black text-center d-none">
+                        <p class="mb-0 p-2 bg-warning shadow-sm text-black text-center {% if product.category.category_name == 'nutrition_plan' %} d-none {% endif %}">
                             Spend <strong>€{{ free_delivery_delta }}</strong> more to get free next day delivery!
                         </p>
-                        {% else %}
-                        <p class="mb-0 p-2 bg-warning shadow-sm text-black text-center">
-                            Spend <strong>€{{ free_delivery_delta }}</strong> more to get free next day delivery!
-                        </p>
-                        {% endif %}
                     {% endif %}
                     <a href="{% url 'shop_bag' %}" class="btn btn-black btn-block rounded-0">
                         <span class="text-uppercase">Go To Secure Checkout</span>

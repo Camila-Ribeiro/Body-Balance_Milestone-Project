@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
@@ -21,7 +22,7 @@ def bag_products(request):
             product = get_object_or_404(Product, pk=product_id)
             category = product.category
 
-            #get nutrition plan category
+            #  get nutrition plan category
             get_cat = category.category_name
             total_items += item_data * product.price
             product_count += item_data
@@ -29,12 +30,11 @@ def bag_products(request):
             # get_plan_total = product.price
 
             if get_cat == 'nutrition_plan':
-                nut_price = product.price
-                get_plan_total = nut_price
-                # print(get_plan_total)
+                nut_price = round(product.price * Decimal(settings.DELIVERY_PERCENTAGE / 100), 2)
+                get_plan_total = product.price
                 product_in_bag = product.product_name
-                # print(product_in_bag)
-            
+                print(product_in_bag)
+      
             bag_items.append({
                 'product_id': product_id,
                 'product_quantity': item_data,
@@ -54,16 +54,23 @@ def bag_products(request):
                     'size': size,
                 })
 
-    #  no delivery fee if nutrition plan in order
-    if total_items == get_plan_total and get_cat == 'nutrition_plan':
-        print(total_items)
-        print(get_plan_total)
-        delivery_fee = 0
-        free_delivery_delta = 0
-    #  no charge 5eur fee if order more then 40eur 
-    elif total_items < settings.FREE_DELIVERY:
-        delivery_fee = settings.DELIVERY_FIXED_PRICE
-        free_delivery_delta = settings.FREE_DELIVERY - total_items
+    #  no delivery fee if nutrition plan in shop bag
+    if total_items < settings.FREE_DELIVERY:
+        if total_items == get_plan_total and get_cat == 'nutrition_plan':
+            delivery_fee = 0
+            free_delivery_delta = 0
+            print('IF')
+        elif get_cat == 'nutrition_plan' and product_in_bag:
+            delivery_fee = (total_items - get_plan_total) * Decimal(settings.DELIVERY_PERCENTAGE / 100)
+            print(delivery_fee)
+            free_delivery_delta = 0
+        else:
+            if get_plan_total:
+                delivery_fee = (total_items - get_plan_total) * Decimal(settings.DELIVERY_PERCENTAGE / 100)
+                free_delivery_delta = settings.FREE_DELIVERY - total_items
+            else:  
+                delivery_fee = total_items * Decimal(settings.DELIVERY_PERCENTAGE / 100)
+                free_delivery_delta = settings.FREE_DELIVERY - total_items  
     else:
         delivery_fee = 0
         free_delivery_delta = 0
