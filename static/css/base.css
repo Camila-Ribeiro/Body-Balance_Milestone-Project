@@ -31,6 +31,10 @@ nav a {
     background-color: transparent !important;
 }
 
+.bg-pages {
+    background-color: #6c757d;
+}
+
 .align-text-center{
     text-align: center;
 }
@@ -41,7 +45,7 @@ nav a {
 }
 
 footer {
-    background-color: #333C3C;
+    background-color: #6c757d;
     position: fixed;
     position: fixed;
     left: 0;
