@@ -9,6 +9,7 @@ from shop_bag.contexts import bag_products
 from .models import Product, Category
 from .forms import AddProductForm
 
+
 def check_user(request):
     """ check if user has nutrition plan """
 

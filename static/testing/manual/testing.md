@@ -10,11 +10,12 @@
   
 3. [**Nutrition**](#nutrition)
 
-4. [**Nutrition Management**](#nutrition-management)
+4. [**Nutrition Menu Management**](#nutrition-menu-management)
 
-5. [**Subscription Management**](#subscription-management)
+5. [**Menu Management**](#menu-management)
 
-6. [**Thanks**](#thanks)
+6. [**Plan Management**](#subscription-management)
+
 
 7. [**Products**](#products)
 
@@ -141,18 +142,32 @@ All the views are working accordingly:
 1. Click on "See your plan" button to verify it redirects the user to "My Nutrition Plan" page containing details of the Menu Nutrition Plan.
 
 - Who don't have subscription plan can: 
-1. Click on "Subscribe" button to verify it redirects the user to "Stripe Checkout" page .
+1. Click on "Buy Nutrition Plan" button to verify it redirects the user to "Stripe Checkout" page .
 
 ##### Anonymous users can:
-1. Click on "Sign Up" button (user need to be registered in order to subscribe) to verify it redirects the user to "Sign Up" page.
+1. Click on "Register to buy" button (user need to be registered in order to purchase Nutrition Plan) to verify it redirects the user to "Sign Up" page.
 
 
 ##### back to [top](#table-of-contents)
  
 ---
 
-## Nutrition Management
+## Nutrition Menu Management
 (url path nutrition/add_menu_admin)
+##### SUPERUSER(OWNER/ADMINISTRATOR) users can:
+1.  Click on "Edit Plan*" to verify it redirects user to "Menu Management" page. 
+
+##### Logged In users and Anonymous users:
+Have no access to this page.
+
+
+##### back to [top](#table-of-contents)
+
+
+---
+
+## Menu Management
+(url path nutrition/edit_menu_admin/1)
 ##### SUPERUSER(OWNER/ADMINISTRATOR) users can:
 1.  Click on "Plan name*" input and add the plan name.
 2.  Click on "Week*" input and add the week day (integer).
@@ -179,8 +194,7 @@ Have no access to this page.
 ##### back to [top](#table-of-contents)
  
 ---
-
-## Subscription Management
+## Plan Management
 (url path /subscriptions/edit_subscription_admin/1)
 ##### SUPERUSER(OWNER/ADMINISTRATOR) users can:
 1.  Click on "Plan duration*" input and add the plan duration.
@@ -198,14 +212,6 @@ Have no access to this page.
 
 ##### back to [top](#table-of-contents)
  
----
-
-## Thanks 
-(url path to /subscriptions/thanks/)
-1.
-2.
-
-##### back to [top](#table-of-contents)
  
 ---
 
@@ -215,11 +221,31 @@ Have no access to this page.
 1. Do all the same steps mentioned bellow.
 2. Click on "Edit" button placed in each products cards to verify it redirects to the "Edit a Product" Page (/products/edit_product/16/).
 
-#### Logged In Users, Anonymous users and Superusers can:
+#### Logged In Users who has Nutrition Plan can:
 1. Click on "Search Input" to search keywords (present on Product name title or product description) to verify it filter your search.
 2. On "Filter" section, under Category, click on "Active wear" to verify it display all activewear clothes. 
 3. On "Filter" section, under Category,  click on "Gym Equipment" to verify it display all gym equipment products. 
 4. On "Filter" section, under Category,  click on "Special Offers" to verify it display all special offers products.
+5. On "Filter" section, click on "All Products" to verify it display all products, except the Nutrition Plan.
+6. On "Sort by" section, select from dropdown "Price(low to high)" to verify it display all products on ascending price, except the Nutrition Plan.
+7. On "Sort by" section, select from dropdown "Price(high to low)" to verify it display all products on descending price, except the Nutrition Plan.
+8. On "Sort by" section, select from dropdown "Rating(low to high)" to verify it display all products on ascending rating, except the Nutrition Plan.
+9. On "Sort by" section, select from dropdown "Rating(high to low)" to verify it display all products on descending rating, except the Nutrition Plan.
+10. On "Sort by" section, select from dropdown "Name(A-Z)" to verify it display all products by ascending product name, except the Nutrition Plan.
+11. On "Sort by" section, select from dropdown "Name(Z-A)" to verify it display all products by descending product name, except the Nutrition Plan.
+12. On "Sort by" section, select from dropdown "Category(A-Z)" to verify it display all categories selected by ascending category name, except the Nutrition Plan.
+13. On "Sort by" section, select from dropdown "Name(Z-A)" to verify it display all categories by descending category name, except the Nutrition Plan.
+14. Click on any "Product Image" to verify it redirects to the "Product details" page.
+15. Click on "Back to Top" button to verify if on click brings user back to the top of the page.
+
+
+
+#### Logged In Users who don't have Nutrition Plan can:
+1. Click on "Search Input" to search keywords (present on Product name title or product description) to verify it filter your search.
+2. On "Filter" section, under Category, click on "Active wear" to verify it display all activewear clothes. 
+3. On "Filter" section, under Category,  click on "Gym Equipment" to verify it display all gym equipment products. 
+4. On "Filter" section, under Category,  click on "Special Offers" to verify it display all special offers products.
+4. On "Nutrition Plan" section, under Category,  click on "Special Offers" to verify it display the Nutrition Plan.
 5. On "Filter" section, click on "All Products" to verify it display all products.
 6. On "Sort by" section, select from dropdown "Price(low to high)" to verify it display all products on ascending price.
 7. On "Sort by" section, select from dropdown "Price(high to low)" to verify it display all products on descending price.
@@ -230,9 +256,27 @@ Have no access to this page.
 12. On "Sort by" section, select from dropdown "Category(A-Z)" to verify it display all categories selected by ascending category name.
 13. On "Sort by" section, select from dropdown "Name(Z-A)" to verify it display all categories by descending category name.
 14. Click on any "Product Image" to verify it redirects to the "Product details" page.
-15. Click on any "Back to Top" button to verify if on click brings user back to the top of the page.
+15. Click on "Back to Top" button to verify if on click brings user back to the top of the page.
 
 
+
+#### Anonymous users can:
+1. Click on "Search Input" to search keywords (present on Product name title or product description) to verify it filter your search.
+2. On "Filter" section, under Category, click on "Active wear" to verify it display all activewear clothes. 
+3. On "Filter" section, under Category,  click on "Gym Equipment" to verify it display all gym equipment products. 
+4. On "Filter" section, under Category,  click on "Special Offers" to verify it display all special offers products.
+5. On "Filter" section, under Category,  click on "Register to buy Nutrition Plan" to verify it redirects to "Sign Up" page.
+6. On "Filter" section, click on "All Products" to verify it display all products, except the Nutrition Plan.
+7. On "Sort by" section, select from dropdown "Price(low to high)" to verify it display all products on ascending price, except the Nutrition Plan.
+8. On "Sort by" section, select from dropdown "Price(high to low)" to verify it display all products on descending price, except the Nutrition Plan.
+8. On "Sort by" section, select from dropdown "Rating(low to high)" to verify it display all products on ascending ratings, except the Nutrition Plan.
+9. On "Sort by" section, select from dropdown "Rating(high to low)" to verify it display all products on descending rating, except the Nutrition Plan.
+10. On "Sort by" section, select from dropdown "Name(A-Z)" to verify it display all products by ascending product name, except the Nutrition Plan.
+11. On "Sort by" section, select from dropdown "Name(Z-A)" to verify it display all products by descending product name, except the Nutrition Plan.
+12. On "Sort by" section, select from dropdown "Category(A-Z)" to verify it display all categories selected by ascending category name, except the Nutrition Plan.
+13. On "Sort by" section, select from dropdown "Name(Z-A)" to verify it display all categories by descending category name, except the Nutrition Plan.
+14. Click on any "Product Image" to verify it redirects to the "Product details" page.
+15. Click on "Back to Top" button to verify if on click brings user back to the top of the page.
 ##### back to [top](#table-of-contents)
  
 ---
@@ -246,12 +290,25 @@ Have no access to this page.
 4. Click on "Back to shopping" button to verify it redirects to "Products" page.
 5. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
 
-#### Logged In users and Anonymous users can:
+#### For All Products cards except Nutrition Plan card
+#### Logged In Users and Anonymous can:
 1. Click on "Size" input to verify it selects the desirable product size. If product size is not available this input won't be displayed.
 2. On "Quantity" input, click on "+" to verify it increase quantity.
 3. On "Quantity" input, click on "1" to verify it decrease quantity.
 4. Click on "Back to shopping" button to verify it redirects to "Products" page.
 5. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
+
+#### For Nutrition Plan card
+#### Logged In Users who has Nutrition Plan can:
+Are not able to visualize this page.
+
+#### Logged In Users who don't have Nutrition Plan can:
+1. Click on "Back to shopping" button to verify it redirects to "Products" page.
+2. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
+3. After clicked on "Add to Bag" button verify if a message "Item already in bag" displays.
+
+#### Anonymous users:
+Are not able to visualize this page.
 
 
 
@@ -382,10 +439,6 @@ This page only displays Order Summary for information purposes. There is no quer
 ##### back to [top](#table-of-contents)
  
 ---
-
-
-
-
 
 
 

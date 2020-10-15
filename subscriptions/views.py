@@ -7,6 +7,7 @@ from django.conf import settings
 from user_profile.models import UserProfile
 from .models import Plan
 from products.views import check_user
+from .forms import AddPlanForm
 
 
 def shop_subscription_plan(request):
