@@ -4,10 +4,6 @@ from django.shortcuts import get_object_or_404
 from products.models import Product
 
 
-def truncate(n):
-    return int(n * 1000) / 1000
-
-
 def bag_products(request):
 
     bag_items = []
@@ -30,11 +26,10 @@ def bag_products(request):
             # get_plan_total = product.price
 
             if get_cat == 'nutrition_plan':
-                nut_price = round(product.price * Decimal(settings.DELIVERY_PERCENTAGE / 100), 2)
+                nut_price = round(product.price * Decimal
+                                  (settings.DELIVERY_PERCENTAGE / 100), 2)
                 get_plan_total = product.price
                 product_in_bag = product.product_name
-                print(product_in_bag)
-      
             bag_items.append({
                 'product_id': product_id,
                 'product_quantity': item_data,
@@ -59,18 +54,19 @@ def bag_products(request):
         if total_items == get_plan_total and get_cat == 'nutrition_plan':
             delivery_fee = 0
             free_delivery_delta = 0
-            print('IF')
         elif get_cat == 'nutrition_plan' and product_in_bag:
-            delivery_fee = (total_items - get_plan_total) * Decimal(settings.DELIVERY_PERCENTAGE / 100)
-            print(delivery_fee)
+            delivery_fee = (total_items - get_plan_total)
+            * Decimal(settings.DELIVERY_PERCENTAGE / 100)
             free_delivery_delta = 0
         else:
             if get_plan_total:
-                delivery_fee = (total_items - get_plan_total) * Decimal(settings.DELIVERY_PERCENTAGE / 100)
+                delivery_fee = (total_items - get_plan_total)\
+                              * Decimal(settings.DELIVERY_PERCENTAGE / 100)
                 free_delivery_delta = settings.FREE_DELIVERY - total_items
-            else:  
-                delivery_fee = total_items * Decimal(settings.DELIVERY_PERCENTAGE / 100)
-                free_delivery_delta = settings.FREE_DELIVERY - total_items  
+            else:
+                delivery_fee = total_items * Decimal
+                (settings.DELIVERY_PERCENTAGE / 100)
+                free_delivery_delta = settings.FREE_DELIVERY - total_items
     else:
         delivery_fee = 0
         free_delivery_delta = 0

@@ -21,7 +21,7 @@ class ProductOrderAdmin(admin.ModelAdmin):
               'street_address2', 'county', 'delivery_cost',
               'order_total', 'shop_total', 'original_shop_bag',
               'stripe_pid',)
-            
+
     list_display = ('order_number', 'date', 'full_name',
                     'order_total', 'delivery_cost',
                     'shop_total',)
@@ -29,17 +29,4 @@ class ProductOrderAdmin(admin.ModelAdmin):
     ordering = ('-date',)
 
 
-# class SubscriptionOrderAdmin(admin.ModelAdmin):
-
-#     readonly_fields = ('order_number', 'date', 'stripe_pid',)
-
-#     fields = ('order_number', 'date', 'user_profile',
-#               'full_name', 'email', 'stripe_pid',)
-
-#     list_display = ('order_number', 'date', 'full_name',)
-
-#     ordering = ('-date',)
-
-
 admin.site.register(ProductOrder, ProductOrderAdmin)
-# admin.site.register(SubscriptionOrder, SubscriptionOrderAdmin)

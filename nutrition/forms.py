@@ -10,4 +10,4 @@ class AddNutritionPlanForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # nutrition_form = Nutrition.objects.all()
+        nutrition_form = Nutrition.objects.all()

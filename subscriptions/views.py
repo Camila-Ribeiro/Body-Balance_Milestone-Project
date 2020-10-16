@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
 
-from user_profile.models import UserProfile
-from .models import Plan
 from products.views import check_user
+from .models import Plan
 from .forms import AddPlanForm
 
 
@@ -29,14 +26,16 @@ def get_plan_id(request, plan_id):
         'plan_id': plan_id,
     }
 
-    return render(request, 'subscriptions/edit_subscription_admin.html', context)
+    return render(request, 'subscriptions/edit_subscription_admin.html',
+                  context)
 
 
 @login_required
 def edit_subscription_admin(request, plan_id):
     """ Edit a subscription plan  """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners have the permission to edit the subscription plan.')
+        messages.error(request, 'Sorry, only store owners have the permission \
+        to edit the subscription plan.')
         return redirect(reverse('home'))
 
     plan = get_object_or_404(Plan, pk=plan_id)
@@ -48,7 +47,8 @@ def edit_subscription_admin(request, plan_id):
             messages.success(request, 'Successfully updated plan!')
             return redirect('shop_subscription_plan')
         else:
-            messages.error(request, 'Failed to update plan. Please ensure the form is valid.')
+            messages.error(request, 'Failed to update plan. Please ensure the \
+            form is valid.')
     else:
         form = AddPlanForm(instance=plan)
         messages.info(request, f'You are editing {plan.plan_duration}')

@@ -3,6 +3,7 @@ from django.dispatch import receiver
 
 from .models import ProductLineOrder
 
+
 @receiver(post_save, sender=ProductLineOrder)
 def update_on_save(sender, instance, created, **kwargs):
     """

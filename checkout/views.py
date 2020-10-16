@@ -1,5 +1,6 @@
 import json
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404,\
+    HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -19,13 +20,13 @@ def cache_checkout(request):
     try:
         pay_intent_id = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pay_intent_id, 
-            metadata={
-                'shop_bag': json.dumps(request.session.get('shop_bag', {})),
-                'subscription': json.dumps(request.session.get('subscription', {})),
-                'save_user_info': request.POST.get('save_user_info'),
-                'username': request.user,
-            })
+        stripe.PaymentIntent.modify(pay_intent_id,
+                                    metadata={
+                                        'shop_bag': json.dumps(request.session.get('shop_bag', {})),
+                                        'subscription': json.dumps(request.session.get('subscription', {})),
+                                        'save_user_info': request.POST.get('save_user_info'),
+                                        'username': request.user,
+                                    })
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
@@ -54,7 +55,8 @@ def checkout(request):
         order_form = ProductOrderForm(form_database)
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            pay_intent_id = request.POST.get('client_secret').split('_secret')[0]
+            pay_intent_id = request.POST.get('client_secret').\
+                split('_secret')[0]
             order.stripe_pid = pay_intent_id
             order.original_shop_bag = json.dumps(shop_bag)
             order.save()
@@ -69,7 +71,8 @@ def checkout(request):
                         )
                         product_line_order.save()
                     else:
-                        for size, product_quantity in item_data['items_by_size'].items():
+                        for size, product_quantity\
+                          in item_data['items_by_size'].items():
                             product_line_order = ProductLineOrder(
                                 order=order,
                                 product=product,
@@ -79,20 +82,24 @@ def checkout(request):
                             product_line_order.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "There is a product in your shop bag that wasn't found in our database. "
-                        "Please get in contact with us for further assistance!")
+                        "There is a product in your shop bag that wasn't found\
+                            in our database. "
+                        "Please get in contact with us for further\
+                            assistance!")
                     )
                     order.delete()
                     return redirect(reverse('shop_bag'))
             request.session['save_user_info'] = 'save-info_box' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                                    args=[order.order_number]))
         else:
             messages.error(request, 'Error! \
             Please double check your information.')
     else:
         shop_bag = request.session.get('shop_bag', {})
         if not shop_bag:
-            messages.error(request, "There are no products at your shopping bag!")
+            messages.error(request,
+                           "There are no products at your shopping bag!")
             return redirect(reverse('shop_products'))
 
         current_bag = bag_products(request)
@@ -124,7 +131,6 @@ def checkout(request):
         else:
             order_form = ProductOrderForm()
 
-
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
             Is it set in your environment variables?')
@@ -147,11 +153,20 @@ def checkout_success(request, order_number):
     order = get_object_or_404(ProductOrder, order_number=order_number)
 
     if request.user.is_authenticated:
-        
         profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
+
+        current_bag = bag_products(request)
+        bag_items = current_bag['bag_items']
+        user_has_plan = False
+        for item in bag_items:
+            cat = item['category']
+            if str(cat) == 'nutrition_plan':
+                user_has_plan = True
+
+        print(user_has_plan)
 
         # Save the user's info
         if save_user_info:
@@ -163,8 +178,10 @@ def checkout_success(request, order_number):
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_county': order.county,
+                'has_plan': order.user_has_plan,
             }
-            user_profile_form = UserProfileForm(user_profile_data, instance=profile)
+            user_profile_form = UserProfileForm(user_profile_data,
+                                                instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
@@ -181,4 +198,3 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
-

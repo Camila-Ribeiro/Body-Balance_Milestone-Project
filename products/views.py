@@ -37,30 +37,34 @@ def shop_all_products(request):
             sort = sort_key
             if sort_key == 'name':
                 sort_key = 'lower_name'
-                shop_products = shop_products.annotate(lower_name=Lower('product_name'))
+                shop_products = shop_products.\
+                    annotate(lower_name=Lower('product_name'))
             if sort_key == 'category':
                 sort_key = 'category__category_name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sort_key = f'-{sort_key}'
-            shop_products = shop_products.order_by(sort_key) 
+            shop_products = shop_products.order_by(sort_key)
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            shop_products = shop_products.filter(category__category_name__in=categories)
+            shop_products = shop_products.\
+                filter(category__category_name__in=categories)
             categories = Category.objects.filter(category_name__in=categories)
 
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(request,
+                               "You didn't enter any search criteria!")
                 return redirect(reverse('shop_products'))
 
-            queries = Q(product_name__icontains=query) | Q(description__icontains=query)
+            queries = Q(product_name__icontains=query) |\
+                Q(description__icontains=query)
             shop_products = shop_products.filter(queries)
-    
-    #check if user has nutrition plan
+
+    #  check if user has nutrition plan
     has_plan = check_user(request)
     selected_sorting = f'{sort}_{direction}'
 
@@ -101,7 +105,8 @@ def get_product_detail(request, product_id):
 def add_product_admin(request):
     """ Add a product to the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners have the permission to add products.')
+        messages.error(request, 'Sorry, only store owners have the permission\
+            to add products.')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
@@ -111,7 +116,8 @@ def add_product_admin(request):
             messages.success(request, 'Product added successfully!')
             return redirect(reverse('get_product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed! Please ensure you added the products correctly!')
+            messages.error(request, 'Failed! Please ensure you added the\
+                products correctly!')
     else:
         form = AddProductForm()
 
@@ -127,7 +133,8 @@ def add_product_admin(request):
 def edit_product_admin(request, product_id):
     """ Edit a product in the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners have the permission to edit products.')
+        messages.error(request, 'Sorry, only store owners have the permission\
+            to edit products.')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
@@ -138,7 +145,8 @@ def edit_product_admin(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('get_product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to update product. Please ensure\
+                the form is valid.')
     else:
         form = AddProductForm(instance=product)
         messages.info(request, f'You are editing {product.product_name}')
@@ -156,7 +164,8 @@ def edit_product_admin(request, product_id):
 def delete_product_admin(request, product_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners have the permission to delete products.')
+        messages.error(request, 'Sorry, only store owners have the permission\
+            to delete products.')
         return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
