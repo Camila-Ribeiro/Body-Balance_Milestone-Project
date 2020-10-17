@@ -59,10 +59,8 @@ class StripeWebhookHandler:
         if subscription:
             profile = None
             username = intent.metadata.username
-            print(event)
 
         if shop_bag:
-            print('shop bag')
             # Clean data in the shipping details
             for field, value in shipping_details.address.items():
                 if value == "":
@@ -162,7 +160,6 @@ class StripeWebhookHandler:
             self._send_confirmation_email(order)
 
         else:
-            print('other')
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} |\
                     SUCCESS: Created order in webhook',

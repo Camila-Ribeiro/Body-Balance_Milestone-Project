@@ -21,7 +21,6 @@ def shop_subscription_plan(request):
 
 def get_plan_id(request, plan_id):
     plan_id = get_object_or_404(Plan, pk=plan_id)
-    print(plan_id)
     context = {
         'plan_id': plan_id,
     }
@@ -40,7 +39,6 @@ def edit_subscription_admin(request, plan_id):
 
     plan = get_object_or_404(Plan, pk=plan_id)
     if request.method == 'POST':
-        print(plan)
         form = AddPlanForm(request.POST, request.FILES, instance=plan)
         if form.is_valid():
             form.save()

@@ -55,7 +55,7 @@ def webhook(request):
 
         # Call the event handler with the event
         response = event_handler(event)
-        print(response)
+        
         # return "Success", 200
     else:
         # If there's a handler for it, get it from the event map

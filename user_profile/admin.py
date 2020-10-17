@@ -1,17 +1,13 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
 from .models import UserProfile
+from django.contrib.auth.admin import UserAdmin
 
 
-class HasPlanAdmin(admin.ModelAdmin):
-    readonly_fields = (
-        'has_plan',)
-
-    readonly_fields = (
-        'has_plan',) 
+class UserProfile_Admin(admin.ModelAdmin):
 
     list_display = (
-        'has_plan',
+        'user', 'has_plan',
     )
 
-
-admin.site.register(UserProfile, HasPlanAdmin)
+admin.site.register(UserProfile, UserProfile_Admin)

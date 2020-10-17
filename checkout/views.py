@@ -165,8 +165,17 @@ def checkout_success(request, order_number):
             cat = item['category']
             if str(cat) == 'nutrition_plan':
                 user_has_plan = True
+                profile = UserProfile.objects.get(user=request.user)
+                
+                form_database_sub = {
+                    'has_plan': user_has_plan,
+                }
 
-        print(user_has_plan)
+                order_form_ = UserProfileForm(form_database_sub,
+                                              instance=profile)
+                if order_form_.is_valid():
+                    if order_form_.is_valid():
+                        order_form_.save()
 
         # Save the user's info
         if save_user_info:
@@ -178,7 +187,6 @@ def checkout_success(request, order_number):
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_county': order.county,
-                'has_plan': order.user_has_plan,
             }
             user_profile_form = UserProfileForm(user_profile_data,
                                                 instance=profile)
@@ -195,6 +203,7 @@ def checkout_success(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'from_user_profile': True,
     }
 
     return render(request, template, context)

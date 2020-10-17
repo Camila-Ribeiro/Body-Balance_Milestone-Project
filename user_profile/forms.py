@@ -23,6 +23,7 @@ class UserProfileForm(forms.ModelForm):
             'has_plan': 'plan',
         }
 
+        self.fields['has_plan'].widget = forms.HiddenInput()
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if field != 'default_country':
