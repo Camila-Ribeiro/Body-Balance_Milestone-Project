@@ -70,6 +70,10 @@ footer {
     font-size: 1.125rem;
 }
 
+.margin-container {
+    margin-bottom: 100px;
+}
+
  /* ---------------------------------- Products */
 
  .sidenav {
@@ -88,7 +92,7 @@ footer {
 }
   
 .sidenav a:hover {
-    color: #FFCCD2;
+    color: #3eb33f;
 }
 
 .margin-section{
@@ -179,7 +183,7 @@ footer {
 }
 
 .btn-style {
-    background-color:#f3bf26;
+    background-color:#3eb33f;
     color: black;
 }
 
@@ -193,7 +197,7 @@ footer {
     z-index: 9999;
     height: 50px;
     width: 50px;
-    background-color: #FFCCD2;
+    background-color: #3eb33f;
     text-align: center;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -216,7 +220,7 @@ height: 900px;
 
 /* -------------------------------- Shop Bag */
 .custom-box{
-    background-color: #f3bf26;
+    background-color: #3eb33f;
     color: black;
 }
 
@@ -232,6 +236,11 @@ height: 900px;
 input[name='q']::placeholder {
     color: #aab7c4;
 }
+
+/* -------------------------------- checkout */
+/* .text-info {
+    color: #3eb33f;
+} */
 
 /* -------------------------------  all section coppied from class, still need to change, Bootstrap Toasts */
 
@@ -301,7 +310,7 @@ input[name='q']::placeholder {
 }
 
 .allauth-form-inner-content a {
-	color: #17a2b8; /* text-info */
+	color: #3eb33f; 
 }
 
 /* Product Form */
