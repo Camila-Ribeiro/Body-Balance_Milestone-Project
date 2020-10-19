@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="{% static 'media/favicon.ico' %}"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&family=Roboto:ital,wght@1,300&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&family=Roboto:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
@@ -48,7 +48,7 @@
         <div class="container">
             <div class="row">
                 <nav class="navbar navbar-dark {% url 'home' as home %}
-                {% if request.get_full_path == home %} bg-home {% else %} bg-pages {% endif %} navbar-expand-lg fixed-top">
+                {% if request.get_full_path == home %} nav-home {% else %} nav-pages {% endif %} navbar-expand-lg fixed-top">
                     {% if user.is_authenticated %}
                         <p class="text-white">you're logged in as {{ user }}</p>
                     {% endif %}
@@ -92,7 +92,7 @@
                         </ul>
                     </div>
                     <div class="list-inline-item">
-                        <a class="nav-link position-relative" href="{% url 'shop_bag' %}">
+                        <a class="nav-link position-relative green-hover" href="{% url 'shop_bag' %}">
                             <div class="text-center">
                                 <span class="badge">{{ product_count }}</span>
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H19C19.5523 4 20 4.44771 20 5V19C20 19.5523 19.5523 20 19 20H5C4.44772 20 4 19.5523 4 19V5C4 4.44772 4.44771 4 5 4ZM2 5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5ZM12 12C9.23858 12 7 9.31371 7 6H9C9 8.56606 10.6691 10 12 10C13.3309 10 15 8.56606 15 6H17C17 9.31371 14.7614 12 12 12Z" fill="currentColor" /> </svg>
@@ -144,7 +144,7 @@
   </body>
   <footer>
     <div>
-        <p class="text-white m-2">Copyright</p>
+        <p class="text-white m-2 small">&copy; Copyright</p>
     </div>
 </footer>
 </html>

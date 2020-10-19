@@ -1,13 +1,38 @@
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
 html {
     height: 100%;
+}
+
+h1 {
+    font-size: 2.8rem;
+}
+
+
+h1,h2,h3,h4,h6 {
+    color: #3eb33f;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+
+h6 {
+    color: #aade56;
+    letter-spacing: 1px;
 }
 
 body {
     background: url('../../media/homepage.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 300px);  
-    color: rgb(3, 3, 3);
-    font-family: 'Roboto';
+    color: #676767;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
 header {
@@ -18,20 +43,46 @@ header {
     background-color: #333C3C;
 }
 
+hr {
+    background-color: transparent;
+    border-top: 5px solid #aade56;
+    margin-bottom: 40px;
+    max-width: 100px;
+}
+
+nav {
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+}
+
 nav a {
     font-family: 'Raleway', sans-serif;
     color: #ffffff;
 }
 
+/*nav*/
 .navbar-dark .navbar-nav .nav-link {
     color: #ffffff;
 }
-
-.bg-home {
-    background-color: transparent !important;
+.navbar-dark .navbar-nav .nav-link:hover {
+    transition: all 0.25s ease-in;
+    color: #aade56;
 }
 
-.bg-pages {
+a.green-hover:hover {
+    transition: all 0.25s ease-in;
+    color: #aade56;
+}
+
+.nav-home {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+    box-shadow: 0 1px 5px rgb(0 0 0 / 0);
+}
+
+.nav-pages {
     background-color: #6c757d;
 }
 
@@ -62,12 +113,21 @@ footer {
 	left: 0;
 	position: fixed;
 	background: #e9ecef;
-	z-index: -1;
+    z-index: -1;
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmZmYWZhIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjBmMGYwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background: -moz-linear-gradient(0deg, #fffafa 1px, #f0f0f0 1px);
+  background: -webkit-linear-gradient(0deg, #fffafa 1px, #f0f0f0 1px);
+  background: linear-gradient(90deg, #fffafa 1px, #f0f0f0 1px);
+  -moz-background-size: 5px 5px;
+  -o-background-size: 5px 5px;
+  -webkit-background-size: 5px 5px;
+  background-size: 5px 5px;
+    
 }
 
 /* ---------------------------------- Nutrition */
 .subscription p {
-    font-size: 1.125rem;
+    /* font-size: 1.125rem; */
 }
 
 .margin-container {
@@ -76,14 +136,22 @@ footer {
 
  /* ---------------------------------- Products */
 
- .sidenav {
+.search-button {
+    background: #aade56;
+    color: white;
+}
+
+.sidenav {
     background: #ffff;
     overflow-x: hidden;
-    padding: 8px 0;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    padding: 6px 8px 6px 16px;
 }
 
 .sidenav a {
-    padding: 6px 8px 6px 16px;
+    padding: 6px 8px;
     text-decoration: none;
     font-size: 25px;
     color: #353636;
@@ -101,7 +169,37 @@ footer {
 }
 
 .price-font{
-    font-size: 1.125rem;
+    font-size: 1.75rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+.card {
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.card-footer {
+    padding: .75rem 1.25rem;
+    background-color: #aade56;
+    border: 12px solid #FFF;
+}
+
+
+.card-products p,
+.card-products a,
+.card-products div{
+    color:#FFF;
+}
+
+.card-products .card-footer .price-font{
+    font-size: 1.75rem;
+    font-family: 'Raleway', sans-serif;
+    color: #FFF;
+}
+
+.card-footer.text-muted{
+    color:#FFF;
 }
 
 /* ---------------------------------- Product Detail */
@@ -119,42 +217,44 @@ footer {
 .product-detail-section {
     background: #ffffff;
     border-radius: 5px;
-    margin-top: 130px;
+    margin-top: 150px;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
 }
 .add-to-cart{
     padding: 0.5em 1em 0.5em 1em;
     border-radius: 100px;
     border: 3px solid #aade56;
     cursor: pointer;
-    width: 10em;
+    /* width: 10em; */
     color: #3eb33f;
 }
+.add-to-cart:hover{
+    /* padding: 0.5em 1em 0.5em 1em;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer; */
+    /* width: 10em; */
+    background: #aade56;
+    color: white;
+}
+
 
 .badge {
     display: block;
     position: absolute;
     top: 1px;
-    right: 5px;
+    right: 15px;
     line-height: 16px;
     padding: 0 5px;
     text-shadow: 0 1px rgba(0, 0, 0, 0.25);
     border-width: 1px;
     border-style: solid;
     border-radius: 10px;
-    background: green;
-    color: white;
+    background: #36a037;
+    color: #FFF;
 }
-
-.add-to-cart:hover{
-    padding: 0.5em 1em 0.5em 1em;
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-    width: 10em;
-    background: #aade56;
-    color: white;
-}
-
 
 .product-container {
     padding: 3rem;
@@ -260,6 +360,24 @@ input[name='q']::placeholder {
 }
 
 /* Allauth form formatting */
+.allauth-form-inner-content {
+    background-color: #FFF;
+    padding: 40px;
+}
+
+.allauth-form-inner-content button {
+    padding: 0.5em 1em 0.5em 1em !important;
+    border-radius: 100px !important;
+    border: 3px solid #aade56 !important;
+    cursor: pointer !important;
+    width: 10em !important;
+    color: #3eb33f !important;
+    background-color: transparent !important;
+}
+.allauth-form-inner-content button:hover {
+    color: #FFF !important;
+    background-color: #aade56 !important;
+}
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */

@@ -17,7 +17,7 @@
           <div class="col text-center mt-3">
               <h2 class="">Nutrition Plan</h2>
 
-              <hr class="w-25 mt-1 mb-2">
+              <hr />
           </div>
       </div>
     <section class="container">
@@ -30,24 +30,27 @@
           {% endif %}
       
 
-          <div class="container subscription mb-5">
+          <div class="subscription mb-5">
             <h4 class="mt-5">{{ plan.plan_duration }}</h4>
-            <p class="mt-2">{{ plan.description}}</p>
-            {% if request.user.is_superuser %}
-              <small class="ml-3">
-                  <a href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
-              </small>
-            {% endif %}
-
+            <p class="mt-4 mb-5">{{ plan.description}}</p>
+            
             {% if has_plan == True %}
-              <p><strong>You already has a subscription</strong></p>
-              <a class="btn btn-primary" href="{% url 'nutrition' %}" role="button">See your plan</a>
+              <p><strong>Hi {{user|upper}}, you already has a plan.</strong></p>
+              <a class="btn text-center add-to-cart mt-3 mb-5" href="{% url 'nutrition' %}" role="button">See your plan</a>
             {% elif has_plan == 'AnonymousUser' %}
-              <a class="btn btn-primary" href="{% url 'account_signup' %}?category=nutrition_plan " role="button">Register to Buy</a>
+              <a class="btn text-center add-to-cart mt-3 mb-5" href="{% url 'account_signup' %}?category=nutrition_plan " role="button">Register to Buy</a>
             {% else %}
-              <a class="btn btn-primary" href="{% url 'shop_products' %}?category=nutrition_plan" role="button">Buy Nutrition Plan</a>
+              <a class="btn text-center add-to-cart mt-3 mb-5" href="{% url 'shop_products' %}?category=nutrition_plan" role="button">Buy Nutrition Plan</a>
             {% endif %}
+            {% if request.user.is_superuser %}
+              <div class="float-right mt-3">
+                  <a class="btn btn-secondary" href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
+              </div>
+            {% endif %}
+            
           </div>
+
+            
         {% endfor %}
       </div>
   </section>

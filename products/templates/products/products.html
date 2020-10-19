@@ -15,8 +15,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col text-center mt-3">
-                    <h2 class="">Products</h2>
-                    <hr class="w-25 mt-1 mb-2">
+                    <h2>Products</h2>
+                    <hr />
                 </div>
             </div>
                 <div class="container mt-5">
@@ -27,7 +27,7 @@
                                 <div class="input-group w-100">
                                     <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our products">
                                     <div class="input-group-append">
-                                        <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                        <button class="form-control btn border search-button" type="submit">
                                             <span class="icon">
                                                 <i class="fas fa-search"></i>
 
@@ -45,7 +45,7 @@
                                     </a>
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body pt-0 pb-0">
-                                            <a href="{% url 'shop_products' %}?category=activewear">Activewear</a>
+                                            <a href="{% url 'shop_products' %}?category=activewear">Activewear</a> 
                                             <a href="{% url 'shop_products' %}?category=gym_equipment">Gym Equipment</a>
                                             <a href="{% url 'shop_products' %}?category=special_offers">Special Offers</a>
 
@@ -70,15 +70,14 @@
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-6 col-md-3 order-md-first">
+                                {% if search_term %}
                                 <p class="text-muted mt-3 text-center text-md-left">
-                                    {% if search_term or selected_categories or selected_sorting != 'None_None' %}
-                                        <span class="small"><a href="{% url 'shop_products' %}">Products Home</a> | </span>
-                                    {% endif %}
-                                    {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                                   {{ products|length }} products found for <strong>"{{ search_term }}"</strong>
                                 </p>
+                                {% endif %}
                             </div>
-                            <div class="col-6 col-md-3 w-50">
-                                <select id="sortby" class="custom-select custom-select-sm rounded-0 border border-{% if selected_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                            <div class="col-6 col-md-3 offset-md-6 w-50">
+                                <select id="sortby" class="mb-5 custom-select custom-select-sm border border-{% if selected_sorting != 'None_None' %}info{% else %}black{% endif %}">
                                     <option value="reset" {% if selected_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                                     <option value="price_asc" {% if selected_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                                     <option value="price_desc" {% if selected_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
@@ -95,8 +94,13 @@
                             {% for product in products %}
                             
                                 <div class="{% if product.category.category_name == 'nutrition_plan' and has_plan == True %} d-none {% elif product.category.category_name == 'nutrition_plan' and has_plan == 'AnonymousUser' %}d-none {% else %}col-md-4 mb-4{% endif %}">
-                                    <div class="card h-100">
-                                        {% if product.image_file %}
+                                    <div class="card card-products h-100">
+                                        <div class="card-body">
+                                            <a href="{% url 'get_product_detail' product.id %}">
+                                                <h6 class="card-title mb-5">{{ product.product_name|upper }}</h6>
+                                            </a>
+
+                                            {% if product.image_file %}
                                             <a href="{% url 'get_product_detail' product.id %}">
                                                 <img src="{{ product.image_file.url }}" class="card-img-top img-fluid" alt="{{ product.product_name }}">
                                             </a>
@@ -105,8 +109,6 @@
                                                 <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ product.product_name }}">
                                             </a>
                                         {% endif %}
-                                        <div class="card-body">
-                                            <h6 class="card-title">{{ product.product_name|upper }}</h6>
                                         </div>
                                         <div class="card-footer">
                                             {% if product.category %}
@@ -123,15 +125,16 @@
                                                 <div class="col">
                                                     <p class="price-font mb-0 text-right">€{{ product.price }}</p>
                                                 </div>
-                                                {% if request.user.is_superuser %}
-                                                <small class="ml-3">
-                                                    <a href="{% url 'edit_product_admin' product.id %}">Edit</a> | 
-                                                    <a class="text-danger" href="{% url 'delete_product_admin' product.id %}">Delete</a>
-                                                </small>
-                                            {% endif %}
                                             </div>
                                         </div>
+                                        {% if request.user.is_superuser %}
+                                        <div class="ml-3 pr-2 pb-3">
+                                            <a class="btn btn-secondary btn-sm float-left" href="{% url 'edit_product_admin' product.id %}">Edit</a>  
+                                            <a class="text-danger btn-sm float-right" href="{% url 'delete_product_admin' product.id %}">Delete</a>
+                                        </div>
+                                    {% endif %}
                                     </div>  
+                                   
                                 </div>
                             {% endfor %}
                         </div>
