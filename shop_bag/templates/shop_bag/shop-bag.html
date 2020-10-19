@@ -56,7 +56,7 @@
                                         <p class="my-0"><strong>{{ product_item.product.product_name }}</strong></p>
                                         <p class="my-0 small text-muted">SKU {{ product_item.product.sku|upper }}</p>
                                         <p class="my-0 {% if product_item.product.id == 20 %} d-none {% endif %}"><strong>Size </strong>{% if product_item.product.product_sizes %}{{ product_item.size|upper }}{% else %}N/A{% endif %}</p>
-                                        <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a>
+                                        <a class="remove-item btn border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a>
                                     </td>
                                     <td class="py-2">
                                         <p class="my-0">€{{ product_item.product.price }}</p>
@@ -67,7 +67,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                                                        <button class="decrement-qty btn btn-sm" 
                                                             data-item_id="{{ product_item.product_id }}" id="decrement-qty_{{ product_item.product_id }}">
                                                             <span>
                                                                 <i class="fas fa-minus fa-sm"></i>
@@ -79,7 +79,7 @@
                                                         data-item_id="{{ product_item.product_id }}"
                                                         id="id_qty_{{ product_item.product_id }}">
                                                     <div class="input-group-append">
-                                                        <button class="{% if product_item.product.category.category_name == 'nutrition_plan' %} btn btn-sm btn-black rounded-0  {% else %} increment-qty btn btn-sm btn-black rounded-0 {% endif %}"
+                                                        <button class="{% if product_item.product.category.category_name == 'nutrition_plan' %} btn btn-sm {% else %} increment-qty btn btn-sm {% endif %}"
                                                             data-item_id="{{ product_item.product_id }}" id="increment-qty_{{ product_item.product_id }}">
                                                             <span>
                                                                 <i class="fas fa-plus fa-sm"></i>
@@ -92,8 +92,8 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <a class="update-link btn btn-black rounded-0 btn-lg border m-2"><small>UPDATE</small></a>
-                                        <!-- <a class="remove-item btn btn-black rounded-0 border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a> -->
+                                        <a class="update-link btn btn-lg border m-2"><small>UPDATE</small></a>
+                                        <!-- <a class="remove-item btn border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a> -->
                                     </td>
                                    
                                     {% if product_item.product.category == 'nutrition_plan' %} 
@@ -127,14 +127,14 @@
                         <div class="row mt-5 mb-5 float-right">
                             <tr>
                                 <td colspan="5">
-                                    <a href="{% url 'shop_products' %}" class="btn btn-outline-black rounded-0 btn-lg border m-2">
+                                    <a href="{% url 'shop_products' %}" class="btn btn-lg border m-2">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
                                         <span class="text-uppercase">Continue Shopping</span>
                                     </a>
                                     
-                                    <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg border m-2">
+                                    <a href="{% url 'checkout' %}" class="btn btn-lg border m-2">
                                         <span class="text-uppercase"> Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
@@ -146,7 +146,7 @@
                 </div>
             {% else %}
                 <p class="lead mb-5">Your bag is empty.</p>
-                <a href="{% url 'shop_products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                <a href="{% url 'shop_products' %}" class="btn btn-lg">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>
