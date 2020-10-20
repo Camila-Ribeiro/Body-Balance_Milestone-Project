@@ -130,11 +130,13 @@ A standard layout is fully responsive on mobile devices and larger screens.
  
 #### Color Scheme
  
-- ![#61a5a0](https://placehold.it/15/61a5a0/#61a5a0)
-- ![#90c0bc](https://placehold.it/15/90c0bc/90c0bc)
-- ![#55928d](https://placehold.it/15/55928d/55928d)
-- ![#dcdcdc](https://placehold.it/15/dcdcdc/dcdcdc)
-- ![#f2c277](https://placehold.it/15/f2c277/f2c277)
+- ![#e6ebf1](https://placehold.it/15/e6ebf1/#e6ebf1)
+- ![#cfd7df](https://placehold.it/15/cfd7df/cfd7df)
+- ![#e9ecef](https://placehold.it/15/e9ecef/e9ecef)
+- ![#aade56](https://placehold.it/15/aade56/aade56)
+- ![#3eb33f](https://placehold.it/15/3eb33f/3eb33f)
+- ![#6c757d](https://placehold.it/15/6c757d/6c757d)
+- ![#333C3C](https://placehold.it/15/333C3C/333C3C)
  
 #### Typography
  
@@ -160,7 +162,7 @@ My wireframes for this project can be found in the UX folder.
 - Index - simple page containing an image, small text and navigation.
 
 - Nutrition - this page displays a Nutrition Plan available for subscription. 
-   - Registared users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
+   - Registered users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
    - For anonymous users it displays a "Subscribe" button where redirects the user to the "Register"page.
    - For superusers it displays an "Edit" button where redirects to the "Edit Plan"page.
 
@@ -170,8 +172,8 @@ My wireframes for this project can be found in the UX folder.
    - Also users can sort products by price (low to high or high to low), rating (low to high or high to low), name (A-Z or Z-a) and category (A-Z or Z-a).
    - Users, anonymous users and superuser can see the same content described above.
 
-- Products Details - this page displays product details such as produc name, rating, category, price, size, quantity and a button "buy" which redirect the user to the "shop bag" page.
-   - Registared users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
+- Products Details - this page displays product details such as product name, rating, category, price, size, quantity and a button "buy" which redirect the user to the "shop bag" page.
+   - Registered users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
    - For anonymous users it displays the same content.
    - For superusers it displays the same content described above plus an "Edit" button where redirects to the "Edit Product"page.
 
@@ -191,7 +193,7 @@ My wireframes for this project can be found in the UX folder.
 
 - Register - this page has five inputs: e-mail address, e-mail address confirmation, username, password and password(again). It also displays two buttons:
   - "Back to Login" button where redirects the user to the Login page
-  - "Sign Up" where redirects the user to a corfirmation e-mail page with a message " We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes." After user confirms the e-mail (link sent to their email address), the user can log in.
+  - "Sign Up" where redirects the user to a confirmation e-mail page with a message " We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes." After user confirms the e-mail (link sent to their email address), the user can log in.
 
 - Login - this page has two inputs, username or e-mail and password. It also displays two buttons:
   - "Home" button where redirects the user to the index page
@@ -378,7 +380,7 @@ I also have validated all files using online validation sites cited below and ch
  
 #### PYTHON
  
-- [Pep8 Online tool](http://pep8online.com/checkresult) - `minor errorsgit status`
+- [Pep8 Online tool](http://pep8online.com/checkresult) - `All right` for all python files except for Checkout App- views.py as I left 3 long lines for better reading purpose.
  
 #### JavaScript
  

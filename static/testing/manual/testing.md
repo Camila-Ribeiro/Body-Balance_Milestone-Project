@@ -236,7 +236,7 @@ Have no access to this page.
 12. On "Sort by" section, select from dropdown "Category(A-Z)" to verify it display all categories selected by ascending category name, except the Nutrition Plan.
 13. On "Sort by" section, select from dropdown "Name(Z-A)" to verify it display all categories by descending category name, except the Nutrition Plan.
 14. Click on any "Product Image" to verify it redirects to the "Product details" page.
-15. Click on "Back to Top" button to verify if on click brings user back to the top of the page.
+15. Click on "Back to Top" button to verify if on click it brings user back to the top of the page.
 
 
 
@@ -256,7 +256,7 @@ Have no access to this page.
 12. On "Sort by" section, select from dropdown "Category(A-Z)" to verify it display all categories selected by ascending category name.
 13. On "Sort by" section, select from dropdown "Name(Z-A)" to verify it display all categories by descending category name.
 14. Click on any "Product Image" to verify it redirects to the "Product details" page.
-15. Click on "Back to Top" button to verify if on click brings user back to the top of the page.
+15. Click on "Back to Top" button to verify if on click it brings user back to the top of the page.
 
 
 
@@ -276,7 +276,7 @@ Have no access to this page.
 12. On "Sort by" section, select from dropdown "Category(A-Z)" to verify it display all categories selected by ascending category name, except the Nutrition Plan.
 13. On "Sort by" section, select from dropdown "Name(Z-A)" to verify it display all categories by descending category name, except the Nutrition Plan.
 14. Click on any "Product Image" to verify it redirects to the "Product details" page.
-15. Click on "Back to Top" button to verify if on click brings user back to the top of the page.
+15. Click on "Back to Top" button to verify if on click it brings user back to the top of the page.
 ##### back to [top](#table-of-contents)
  
 ---
@@ -284,31 +284,27 @@ Have no access to this page.
 ## Product Details
 (url path to /products/13)
 #### SUPERUSER(OWNER/ADMINISTRATOR) users can:
-1. Click on "Size" input to verify it selects the desirable product size. If product size is not available this input won't be displayed.
-2. On "Quantity" input, click on "+" to verify it increase quantity.
-3. On "Quantity" input, click on "1" to verify it decrease quantity.
-4. Click on "Back to shopping" button to verify it redirects to "Products" page.
-5. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
+1. On "Quantity" input (available only for clothes), click on "+" to verify it increase quantity.
+2. On "Quantity" input, click on "1" to verify it decrease quantity.
+3. Click on "Back to shopping" button to verify it redirects to "Products" page.
+4. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
 
 #### For All Products cards except Nutrition Plan card
 #### Logged In Users and Anonymous can:
-1. Click on "Size" input to verify it selects the desirable product size. If product size is not available this input won't be displayed.
-2. On "Quantity" input, click on "+" to verify it increase quantity.
-3. On "Quantity" input, click on "1" to verify it decrease quantity.
-4. Click on "Back to shopping" button to verify it redirects to "Products" page.
-5. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
+1. On "Quantity" input (available only for clothes), click on "+" to verify it increase quantity.
+2. On "Quantity" input, click on "1" to verify it decrease quantity.
+3. Click on "Back to shopping" button to verify it redirects to "Products" page.
+4. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
 
 #### For Nutrition Plan card
-#### Logged In Users who has Nutrition Plan can:
-Are not able to visualize this page.
+#### Logged In Users who has Nutrition Plan are not able to visualize this page.
 
 #### Logged In Users who don't have Nutrition Plan can:
 1. Click on "Back to shopping" button to verify it redirects to "Products" page.
-2. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
+2. Click on "Add to Bag" button to verify it displays a "Toast Success" containing information about the products added to the shop bag.
 3. After clicked on "Add to Bag" button verify if a message "Item already in bag" displays.
 
-#### Anonymous users:
-Are not able to visualize this page.
+#### Anonymous users are not able to visualize this page.
 
 
 
@@ -451,11 +447,10 @@ This page only displays Order Summary for information purposes. There is no quer
 4. Try to insert a username or e-mail address and click on "Sign In" to verify if the input "password" is required.
 5. Try to insert a wrong username and click on "Sign In" to verify if an alert message "The username and/or password you specified are not correct" pops up.
 6. Try to insert a wrong password and click on "Sign In" to verify if an alert message "The username and/or password you specified are not correct" pops up.
-7. Try to insert a correct username and password and click on "Sigh in" to verify if logs in.
-8. Try to click on link "sign up" to verify it redirects the user to "Sign Up" page.
-9. Try to click on button "home" to verify it redirects the user to "Homepage".
-10. Try to click on button "sign in" to verify it redirects the user to "Homepage" and appears a successful toast with the message "Successfully signed in as Thomas".
-11. Try to click on link "Forgot Password" to verify it redirects the user to "Password Reset" page.
+7. Try to insert a correct username and password and click on "Sign in" to verify if logs in.
+8. Try to click on link "Sign Up Now" to verify it redirects the user to "Sign Up" page.
+9. Try to click on button "Sign In" to verify it redirects the user to "Homepage" and appears a successful toast with the message "Successfully signed in as Thomas".
+10. Try to click on link "Forgot Password" to verify it redirects the user to "Password Reset" page.
 
 ##### back to [top](#table-of-contents)
  
@@ -463,10 +458,9 @@ This page only displays Order Summary for information purposes. There is no quer
 
 ## Logout 
 (url path to /accounts/logout/)
-1. Click on "Logout" to verify if user is able to logout.
+1. Click on "Sign Out" button to verify if redirects to the "Homepage" and appears a successful toast with the message "You have signed out".
 2. Click on "Cancel" button to verify if redirects to the "Homepage".
-3. Click on "Sign Out" button to verify if redirects to the "Homepage" and appears a successful toast with the message "You have signed out".
-4.  Click on "X" to verify if the toast closes.
+3.  Click on "X" to verify if the toast closes.
 
 ##### back to [top](#table-of-contents)
  
@@ -484,11 +478,9 @@ This page only displays Order Summary for information purposes. There is no quer
 8. Try to insert a e-mail address confirmation and click on "Sign Up" to verify if the input "e-mail address" is required.
 9. Try to insert a short username (ca) and click on "Sign Up" to verify if the input "username" show an error "please lengthen this text to 4 characters or more (if you are currently using 2 characters).
 10. Try to insert a username and click on "Sign Up" to verify if the input "password" is required.
-11. Try to insert a password and click on "Log In" to verify if the input "password (again)" is required.
+11. Try to insert a password and click on "Sign up" to verify if the input "password (again)" is required.
 12. Try to to click on "Sign Up" to verify if an alert messages "A user is already registered with this e-mail address, A user with that username already exists, This password is too short. It must contain at least 8 characters " pops up.
-13. Try to click on link "sign in" to verify it redirects the user to "Sign In" page.
-14. Try to click on link "back to login" to verify it redirects the user to "Sign In" page.
-
+13. Try to click on link "Back" to verify it redirects the user to previous page.
 
 ##### back to [top](#table-of-contents)
  
