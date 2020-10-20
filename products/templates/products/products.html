@@ -96,6 +96,13 @@
                                 <div class="{% if product.category.category_name == 'nutrition_plan' and has_plan == True %} d-none {% elif product.category.category_name == 'nutrition_plan' and has_plan == 'AnonymousUser' %}d-none {% else %}col-md-4 mb-4{% endif %}">
                                     <div class="card card-products h-100">
                                         <div class="card-body">
+                                            {% if product.category %}
+                                            <p class="small mt-0 mb-1">
+                                                <a class="text-muted" href="{% url 'shop_products' %}?category={{ product.category.category_name }}">
+                                                    <i class="fas fa-tag mr-1"></i>{{ product.category.category_friendly_name }}
+                                                </a>
+                                            </p>
+                                            {% endif %}
                                             <a href="{% url 'get_product_detail' product.id %}">
                                                 <h6 class="card-title mb-5">{{ product.product_name|upper }}</h6>
                                             </a>
@@ -111,19 +118,14 @@
                                         {% endif %}
                                         </div>
                                         <div class="card-footer">
-                                            {% if product.category %}
-                                            <p class="small mt-0 mb-1">
-                                                <a class="text-muted" href="{% url 'shop_products' %}?category={{ product.category.category_name }}">
-                                                    <i class="fas fa-tag mr-1"></i>{{ product.category.category_friendly_name }}
-                                                </a>
-                                            </p>
-                                            {% endif %}
                                             <div class="row">
                                                 <div class="col">
-                                                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                                                    <small class="my-rating text-center d-block" data-rating="{{ product.rating }}"></small>
                                                 </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col">
-                                                    <p class="price-font mb-0 text-right">€{{ product.price }}</p>
+                                                    <p class="price-font mb-0 text-center">€{{ product.price }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,8 +153,8 @@
 
 {% block postloadjs %}
     {{ block.super }}
-
-
+    
+    
     <!-- backToTop Button -->
     <script type="text/javascript">
         jQuery(document).ready(function(){
@@ -202,4 +204,18 @@
             }
         })
     </script>
+    
+
+
+<script src="{% static 'products/js/jquery.star-rating-svg.js' %}"></script>
+<script>
+    $(".my-rating").starRating({
+        totalStars: 5,
+        useGradient: false,
+        readOnly: true,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 20
+    });
+</script>
 {% endblock %}

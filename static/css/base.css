@@ -97,12 +97,15 @@ a.green-hover:hover {
 
 footer {
     background-color: #6c757d;
-    position: fixed;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    /* position: relative;
+    width: 100%; */
     text-align: center;
+    padding: 10px;
+    /* margin-top: 60px; */
+    clear: both;
+    position: relative;
+    height: 50px;
+    margin-top: 98px;
 }
 
  /* ---- Code From ckz8780 /boutique_ado_v1 -------*/
@@ -168,6 +171,11 @@ footer {
 
 }
 
+/*reset cursor on ratings*/
+.my-rating, .jq-star, .jq-star-svg {
+    cursor: default;
+}
+
 .price-font{
     font-size: 1.75rem;
     font-family: 'Raleway', sans-serif;
@@ -181,7 +189,7 @@ footer {
 
 .card-footer {
     padding: .75rem 1.25rem;
-    background-color: #aade56;
+    background-color: #6d757d;
     border: 12px solid #FFF;
 }
 
@@ -203,6 +211,32 @@ footer {
 }
 
 /* ---------------------------------- Product Detail */
+
+.btn-green {
+    transition: all 0.25s ease;
+    color: #fff;
+    background-color: #a8db57;
+    border-color: white;
+    border-width: thick;
+}
+.btn-green:hover {
+    transition: all 0.25s ease;
+    color: #fff;
+    background-color: #3eb33f;
+}
+.btn-green.active {
+    transition: all 0.25s ease;
+    color: #fff;
+    background-color: #3eb33f;
+    border-color: white;
+    border-width: thick;
+}
+.btn-green.active:hover {
+    transition: all 0.25s ease;
+    color: #fff;
+    background-color: #3eb33f;
+}
+
 .overlay-color{
     height: 100%;
 	width: 100%;
@@ -217,11 +251,16 @@ footer {
 .product-detail-section {
     background: #ffffff;
     border-radius: 5px;
-    margin-top: 150px;
     -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
 }
+
+.product-detail-section .price {
+    font-size: 3rem;
+    letter-spacing: -1px;
+}
+
 .add-to-cart{
     padding: 0.5em 1em 0.5em 1em;
     border-radius: 100px;
@@ -261,7 +300,6 @@ footer {
 }
 
 .img-container {
-    max-height: 300px;
     max-width: 300px;
     margin: 0 auto;
 }
@@ -289,6 +327,7 @@ footer {
 
  /* https://codepen.io/phoenixzqy/pen/oLLVGq  */
  .btn-backToTop{
+    transition: all 0.5 ease;
     display: none;
     position: fixed;
     bottom: 100px;
@@ -299,19 +338,19 @@ footer {
     width: 50px;
     background-color: #3eb33f;
     text-align: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 8px;
 }
 
 .btn-backToTop i{
-position: absolute;
-top: 0px;
-left: 10px;
-color: #fff;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    color: #fff;
 }
 
 .btn-backToTop i:hover{
-color: rgb(6, 6, 6);
+    transition: all 0.5 ease;
+    color: #aade56;
 }
 
 #container{
@@ -360,17 +399,25 @@ input[name='q']::placeholder {
 }
 
 /* Allauth form formatting */
+#div_id_remember {
+    float: left;
+}
+
 .allauth-form-inner-content {
     background-color: #FFF;
-    padding: 40px;
+    padding: 20px 40px;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 }
 
 .allauth-form-inner-content button {
+    margin-top: 60px;
     padding: 0.5em 1em 0.5em 1em !important;
     border-radius: 100px !important;
     border: 3px solid #aade56 !important;
     cursor: pointer !important;
-    width: 10em !important;
+    width: 100% !important;
     color: #3eb33f !important;
     background-color: transparent !important;
 }
@@ -382,10 +429,11 @@ input[name='q']::placeholder {
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */
     color: #6c757d; /* text-secondary */
+    text-align: left;
 }
 
 .allauth-form-inner-content input {
-    border-color: #000;
+    border-color: #3eb33f !important;
     border-radius: 0;
 }
 
@@ -602,4 +650,47 @@ input[name='q']::placeholder {
     .header-container {
         padding-top: 116px;
     }
+}
+
+
+
+
+/*//////stars*/
+.jq-stars {
+  display: inline-block;
+}
+
+.jq-rating-label {
+  font-size: 22px;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  font-family: helvetica, arial, verdana;
+}
+
+.jq-star {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.jq-star-svg {
+  padding-left: 3px;
+  width: 100%;
+  height: 100% ;
+}
+
+.jq-star:hover .fs-star-svg path {
+}
+
+.jq-star-svg path {
+  /* stroke: #000; */
+  stroke-linejoin: round;
+}
+
+/* un-used */
+.jq-shadow {
+  -webkit-filter: drop-shadow( -2px -2px 2px #888 );
+  filter: drop-shadow( -2px -2px 2px #888 );
 }
