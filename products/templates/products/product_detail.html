@@ -85,7 +85,10 @@
                                             
                                             </div>
                                         {% endif %}
-                                            
+                                        <input class="form-control qty_input" type="hidden"
+                                        name="quantity" value="1" min="1" max="1"
+                                        data-item_id="{{ product.id }}"
+                                        id="id_qty_{{ product.id }}">    
                                             <div class="container mt-5">
                                                 <!-- <div class="col-md-12"> -->
                                                     
