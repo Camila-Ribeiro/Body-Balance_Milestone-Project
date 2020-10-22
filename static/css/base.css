@@ -97,11 +97,11 @@ a.green-hover:hover {
 
 footer {
     background-color: #6c757d;
-    position: absolute;
-    bottom: 0;
+    position: relative;
     width: 100%;
     text-align: center;
     padding: 10px;
+    /* margin-top: 60px; */
     clear: both;
     height: 50px;
     margin-top: 98px;
