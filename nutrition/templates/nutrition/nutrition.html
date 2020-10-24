@@ -24,7 +24,7 @@
           </div>
       </div>
       <section class="container">
-        <nav>
+        <nav class="nav-nutrition">
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             {% for n in nutrition_obj %}
               <a class="nav-link {% if n.day == 1 %}active{% endif %}" id="{{ n.day }}" data-toggle="tab" href="#tab-{{ n.day }}" role="tab" aria-controls="tab-{{ n.day }}" aria-selected="{% if n.day == 1 %}true{% else %}false{% endif %}">Day {{ n.day }}</a>
@@ -35,97 +35,14 @@
           {% for n in nutrition_obj %}
 
           {% if n.day == 1 %}
-            <div class="tab-pane fade show active bg-white" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
-              <div class="">
-              <div class="img-fluid {% if request.user.is_superuser %} position-relative {% endif %}">
-                  {% if request.user.is_superuser %}
-                  <button class="btn btn-primary">
-                    <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
-                  </button>
-                  {% endif %}
-                    {% if n.image_file %}
-                        <a href="{{ n.image_file.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ n.image_file.url }}" alt="{{ n.plan_name }}">
-                        </a>
-                    {% else %}
-                        <a href="">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ n.plan_name }}">
-                        </a>
-                    {% endif %}
-                </div>
-              </div>
-                <div class="container mt-3 pb-2 margin-container">
-                  <div class="row mb-3">
-                    <div class="col">
-                      <div>
-                        <h6 class="text-center">Daily Cal</h6>
-                        <p class="text-center">{{ n.daily_total_cal }}cal</p>
-                      </div>
-                      <div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div>
-                      <h6 class="text-center">Protein</h6>
-                      <p class="text-center">{{ n.protein }}</p>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div>
-                      <h6 class="text-center">Carbohydrates</h6>
-                      <p class="text-center">{{ n.carbohydrates }}</p>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div>
-                      <h6 class="text-center">Fiber</h6>
-                      <p class="text-center">{{ n.fiber }}</p>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div>
-                      <h6 class="text-center">Fat</h6>
-                      <p class="text-center">{{ n.fat }}</p>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div>
-                      <h6 class="text-center">Sodium</h6>
-                      <p class="text-center">{{ n.sodium }}mg</p>
-                    </div>
-                  </div>
-                </div>
-                <hr/>
-                <div>
-                  <h4 class="mb-3 mt-4">Breakfast</h4>
-                    <p>{{ n.breakfast | linebreaks }}</p>
-                </div>
-                <div>
-                  <h4 class="mt-5 mb-3">AM Snack</h4>
-                  <p>{{ n.am_snack | linebreaks  }}</p>
-                </div>
-                <div>
-                  <h4 class="mt-5 mb-3">Lunch</h4>
-                  <p>{{ n.lunch | linebreaks  }}</p>
-                </div>
-                <div>
-                  <h4 class="mt-5 mb-3">PM Snack</h4>
-                  <p>{{ n.pm_snack | linebreaks  }}</p>
-                </div>
-                <div>
-                  <h4 class="mt-5 mb-3">Dinner</h4>
-                  <p>{{ n.dinner | linebreaks  }}</p>
-                </div>
-              </div>
-            </div>
-          {% else %}
-          <div class="tab-pane fade show bg-white" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
-            <div class="">
+            <div class="tab-pane fade show active" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
               <div class="img-fluid {% if request.user.is_superuser %} position-relative {% endif %}">
                 {% if request.user.is_superuser %}
-                <button class="btn btn-primary">
-                  <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
-                </button>
+                  <div class="center-absolute bg-dark">
+                    <button class="btn btn-secondary btn-lg">
+                      <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
+                    </button>
+                  </div>
                 {% endif %}
                   {% if n.image_file %}
                       <a href="{{ n.image_file.url }}" target="_blank">
@@ -137,75 +54,133 @@
                       </a>
                   {% endif %}
               </div>
-            </div>
-            <div class="container mt-3 pb-2 margin-container">
-              <div class="row mb-3">
-                <div class="col">
-                  <div>
-                    <h6 class="text-center">Daily Cal</h6>
-                    <p class="text-center">{{ n.daily_total_cal }}cal</p>
+
+              <div class="container-fluid">
+                  <div class="row row-grey">
+                    <div class="col">
+
+                        <h6>Daily Cal</h6>
+                        <p>{{ n.daily_total_cal }}cal</p>
+                    </div>
+                    <div class="col">
+
+                        <h6>Protein</h6>
+                        <p>{{ n.protein }}</p>
+
+                    </div>
+                    <div class="col">
+
+                        <h6>Carbs</h6>
+                        <p>{{ n.carbohydrates }}</p>
+
+                    </div>
+                    <div class="col">
+                        <h6>Fiber</h6>
+                        <p>{{ n.fiber }}</p>
+                    </div>
+                    <div class="col">
+                        <h6>Fat</h6>
+                        <p>{{ n.fat }}</p>
+                    </div>
+
+                    <div class="col">
+                        <h6>Sodium</h6>
+                        <p>{{ n.sodium }}mg</p>
+                    </div>
                   </div>
-                  <div>
-                </div>
-              </div>
-              <div class="col">
-                <div>
-                  <h6 class="text-center">Protein</h6>
-                  <p class="text-center">{{ n.protein }}</p>
-                </div>
-              </div>
-              <div class="col">
-                <div>
-                  <h6 class="text-center">Carbohydrates</h6>
-                  <p class="text-center">{{ n.carbohydrates }}</p>
-                </div>
-              </div>
-              <div class="col">
-                <div>
-                  <h6 class="text-center">Fiber</h6>
-                  <p class="text-center">{{ n.fiber }}</p>
-                </div>
-              </div>
-              <div class="col">
-                <div>
-                  <h6 class="text-center">Fat</h6>
-                  <p class="text-center">{{ n.fat }}</p>
-                </div>
-              </div>
-              <div class="col">
-                <div>
-                  <h6 class="text-center">Sodium</h6>
-                  <p class="text-center">{{ n.sodium }}mg</p>
-                </div>
+              
+                  <div class="container bg-white margin-container pb-5">
+                    <h4 class="pt-5 mb-3">Breakfast</h4>
+                      <p>{{ n.breakfast | linebreaks }}</p>
+
+
+                    <h4 class="mt-5 mb-3">AM Snack</h4>
+                    <p>{{ n.am_snack | linebreaks  }}</p>
+
+
+                    <h4 class="mt-5 mb-3">Lunch</h4>
+                    <p>{{ n.lunch | linebreaks  }}</p>
+
+
+                    <h4 class="mt-5 mb-3">PM Snack</h4>
+                    <p>{{ n.pm_snack | linebreaks  }}</p>
+
+
+                    <h4 class="mt-5 mb-3">Dinner</h4>
+                    <p>{{ n.dinner | linebreaks  }}</p>
+                  </div>
               </div>
             </div>
-            <hr/>
-            <div>
-              <h4 class="mb-3 mt-4">Breakfast</h4>
+          {% else %}
+          <div class="tab-pane fade show" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
+            <div class="img-fluid {% if request.user.is_superuser %} position-relative {% endif %}">
+              {% if request.user.is_superuser %}
+                  <div class="center-absolute bg-dark">
+                    <button class="btn btn-secondary btn-lg">
+                      <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
+                    </button>
+                  </div>
+                {% endif %}
+                {% if n.image_file %}
+                    <a href="{{ n.image_file.url }}" target="_blank">
+                        <img class="card-img-top img-fluid" src="{{ n.image_file.url }}" alt="{{ n.plan_name }}">
+                    </a>
+                {% else %}
+                    <a href="">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ n.plan_name }}">
+                    </a>
+                {% endif %}
+            </div>
+            <div class="container-fluid">
+              <div class="row row-grey">
+                <div class="col">
+                    <h6>Daily Cal</h6>
+                    <p>{{ n.daily_total_cal }}cal</p>
+                </div>
+                <div class="col">
+                  <h6>Protein</h6>
+                  <p>{{ n.protein }}</p>
+                </div>
+                <div class="col">
+                  <h6>Carbs</h6>
+                  <p>{{ n.carbohydrates }}</p>
+                </div>
+                <div class="col">
+                    <h6>Fiber</h6>
+                    <p>{{ n.fiber }}</p>
+                </div>
+                <div class="col">
+                    <h6>Fat</h6>
+                    <p>{{ n.fat }}</p>
+                </div>
+                <div class="col">
+                    <h6>Sodium</h6>
+                    <p>{{ n.sodium }}mg</p>
+                </div>
+              </div>
+              <div class="container bg-white margin-container pb-5">
+                <h4 class="mb-3 pt-5">Breakfast</h4>
                 <p>{{ n.breakfast | linebreaks }}</p>
+
+
+                <h4 class="mt-5 mb-3">AM Snack</h4>
+                <p>{{ n.am_snack | linebreaks  }}</p>
+
+              
+                <h4 class="mt-5 mb-3">Lunch</h4>
+                <p>{{ n.lunch | linebreaks  }}</p>
+              
+                <h4 class="mt-5 mb-3">PM Snack</h4>
+                <p>{{ n.pm_snack | linebreaks  }}</p>
+
+                <h4 class="mt-5 mb-3">Dinner</h4>
+                <p>{{ n.dinner | linebreaks  }}</p>
+              </div>
             </div>
-            <div>
-              <h4 class="mt-5 mb-3">AM Snack</h4>
-              <p>{{ n.am_snack | linebreaks  }}</p>
-            </div>
-            <div>
-              <h4 class="mt-5 mb-3">Lunch</h4>
-              <p>{{ n.lunch | linebreaks  }}</p>
-            </div>
-            <div>
-              <h4 class="mt-5 mb-3">PM Snack</h4>
-              <p>{{ n.pm_snack | linebreaks  }}</p>
-            </div>
-            <div>
-              <h4 class="mt-5 mb-3">Dinner</h4>
-              <p>{{ n.dinner | linebreaks  }}</p>
-            </div>
-          </div>
           </div>
           {% endif %}
-
           {% endfor %}
-            </div>
+        </div>
       </section>
   </section>
 {% endblock %}

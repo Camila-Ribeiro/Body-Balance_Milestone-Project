@@ -13,11 +13,10 @@
     <div class="overlay"></div>
     <div class="container mb-5">
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-12">
+                <h2 class="logo-font text-center mb-4">Nutrition Management</h2>
                 <hr>
-                <h2 class="logo-font mb-4">Nutrition Management</h2>
-                <h5 class="text-muted">Add a Nutrition Plan</h5>
-                <hr>
+                <h5 class="text-muted text-uppercase mb-5">Add a Nutrition Plan</h5>
             </div>
         </div>
 
@@ -34,7 +33,7 @@
                     {% endfor %}
                     <div class="text-right">
                         <a class="btn" href="{% url 'home' %}">Cancel</a>
-                        <button class="btn" type="submit">Add Menu</button>
+                        <button class="btn btn-secondary btn-sm" type="submit">Add Menu</button>
                     </div>
                 </form>
             </div>            

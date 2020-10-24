@@ -22,7 +22,6 @@
       </div>
     </div>
     <section class="container">
-      <div class="mt-5">
         {% for plan in subscriptions %}
           {% if plan.image_file %}
               <img src="{{ plan.image_file.url }}" class="img-fluid" alt="{{ plan.plan_duration }}" style="max-height: 300px; object-fit: cover; width: 100%;" />
@@ -50,9 +49,6 @@
             {% endif %}
             
           </div>
-
-            
         {% endfor %}
-      </div>
   </section>
 {% endblock %}

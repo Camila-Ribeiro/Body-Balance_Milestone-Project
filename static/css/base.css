@@ -91,7 +91,7 @@ a.green-hover:hover {
 }
 
 .text-margin{
-    margin-top: 300px;
+    margin-top: 150px;
     margin-left: 0px;
 }
 
@@ -100,11 +100,17 @@ footer {
     position: relative;
     width: 100%;
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
     /* margin-top: 60px; */
     clear: both;
-    height: 50px;
-    margin-top: 98px;
+    height: 30px;
+    /* margin-top: 98px; */
+}
+
+
+/*disable button*/
+.table-borderless .btn.disabled, .table-borderless .btn:disabled {
+    opacity:0;
 }
 
  /* ---- Code From ckz8780 /boutique_ado_v1 -------*/
@@ -136,6 +142,66 @@ footer {
     margin-bottom: 100px;
 }
 
+.center-absolute {
+    position: absolute; 
+    height: 100%;
+    width: 100%;
+}
+.center-absolute button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.center-absolute.bg-dark{
+    background-color: rgba(62, 179, 63, 0.65) !important;
+}
+
+.center-absolute a{
+    color: #FFF;
+}
+
+.nav-nutrition {
+    background-color: #3eb33f
+}
+.nav-nutrition .nav-tabs .nav-item.show .nav-link, 
+.nav-nutrition .nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #aadd56;
+    border-color: #aadd56 #aadd56 #aadd56;
+}
+
+.nav-nutrition a:hover {
+    color: #FFF;
+    background-color: #aadd56;
+}
+
+.row-grey{
+    background: #6d757d;
+    color: white;
+    padding: 20px;
+    position:relative;
+    text-align: center;
+}
+
+.row-grey:before {
+    content: "";
+    border-top: 10px solid #44494e;
+    border-left: 15px solid transparent;
+    position: absolute;
+    bottom: -10px;
+    left: 0px;
+  }
+.row-grey:after {
+    content: "";
+    border-top: 10px solid #44494e;
+    border-right: 15px solid transparent;
+    position: absolute;
+    bottom: -10px;
+    right: 0px;
+  }
+
  /* ---------------------------------- Products */
 
 .search-button {
@@ -166,7 +232,7 @@ footer {
 }
 
 .margin-section{
-    margin-top: 120px;
+    margin-top: 70px;
 
 }
 
@@ -359,7 +425,13 @@ height: 900px;
 /* -------------------------------- Shop Bag */
 .custom-box{
     background-color: #3eb33f;
-    color: black;
+}
+.custom-box h4{
+    color: #FFF;
+}
+
+.table-sm th {
+    padding-bottom: 1rem;
 }
 
 /* .remove-item small {
@@ -371,14 +443,62 @@ height: 900px;
     cursor: pointer;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.qty_input {
+    max-width: 33px;
+}
+
+.decrement-qty,.increment-qty {
+    background: #a4d45a;
+    color: #FFF;
+    border-radius: 50% !important;
+}
+.decrement-qty {
+    margin-right: 5px;
+}
+.increment-qty {
+    margin-left: 5px;
+}
+
+a.shop-bag.add-to-cart {
+    text-decoration: none;
+}
+
+a.remove-item:hover {
+    text-decoration: underline;
+}
+
 input[name='q']::placeholder {
     color: #aab7c4;
 }
 
+@media (max-width: 991px) {
+    .shop-bag.add-to-cart,.shop-bag-back {
+        display: flex;
+        justify-content: center;
+    }
+    .xs-text-center {
+        text-align: center !important;
+    }
+}
+
 /* -------------------------------- checkout */
-/* .text-info {
-    color: #3eb33f;
-} */
+.header-checkout {
+    margin-top: 50px;
+}
+
+.asteriskField {
+    display: none;
+}
 
 /* -------------------------------  all section coppied from class, still need to change, Bootstrap Toasts */
 
@@ -636,7 +756,15 @@ input[name='q']::placeholder {
     }
 
     .header-container {
-        padding-top: 164px;
+        padding-top: 95px;
+    }
+    .collapse.dont-collapse-sm {
+        display: block;
+        height: auto !important;
+        visibility: visible;
+    }
+    .collapse-summary {
+        display: none;
     }
 }
 
@@ -648,6 +776,19 @@ input[name='q']::placeholder {
 
     .header-container {
         padding-top: 116px;
+    }
+}
+
+@media (max-width: 767px) {
+    .header-logo img {
+        max-width: 150px;
+    }
+    .checkout-title {
+        font-size: 1.25rem; 
+    }
+
+    .row-grey {
+        text-align: left;
     }
 }
 

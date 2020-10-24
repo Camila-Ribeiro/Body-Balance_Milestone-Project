@@ -22,7 +22,7 @@
                 </a>
             </div>
         </div>
-        <div class="product-container product-detail-section mt-0">
+        <div class="product-container product-detail-section mt-0 mb-5">
             <div class="row">
                 <div class="col-12 col-md-8">
                     <div class="img-container">
@@ -110,10 +110,12 @@
                                                     {% endif %}
                                                     
                                                     {% if request.user.is_superuser %}
-                                                        <small class="ml-3">
-                                                            <a href="{% url 'edit_product_admin' product.id %}">Edit</a> |
-                                                            <a class="text-danger" href="{% url 'delete_product_admin' product.id %}">Delete</a>
-                                                        </small>
+                                                        <div class="mt-5 ml-3 bg-light mx-auto d-block py-4 px-4">
+                                                            
+                                                            <a class="mt-1 text-danger small" href="{% url 'delete_product_admin' product.id %}">Delete</a>
+
+                                                            <a class="btn btn-sm btn-secondary float-right " href="{% url 'edit_product_admin' product.id %}">Edit</a> 
+                                                        </div>
                                                     {% endif %}
                                                 <!-- </div> -->
                                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">

@@ -13,16 +13,20 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container margin-section mb-2">
-
-    <div class="row custom-box text-center">
-        <div class="col my-3 mx-3">
-            <h4>Free delivery on orders over €{{ free_delivery }}!</h4>                
-        </div>            
-    </div>
+    
+    {% if free_delivery_delta == 0 %}
+        
+    {% else %}
+        <div class="row custom-box text-center">
+            <div class="col my-3 mx-3">
+                <h4>Free delivery on orders over €{{ free_delivery }}!</h4>                
+            </div>            
+        </div>
+    {% endif %}
  
     <div class="row">
         <div class="col mt-3">
-            <h2 class="text-center mt-5 mb-4">Your Shopping Bag</h2>
+            <h2 class="text-center mt-2 mb-4">Shopping Bag</h2>
         </div>
     </div>
 
@@ -36,27 +40,29 @@
                                 <th>Product</th>
                                 <th>Details</th>
                                 <th>Price</th>
-                                <th class="text-center">Quantity</th>
-                                <th class="text-right">Total</th>
+                                <th width="10%" class="text-center">Quantity</th>
+                                <th class="text-right d-none d-sm-block">Total</th>
                             </tr>
                         </thead>
                         <hr>
                     
                         <div class="row ">
                             {% for product_item in bag_items %} 
-                                <tr class="border border-top-0 border-right-0 border-left-0">
+                                <tr class="border border-right-0 border-left-0">
                                     <td class="py-2 w-25 mt-2 mb-2">
+                                        <a href="{% url 'get_product_detail' product_item.product.id %}">
                                         {% if product_item.product.image_file %}
                                             <img class="img-thumbnail" src="{{ product_item.product.image_file.url }}" alt="{{ product_item.product.product_name }}">
                                         {% else %}
                                             <img class="img-thumbnail" src="{{ MEDIA_URL }}noimage.png" alt="{{ product_item.product.product_name }}">
                                         {% endif %}
+                                        </a>
                                     </td>
                                     <td class="py-2">
                                         <p class="my-0"><strong>{{ product_item.product.product_name }}</strong></p>
                                         <p class="my-0 small text-muted">SKU {{ product_item.product.sku|upper }}</p>
                                         <p class="my-0 {% if product_item.product.id == 20 %} d-none {% endif %}"><strong>Size </strong>{% if product_item.product.product_sizes %}{{ product_item.size|upper }}{% else %}N/A{% endif %}</p>
-                                        <a class="remove-item btn border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a>
+                                        <a class="remove-item btn float-left text-danger" id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a>
                                     </td>
                                     <td class="py-2">
                                         <p class="my-0">€{{ product_item.product.price }}</p>
@@ -74,7 +80,7 @@
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <input class="form-control form-control-sm qty_input" type="number"
+                                                    <input class="form-control form-control-sm qty_input text-center" type="number"
                                                         name="quantity" value="{{ product_item.product_quantity }}" min="1" max="{% if product_item.product.category.category_name == 'nutrition_plan' %}1{% else %}99{% endif %}"
                                                         data-item_id="{{ product_item.product_id }}"
                                                         id="id_qty_{{ product_item.product_id }}">
@@ -92,17 +98,15 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <a class="update-link btn btn-lg border m-2"><small>UPDATE</small></a>
-                                        <!-- <a class="remove-item btn border float-left " id="remove_{{ product_item.product_id }}" data-product_size="{{ product_item.size }}"><small>Remove</small></a> -->
+                                        <button class="update-link add-to-cart btn-sm m-2">UPDATE</button>
                                     </td>
                                    
                                     {% if product_item.product.category == 'nutrition_plan' %} 
-                                   
-                                        <td class="text-right py-2">
+                                        <td class="text-right py-2 d-none d-sm-block">
                                             <p class="my-0">€{{ product_item.product.price }}</p>
                                         </td>
                                     {% else %}
-                                        <td class="text-right py-2">
+                                        <td class="text-right py-2 d-none d-sm-block">
                                             <p class="my-0">€{{ product_item.product.price | calc_productXquantity:product_item.product_quantity }}</p>
                                         </td>
                                     {% endif %}
@@ -112,43 +116,33 @@
                         </div> 
                     </table>
                         <div class="mt-5 mb-3 container">
-                            <div class="text-right small--text-center">
+                            <div class="text-right xs-text-center">
                                 <h5>Subtotal €{{ total_items|floatformat:2 }}</h5>
                                 <p>Shipping calculated at checkout</p>
-                                <!-- <h6>Delivery: ${{ delivery_fee|floatformat:2 }}</h6>
-                                <h4 class="mt-4"><strong>Total: €{{ shop_total|floatformat:2 }}</strong></h4>
-                                {% if free_delivery_delta > 0 %}
-                                    <p class="mb-1 text-danger">
-                                        You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
-                                    </p>
-                                {% endif %}  -->
-                            </div>
                         </div>
-                        <div class="row mt-5 mb-5 float-right">
-                            <tr>
-                                <td colspan="5">
-                                    <a href="{% url 'shop_products' %}" class="btn btn-lg border m-2">
-                                        <span class="icon">
-                                            <i class="fas fa-chevron-left"></i>
-                                        </span>
-                                        <span class="text-uppercase">Continue Shopping</span>
-                                    </a>
-                                    
-                                    <a href="{% url 'checkout' %}" class="btn btn-lg border m-2">
-                                        <span class="text-uppercase"> Checkout</span>
-                                        <span class="icon">
-                                            <i class="fas fa-lock"></i>
-                                        </span>
-                                    </a>
-                                </td>
-                            </tr>
+                        <div class="row mt-5 mb-5 flex-row-reverse">      
+                            
+                            <div class="col-xs-12 col-md-6 text-right order-xs-1">
+                                <a href="{% url 'checkout' %}" class="shop-bag add-to-cart mb-3 w-100">
+                                    <span class="text-uppercase"> Checkout</span>&nbsp;<i class="fas fa-lock"></i>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-md-6 order-xs-2">
+                                <a href="{% url 'shop_products' %}" class="shop-bag-back btn mb-3">
+                                    <span class="icon">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">&nbsp; Back to Shopping</span>
+                                </a>
+                            </div>  
+                             
                         </div>
                 </div>
             {% else %}
                 <p class="lead mb-5">Your bag is empty.</p>
-                <a href="{% url 'shop_products' %}" class="btn btn-lg">
+                <a href="{% url 'shop_products' %}" class="btn mt-5">
                     <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
+                        <i class="fas fa-arrow-left"></i>
                     </span>
                     <span class="text-uppercase">Back to Shopping</span>
                 </a>
