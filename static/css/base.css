@@ -62,6 +62,13 @@ nav a {
 }
 
 /*nav*/
+.pt20 {
+    padding-top: 20px;
+}
+.mt10 {
+    margin-top: -10px;
+}
+
 .navbar-dark .navbar-nav .nav-link {
     color: #ffffff;
 }
@@ -232,7 +239,7 @@ footer {
 }
 
 .margin-section{
-    margin-top: 70px;
+    margin-top: 100px;
 
 }
 
@@ -500,6 +507,23 @@ input[name='q']::placeholder {
     display: none;
 }
 
+/* ---------------------------------- User Profile */
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #3eb33f;
+}
+
+.nav-user a.nav-link {
+    color: #6d757d;
+}
+
+.tab-user{
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+
 /* -------------------------------  all section coppied from class, still need to change, Bootstrap Toasts */
 
 .message-container {
@@ -756,7 +780,7 @@ input[name='q']::placeholder {
     }
 
     .header-container {
-        padding-top: 95px;
+        padding-top: 125px;
     }
     .collapse.dont-collapse-sm {
         display: block;
@@ -765,6 +789,11 @@ input[name='q']::placeholder {
     }
     .collapse-summary {
         display: none;
+    }
+
+    /* checkout-success */
+    .cost-align {
+    text-align: center;
     }
 }
 
@@ -775,11 +804,29 @@ input[name='q']::placeholder {
     }
 
     .header-container {
-        padding-top: 116px;
+        padding-top: 70px;
+    }
+    .navbar-collapse.collapse.show {
+        background-color: #6d757d;
+        padding: 0 0 15px 0;
+        line-height: 3;
     }
 }
 
 @media (max-width: 767px) {
+    body:before{
+        content: " ";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        background-image: -moz-linear-gradient( 90deg, rgb(252, 227, 138) 0%, rgb(243, 129, 129) 100%);
+        background-image: -webkit-linear-gradient( 90deg, rgb(252, 227, 138) 0%, rgb(243, 129, 129) 100%);
+        background-image: -ms-linear-gradient( 90deg, rgb(252, 227, 138) 0%, rgb(243, 129, 129) 100%);
+        opacity: 0.25;
+    }
     .header-logo img {
         max-width: 150px;
     }
@@ -789,6 +836,13 @@ input[name='q']::placeholder {
 
     .row-grey {
         text-align: left;
+    }
+
+    .nav-user a.nav-link {
+        text-align: center;
+    }
+    .sort-products {
+        margin-top: 30px;
     }
 }
 

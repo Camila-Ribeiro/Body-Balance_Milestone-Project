@@ -21,12 +21,12 @@
                 <h2 class="logo-font mb-4 text-center">My Profile</h2>
                 <hr/>
                 {% if user.is_authenticated %}
-                    <p class="mt-3 mb-5">Hi {{ user|upper }}, welcome back!</p>
+                    <p class="text-center">Hi {{ user|upper }}, welcome back!</p>
                 {% endif %}
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-md-3 nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="row mt-2">
+            <div class="col-md-3 nav flex-column nav-pills nav-user" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">My details</a>
                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Order History</a>
              
@@ -37,15 +37,25 @@
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
+
+                {% if request.user.is_superuser %}
+                    <a class="nav-link" href="{% url 'add_product_admin' %}">Product Management</a>
+        
+                    <a class="nav-link" href="{% url 'nutrition' %}">Nutrition Menu Management</a>
+            
+                    <a class="nav-link" href="{% url 'edit_subscription_admin' '1' %}">Plan Management</a>
+                {% endif %}
+
+                <a class="btn btn-sm btn-danger mt-5" href="{% url 'account_logout' %}"><i class="fas fa-power-off"></i> Sign Out</a>
             </div>
-            <div class="col-md-9 tab-content mb-5" id="v-pills-tabContent">
+            <div class="col-md-9 bg-white tab-content mb-5 rounded tab-user" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 
-                    <p class="text-muted">Default Delivery Information</p>
+                    <p class="text-muted lead">My Details</p>
                     <form class="mt-3 mb-5" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <button class="btn text-uppercase float-right">Update Information</button>
+                        <button class="btn btn-secondary text-uppercase float-right">Update details</button>
                     </form>
                    
                 </div>
@@ -63,14 +73,14 @@
                             </thead>
                             <tbody>
                                 {% for order in orders %}
-                                    <tr>
+                                    <tr  class="border-bottom pb-1 pt-1">
                                         <td>
                                             <a href="{% url 'product_order_history' order.order_number %}"
                                             title="{{ order.order_number }}">
                                                 {{ order.order_number|truncatechars:10 }}
                                             </a>
                                         </td>
-                                        <td>{{ order.date }} </td>
+                                        <td class="small">{{ order.date }} </td>
                                         <td>
                                             <ul class="list-unstyled">
                                                 {% for product_item in order.lineorders.all %}
@@ -112,15 +122,15 @@
                                                             {{ order.order_number|truncatechars:15 }}
                                                         </a>
                                                     </td>
-                                                    <td>{{ order.date }} </td>
+                                                    <td class="small">{{ order.date }} </td>
                                                     <td>Nutrition</td>
                                                 </tr>
                                             
                                         </tbody>
                                     </table>
-                                    <div class="mx-auto text-center mt-5 border border-secondary p-3">
+                                    <div class="mx-auto text-center mt-5 border border-success p-3">
                                         <p class="lead">Please check here your Nutrition Plan</p>
-                                        <a class=" btn btn-primary" href="{% url 'nutrition' %}">SEE YOUR PLAN</a>
+                                        <a class=" btn btn-secondary" href="{% url 'nutrition' %}">SEE YOUR PLAN</a>
                                     </div>
                                     
                                 </div>

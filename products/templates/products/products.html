@@ -76,8 +76,8 @@
                                 </p>
                                 {% endif %}
                             </div>
-                            <div class="col-6 col-md-3 offset-md-6 w-50">
-                                <select id="sortby" class="mb-5 custom-select custom-select-sm border border-{% if selected_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                            <div class="col-md-3 offset-md-6">
+                                <select id="sortby" class="mb-5 custom-select custom-select-sm border border-{% if selected_sorting != 'None_None' %}info{% else %}black{% endif %} sort-products">
                                     <option value="reset" {% if selected_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                                     <option value="price_asc" {% if selected_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                                     <option value="price_desc" {% if selected_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>

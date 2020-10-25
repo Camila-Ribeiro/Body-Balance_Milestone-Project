@@ -51,55 +51,19 @@
     <header class="header">
         <div class="container">
             <div class="row">
-                <nav class="navbar navbar-dark {% url 'home' as home %}
-                {% if request.get_full_path == home %} nav-home {% else %} nav-pages {% endif %} navbar-expand-lg fixed-top">
+                <nav class="navbar navbar-dark {% url 'home' as home %}{% if request.get_full_path == home %} nav-home {% else %} nav-pages {% endif %} navbar-expand-lg fixed-top">
                    
                     <a class="header-logo" href="{% url 'home' %}">
                         <img src="{% static 'img/body-balance-logo.png' %}" alt="logo"/>
                     </a>
 
-                    {% url 'checkout' as checkout %}
-                    {% if request.get_full_path == checkout %}
+                {% url 'checkout' as checkout %}
+                {% if request.get_full_path == checkout %}
                     <div class="col d-flex justify-content-center">
                         <h3 class="checkout-title">Checkout</h3>
                     </div>
-                    {% else %}
-
-                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'shop_subscription_plan' %}">NUTRITION</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="nav-link" href="{% url 'shop_products' %}">PRODUCTS</a>
-                            </li>
-                            <li class="list-inline-item  dropdown">
-                                <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MY ACCOUNT</a>
-                                <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                                    {% if request.user.is_authenticated %}
-                                        {% if request.user.is_superuser %}
-                                            <a href="{% url 'add_product_admin' %}" class="dropdown-item">Product Management</a>
-                                        {% endif %}
-                                        {% if request.user.is_superuser %}
-                                        <a href="{% url 'nutrition' %}" class="dropdown-item">Nutrition Menu Management</a>
-                                        {% endif %}
-                                        {% if request.user.is_superuser %}
-                                            <a href="{% url 'edit_subscription_admin' '1' %}" class="dropdown-item">Plan Management</a>
-                                        {% endif %}
-                                        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-                                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                                    {% else %}
-                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Sigh Up</a>
-                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                                    {% endif %}
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="list-inline-item">
+                {% else %}
+                    <div class="list-inline-item ml-auto d-block d-lg-none">
                         <a class="nav-link position-relative green-hover" href="{% url 'shop_bag' %}">
                             <div class="text-center">
                                 <span class="badge">{{ product_count }}</span>
@@ -114,7 +78,43 @@
                             </div>
                         </a>
                     </div>
-                    {% endif %}
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse text-center" id="navbarCollapse">
+                        <ul class="navbar-nav ml-auto pt20">
+                            <li class="list-inline-item">
+                                <a class="nav-link" href="{% url 'shop_subscription_plan' %}">NUTRITION</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="nav-link" href="{% url 'shop_products' %}">PRODUCTS</a>
+                            </li>
+                            <li class="list-inline-item">
+                                {% if request.user.is_authenticated %}
+                                    <a class="nav-link" href="{% url 'profile' %}">MY PROFILE</a>
+                                {% else %}
+                                    <a class="btn btn-green border-0" href="{% url 'account_login' %}" >SIGN IN</a>
+                                {% endif %}
+                            </li>
+                        
+                            <li class="list-inline-item d-none d-lg-block mt10">
+                                <a class="nav-link position-relative green-hover" href="{% url 'shop_bag' %}">
+                                    <div class="text-center">
+                                        <span class="badge">{{ product_count }}</span>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H19C19.5523 4 20 4.44771 20 5V19C20 19.5523 19.5523 20 19 20H5C4.44772 20 4 19.5523 4 19V5C4 4.44772 4.44771 4 5 4ZM2 5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5C3.34315 22 2 20.6569 2 19V5ZM12 12C9.23858 12 7 9.31371 7 6H9C9 8.56606 10.6691 10 12 10C13.3309 10 15 8.56606 15 6H17C17 9.31371 14.7614 12 12 12Z" fill="currentColor" /> </svg>
+                                        <p class="my-0">
+                                            {% if shop_total %}
+                                                €{{ shop_total|floatformat:2 }}
+                                            {% else %}
+                                                €0.00
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
                 </nav>
             </div>
         </div>
