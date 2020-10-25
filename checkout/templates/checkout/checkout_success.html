@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h2 class="logo-font mb-4">Thank you!</h2>
+                <h2 class="mb-4">Thank you!</h2>
                 <p class="text-black">Please check your order information is below. A confirmation email will be sent to <strong>{{ order.email }} </strong>shortly.</p>
             </div>
         </div>
@@ -164,7 +164,7 @@
                             <p class="mb-0  font-weight-bold text-left">Subtotal</p>
                         </div>
                         <div class="col-sm col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.order_total }}</p>
+                            <p class="mb-0">€{{ order.order_total }}</p>
                         </div>
                     </div>
 
@@ -173,7 +173,7 @@
                             <p class="mb-0  font-weight-bold text-left">Delivery</p>
                         </div>
                         <div class="col-sm col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.delivery_cost }}</p>
+                            <p class="mb-0">€{{ order.delivery_cost }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -181,7 +181,7 @@
                             <p class="mb-0  font-weight-bold text-left">Total</p>
                         </div>
                         <div class="col-sm col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.shop_total }}</p>
+                            <p class="mb-0">€{{ order.shop_total }}</p>
                         </div>
                     </div>
                 </div>   

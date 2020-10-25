@@ -844,6 +844,10 @@ input[name='q']::placeholder {
     .sort-products {
         margin-top: 30px;
     }
+
+    .mob-margin {
+        margin-top: 50px;
+    }
 }
 
 
@@ -875,8 +879,8 @@ input[name='q']::placeholder {
   height: 100% ;
 }
 
-.jq-star:hover .fs-star-svg path {
-}
+/* .jq-star:hover .fs-star-svg path {
+} */
 
 .jq-star-svg path {
   /* stroke: #000; */
