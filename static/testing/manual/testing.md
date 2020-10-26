@@ -40,13 +40,6 @@
 
 16. [**Sign Up**](#sign-up)
 
-17. [**Toast Success**](#toast-success)
-
-18. [**Toast Error**](#toast-error)
-
-19. [**Toast Info**](#toast-info)
-
-20. [**Toast Warning**](#toast-warning)
 
 
 
