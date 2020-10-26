@@ -32,7 +32,7 @@ def add_menu_admin(request):
         if form.is_valid():
             nutrition_plan = form.save()
             messages.success(request, 'Nutrition Plan added successfully!')
-            return redirect(reverse('shop_nutrition_plan'))
+            return redirect(reverse('nutrition'))
         else:
             messages.error(request, 'Failed! Please ensure you added the\
                 Nutrition Plan correctly!')
@@ -72,7 +72,7 @@ def edit_menu_admin(request, nutrition_id):
             form.save()
             messages.success(request,
                              'Nutrition Menu Details updated successfully!')
-            return redirect(reverse('shop_nutrition_plan'))
+            return redirect(reverse('nutrition'))
         else:
             messages.error(request,
                            'Failed to update menu. Please ensure the form\

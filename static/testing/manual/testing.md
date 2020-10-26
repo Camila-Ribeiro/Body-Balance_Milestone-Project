@@ -14,36 +14,39 @@
 
 5. [**Menu Management**](#menu-management)
 
-6. [**Plan Management**](#subscription-management)
+6. [**Plan Management**](#plan-management)
 
 
 7. [**Products**](#products)
 
-8. [**Product Details**](#product-details)
+8. [**Product Detail**](#product-detail)
 
 9. [**Product Management**](#product-management)
    - [**Add Product**](#add-product)
    - [**Edit Product**](#edit-product)
 
-10. [**Shop Bag**](#shop-bag)
+10. [**My Profile**](#my-profile)
 
-11. [**Checkout**](#checkout)
+11. [**Shop Bag**](#shop-bag)
 
-12. [**Checkout Success**](#checkout-success)
+12. [**Checkout**](#checkout)
+
+13. [**Checkout Success**](#checkout-success)
+
  
-13. [**Login**](#login)
+14. [**Login**](#login)
 
-14. [**Logout**](#logout)
+15. [**Logout**](#logout)
 
-15. [**Sign Up**](#sign-up)
+16. [**Sign Up**](#sign-up)
 
-16. [**Toast Success**](#toast-success)
+17. [**Toast Success**](#toast-success)
 
-17. [**Toast Error**](#toast-error)
+18. [**Toast Error**](#toast-error)
 
-18. [**Toast Info**](#toast-info)
+19. [**Toast Info**](#toast-info)
 
-19. [**Toast Warning**](#toast-warning)
+20. [**Toast Warning**](#toast-warning)
 
 
 
@@ -58,12 +61,14 @@ When logged in as SUPERUSER(OWNER/ADMINISTRATOR), the superuser sees the followi
 - Index
 - Nutrition
 - Products
-- My Account
+- My profile
+   - My details
+   - Order History
+   - Nutrition Plan (if bought a plan)
    - Product Management
-   - Nutrition Management
-   - Subscription Management
-   - My Profile
-   - Logout
+   - Nutrition Menu Management
+   - Plan Management
+   - Sign Out
 - Shop Bag icon
 
 
@@ -71,52 +76,57 @@ All the views are working accordingly:
 1. Click on Index which is 'Body Balance' logo (url path to '/').
 2. Click on Nutrition (url path to /subscriptions).
 3. Click on Products (url path to /products/).
-4. Click on My Account
+4. Click on My Profile
+   - My details (url path to '/user_profile/')
+   - Order History (url path to 'user_profile/'
+   - Nutrition Plan - if bought a plan(url path to 'user_profile/'
    - Product Management (url path to /products/add_product/)
-   - Nutrition Management (url path to /nutrition/add_nutrition_plan/)
-   - Subscription Management (url path to /subscriptions/edit_plan_admin/1)
+   - Nutrition Menu Management (url path to /nutrition/edit_menu_admin/1)
+   - Plan Management (url path to /subscriptions/edit_plan_admin/1)
    - My Profile (url path to /user_profile/)
-   - Logout (url path to /accounts/logout/)
-5. Click on Bag icon (url path to /shop_bag/).
+   - Sign Out (url path to /accounts/logout/)
+5. Click on Shop Bag icon (url path to /shop_bag/).
 
 ### Registered User
 When logged in as a REGISTERED USER, the user sees the following pages:
 - Index
 - Nutrition
 - Products
-- My Account
-   - My profile
-   - Logout
-- Bag icon
+- My profile
+   - My details
+   - Order History
+   - Nutrition Plan (if bought a plan)
+   - Sign Out
+- Shop Bag icon
 
 
 All the views are working accordingly:
 1. Click on Index which is 'Body Balance' logo (view to '/').
 2. Click on Nutrition (url path to /subscriptions).
 3. Click on Products (url path to /products/).
-4. Click on My Account
-   - My Profile (url path to /user_profile/)
-   - Logout (url path to /accounts/logout/)
-5. Click on Bag Icon (url path to /shop_bag/).  
+4. Click on My Profile
+   - My details (url path to '/user_profile/')
+   - Order History (url path to 'user_profile/'
+   - Nutrition Plan - if bought a plan(url path to 'user_profile/'
+   - Sign Out (url path to /accounts/logout/)
+5. Click on Shop Bag icon (url path to /shop_bag/).
+  
 
 ### Anonymous User
 When ANONYMOUS USER, the user sees the following pages:
 - Index
 - Nutrition
 - Products
-- My Account
-   - Sign Up
-   - Login
-- Bag Icon
+- Sign In
+- Shop Bag icon
 
 All the views are working accordingly:
 1. Click on Index which is 'Body Balance' logo (url path '/').
 2. Click on Nutrition (url path to /subscriptions).
 3. Click on Products (url path to /products/)
-4. Click on My Account
-   - Sign Up (url path to /accounts/signup/)
-   - Login (url path to /accounts/login/)
-5. Click on Bag Icon (url path to /shop_bag/). 
+4. Click on Sign In
+   - Sign In (url path to /accounts/login/)
+5. Click on Shop Bag icon (url path to /shop_bag/). 
 
 ##### back to [top](#table-of-contents)
  
@@ -125,7 +135,7 @@ All the views are working accordingly:
 ## Index
 (url path to '/')
 #### Logged In users, anonymous users and superusers can:
-1. Click on Index which is 'Boby Balance' logo (url path to '/').
+1. Click on Index which is 'Body Balance' logo (url path to '/').
 
 ##### back to [top](#table-of-contents)
  
@@ -153,9 +163,9 @@ All the views are working accordingly:
 ---
 
 ## Nutrition Menu Management
-(url path nutrition/add_menu_admin)
+(url path /nutrition/)
 ##### SUPERUSER(OWNER/ADMINISTRATOR) users can:
-1.  Click on "Edit Plan*" to verify it redirects user to "Menu Management" page. 
+1.  Click on "Edit Plan" to verify it redirects user to "Menu Management" page (url path /nutrition/edit_menu_admin/1). 
 
 ##### Logged In users and Anonymous users:
 Have no access to this page.
@@ -184,8 +194,8 @@ Have no access to this page.
 13.  Click on "Sodium*" input and add the Sodium quantity (decimal_places=3).
 14.  Click on "Image url" input and add the Image url path.
 15.  Click on "Choose File" input and add the Image url path.
-16.  Click on "Cancel" button to verify it redirects to "Homepage".
-17.  Click on "Add Menu" button to verify it redirects to "??".
+16.  Click on "Cancel" button to verify it redirects to "Nutrition" page.
+17.  Click on "Update Menu" button to verify it redirects to "Nutrition Management" page.
 
 ##### Logged In users and Anonymous users:
 Have no access to this page.
@@ -195,7 +205,7 @@ Have no access to this page.
  
 ---
 ## Plan Management
-(url path /subscriptions/edit_subscription_admin/1)
+(url path/subscriptions/edit_subscription_admin/1)
 ##### SUPERUSER(OWNER/ADMINISTRATOR) users can:
 1.  Click on "Plan duration*" input and add the plan duration.
 2.  Click on "Description*" input and add the plan description.
@@ -204,7 +214,7 @@ Have no access to this page.
 5.  Click on "Choose File" input and add the Image url path.
 6.  Click on "Clear" checkbox to verify it is checked.
 7.  Click on "Cancel" button to verify it redirects to "Nutrition" page.
-8.  Click on "Update Plan" button to verify it redirects to "Nutrition" page.
+8.  Click on "Update Plan" button to verify it redirects to "Nutrition Plan" page.
 
 
 ##### Logged In users and Anonymous users:
@@ -281,25 +291,31 @@ Have no access to this page.
  
 ---
 
-## Product Details
+## Product Detail
 (url path to /products/13)
 #### SUPERUSER(OWNER/ADMINISTRATOR) users can:
-1. On "Quantity" input (available only for clothes), click on "+" to verify it increase quantity.
-2. On "Quantity" input, click on "1" to verify it decrease quantity.
-3. Click on "Back to shopping" button to verify it redirects to "Products" page.
-4. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
+1. On "Size" options, click on "XS" to verify it selects the box and change to a darker green.
+2. On "Size" options, click on "S" to verify it selects the box and change to a darker green.
+3. On "Size" options, click on "M" to verify it selects the box and change to a darker green.
+4. On "Size" options, click on "L" to verify it selects the box and change to a darker green.
+5. On "Size" options, click on "XL" to verify it selects the box and change to a darker green.
+6. Click on "Back to shopping" button to verify it redirects to "Products" page.
+7. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
 
 #### For All Products cards except Nutrition Plan card
 #### Logged In Users and Anonymous can:
-1. On "Quantity" input (available only for clothes), click on "+" to verify it increase quantity.
-2. On "Quantity" input, click on "1" to verify it decrease quantity.
-3. Click on "Back to shopping" button to verify it redirects to "Products" page.
-4. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
+1. On "Size" options, click on "XS" to verify it selects the box and change to a darker green.
+2. On "Size" options, click on "S" to verify it selects the box and change to a darker green.
+3. On "Size" options, click on "M" to verify it selects the box and change to a darker green.
+4. On "Size" options, click on "L" to verify it selects the box and change to a darker green.
+5. On "Size" options, click on "XL" to verify it selects the box and change to a darker green.
+6. Click on "Back to shopping" button to verify it redirects to "Products" page.
+7. Click on "Add to Bag" button to verify it displays a "Toast Success"containing information about the products added to the shop bag.
 
 #### For Nutrition Plan card
-#### Logged In Users who has Nutrition Plan are not able to visualize this page.
+#### Logged In Users who have purchased Nutrition Plan are not able to visualize this page.
 
-#### Logged In Users who don't have Nutrition Plan can:
+#### Logged In Users who don't have purchased Nutrition Plan can:
 1. Click on "Back to shopping" button to verify it redirects to "Products" page.
 2. Click on "Add to Bag" button to verify it displays a "Toast Success" containing information about the products added to the shop bag.
 3. After clicked on "Add to Bag" button verify if a message "Item already in bag" displays.
@@ -361,7 +377,35 @@ Have no access to this page.
 ##### back to [top](#table-of-contents)
  
 ---
+## My Profile
+(url path /user_profile/)
+##### SUPERUSER(OWNER/ADMINISTRATOR) users can:
+1. Click on "My Details" to verify if displays My Details card.
+2. Click on "Update Details" button to verify if displays a toast success with the message "User profile updated successfully!" 
+3. Click on "Order History" to verify if displays Order History card.
+4. Click on Order Number link to check if redirects to the "Order Summary" page (url path /user_profile/product_order_history/9EB2D8F0F9C84BF1B791E2282AFED3D2).
+5. Click on "Plan Nutrition" (if have a purchased Nutrition Plan) to verify if displays the Nutrition Plan card.
+6. Click on Order Number link to check if redirects to the "Order Summary" page (url path /user_profile/product_order_history/5B053B4D0E0E4541A01ECD5C0A65D9C5).
+7. Click on "Products Management" to verify if redirects to "Product Management" page (url path /products/add_product/).
+8. Click on "Nutrition Menu Management" to verify if redirects to "Nutrition Menu Management" page (url path /nutrition/).
+9. Click on "Plan Management" to verify if redirects to "Plan Management" page (url path /subscriptions/edit_subscription_admin/1).
+10. Click on "Sign Out" to verify if redirects to "Sign out" page (url path /accounts/logout/).
 
+#### Logged In users can:
+1. Click on "My Details" to verify if displays My Details card.
+2. Click on "Update Details" button to verify if displays a toast success with the message "User profile updated successfully!" 
+3. Click on "Order History" to verify if displays Order History card.
+4. Click on Order Number link to check if redirects to the "Order Summary" page (url path /user_profile/product_order_history/9EB2D8F0F9C84BF1B791E2282AFED3D2).
+5. Click on "Plan Nutrition" (if have a purchased Nutrition Plan) to verify if displays the Nutrition Plan card.
+6. Click on Order Number link to check if redirects to the "Order Summary" page (url path /user_profile/product_order_history/5B053B4D0E0E4541A01ECD5C0A65D9C5).
+7. Click on "Sign Out" to verify if redirects to "Sign out" page (url path /accounts/logout/).
+##### back to [top](#table-of-contents)
+
+##### Anonymous users:
+Have no access to this page.
+
+
+---
 
 ## Shop Bag
 (url path to /shop_bag/)
@@ -438,10 +482,10 @@ This page only displays Order Summary for information purposes. There is no quer
 
 
 
-## Login 
+## Sign In
 (url path to /accounts/login/)
 
-1. Click on "Login".
+1. Click on "Sign In".
 2. Try to insert a username or e-mail address in the input "username or e-mail". 
 3. Try to insert a password in the input "password". 
 4. Try to insert a username or e-mail address and click on "Sign In" to verify if the input "password" is required.
@@ -456,7 +500,7 @@ This page only displays Order Summary for information purposes. There is no quer
  
 ---
 
-## Logout 
+## Sign Out
 (url path to /accounts/logout/)
 1. Click on "Sign Out" button to verify if redirects to the "Homepage" and appears a successful toast with the message "You have signed out".
 2. Click on "Cancel" button to verify if redirects to the "Homepage".
