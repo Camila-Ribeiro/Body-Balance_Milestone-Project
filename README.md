@@ -24,7 +24,6 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 
 
 4. [**Information Architecture**](#information-architecture)
-   - [**Database choice**](#database-choice)
    - [**Data Models**](#data-models)
      - [**Nutrition App Model**](#nutrition-app-model)
      - [**Subscriptions App Model**](#subscriptions-app-model)
@@ -72,7 +71,7 @@ Body Balance was built using [Python](https://www.python.org/) - programming lan
 Body Balance is an online web application designed for users with interest in gathering information about fitness healthy lifestyle as Nutritional plans and also Gym Equipments and Activewear. The website is simple and structured in a way that is easy and intuitive to navigate through. The application is designed for three types of users, the site owner/ administrator (login as superuser) and external users (login as anonymous user, or registered users).
 
 
-- The anonymous user (users that are not logged in) can:
+- The anonymous user (users that are not signed in) can:
  - Navigate through the website and see Nutrition and Products page.
  - Search for products
  - Purchase products and nutrition plan
@@ -81,6 +80,7 @@ Body Balance is an online web application designed for users with interest in ga
 
 - The user can:
  - Register an account
+ - Log in into their account
  - Search for products
  - Purchase products and nutrition plan
  - If registered already, user can log in into their account and:
@@ -94,23 +94,22 @@ Body Balance is an online web application designed for users with interest in ga
  - Search for products
  - Purchase products and nutrition plan
  - Access "Product Management" page
- - Access "Nutrition Management" page
- - Access "Subscription Management" page
+ - Access "Nutrition Menu Management" page
+ - Access "Plan Management" page
  - Access "My profile" page
  - Access Order history
- - Access weekly nutritional plan
+ - Access weekly nutrition plan menu
  - Add, edit and delete product and all it's specifications
- - Add, edit and delete nutrition plan details
- - Edit subscription plan  
+ - Edit nutrition plan menu
+ - Edit nutrition plan  
  - Access the Django Admin page through `https://body-balance-ms4.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
-    - Add, edit and delete product and all it's specifications
-    - Add, edit and delete nutrition plan details
-    - Edit subscription plan 
     - Access Accounts
     - Access Authentication and Authorization
     - Access a list of Product Orders
-    - Access a list of Subscriptions Orders
-    - Access a list of Products and Products Categories 
+    - Edit nutrition plan menu
+    - Add, edit and delete product and all it's specifications, including category
+    - Edit nutrition plan 
+    - Access a list of user profiles
     
     
     
@@ -118,7 +117,7 @@ Body Balance is an online web application designed for users with interest in ga
  
 ### User Stories
 
-See a list of [User Stories](static/UX/My-cookbook-desktop-wireframe.pdf) built in using Agile method.
+See a list of [User Stories](static/UX/ECommerce_User_Stories.pdf) built in using Agile method.
 
 
  
@@ -130,7 +129,6 @@ A standard layout is fully responsive on mobile devices and larger screens.
  
 #### Color Scheme
  
-- ![#e6ebf1](https://placehold.it/15/e6ebf1/#e6ebf1)
 - ![#cfd7df](https://placehold.it/15/cfd7df/cfd7df)
 - ![#e9ecef](https://placehold.it/15/e9ecef/e9ecef)
 - ![#aade56](https://placehold.it/15/aade56/aade56)
@@ -140,17 +138,17 @@ A standard layout is fully responsive on mobile devices and larger screens.
  
 #### Typography
  
-3 [Google Fonts](https://fonts.google.com/) were used across the site:
+2 [Google Fonts](https://fonts.google.com/) were used across the site:
  - [Roboto](https://fonts.google.com/specimen/Roboto) : body text
- - [Noto Sans](https://fonts.google.com/specimen/Noto+Sans?query=noto) : h1, h2, h3, h4, h5 ?????
+ - [Raleway](https://fonts.google.com/specimen/Raleway) : h1, h2, h3, h4, h6
 
  
 ### Wireframes
  
 My wireframes for this project can be found in the UX folder.
  
-- [Desktop Wireframe](static/UX/body-balance-desktop-wireframe.pdf)
-- [Mobile Wireframe](static/UX/body-balance-mobile-wireframe.pdf)
+- [Desktop Wireframe](static/UX/body-balance-wireframe-desktop.pdf)
+- [Mobile Wireframe](static/UX/body-balance-wireframe-mobile.pdf)
  
 ##### back to [top](#table-of-contents)
  
@@ -161,51 +159,54 @@ My wireframes for this project can be found in the UX folder.
 ### Existing Features
 - Index - simple page containing an image, small text and navigation.
 
-- Nutrition - this page displays a Nutrition Plan available for subscription. 
-   - Registered users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
-   - For anonymous users it displays a "Subscribe" button where redirects the user to the "Register"page.
-   - For superusers it displays an "Edit" button where redirects to the "Edit Plan"page.
+- Nutrition - this page displays a Nutrition Plan available for purchase. 
+   - Signed in users can purchase the plan clicking on "Buy Nutrition Plan" button where redirects the user to Product Detail page.
+
+  - Signed in users who have already purchased the plan it displays "See Your Plan" button where redirects the user to "My Nutrition Plan"page.
+   - For anonymous users it displays a "Register to buy" button where redirects the user to the "Sign Up"page.
+   - For superusers it displays an "Edit" button where redirects to the "Edit Plan"page and also "See Your Plan" button where redirects the user to "My Nutrition Plan"page.
 
 - Products - this page displays all products:
-   - it can be filtered by category, price, rating or show all products
-   - There is a search input where the user can search keyword found on product name or product description
+   - Products can be filtered by category, price, rating or show all products.
+   - There is a search input where the user can search keyword found on product name or product description.
    - Also users can sort products by price (low to high or high to low), rating (low to high or high to low), name (A-Z or Z-a) and category (A-Z or Z-a).
-   - Users, anonymous users and superuser can see the same content described above.
+   - It display products categories as Activewear, Gym equipment, Special Offers and Nutrition Plan.
+   - The Nutrition Plan is only displayed when the user or anonymous user have not purchased the plan already.
+       - for anonymous user it display "Register to buy Nutrition Plan" link.
+       - for signed in user who have purchased already it display nothing.
+       - for signed in user who have not purchased the plan it displays "Nutrition Plan" link.
 
-- Products Details - this page displays product details such as product name, rating, category, price, size, quantity and a button "buy" which redirect the user to the "shop bag" page.
-   - Registered users can purchase the plan clicking on "Subscribe" button where redirects the user to the "Stripe checkout".
-   - For anonymous users it displays the same content.
-   - For superusers it displays the same content described above plus an "Edit" button where redirects to the "Edit Product"page.
+- Products Details - this page displays product details such as product name, rating, category, price, size and a button "buy" which redirect the user to the "shop bag" page.
 
-- User Profile - this page displays the user profile details, Order history and a Weekly Nutritional Plan detail (for subscribers only).
+- My Profile - this page displays the user profile details, Order history and a Weekly Nutritional Plan Menu (for subscribers only).
   - Registered user and superuser can:
      - Update their personal details
      - Check their Product Order history
-     - Subscribers can access to their weekly Nutritional Plan detail
+     - Users who purchased the Nutrition Plan can access to their weekly Nutritional Plan Menu.
   - Anonymous don't have access to this page.
-  
+  - Sign Out - this page displays a question "Are you sure you want to sign out?" and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
+  - Superusers can also see:
+     - Product Management - this page is designed only for superusers. It allows them to add products. 
+     - Nutrition Menu Management - this page is designed only for superusers. It allows them to edit nutrition menu.
+     - Plan Management - this page is designed only for superusers. It allows them to edit the Nutrition Plan such as plan name, description, and price.
 
-- Product Management - this page is designed only for superusers. It allows them to add products. 
-
-- Nutrition Management - this page is designed only for superusers. It allows them to add nutrition details to the Subscription Plan.
-
-- Subscription Management - this page is designed only for superusers. It allows them to edit the Subscription Plan such as plan name, description, and price.
-
-- Register - this page has five inputs: e-mail address, e-mail address confirmation, username, password and password(again). It also displays two buttons:
+- Sign Up - this page has five inputs: e-mail address, e-mail address confirmation, username, password and password(again). It also displays two buttons:
   - "Back to Login" button where redirects the user to the Login page
   - "Sign Up" where redirects the user to a confirmation e-mail page with a message " We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes." After user confirms the e-mail (link sent to their email address), the user can log in.
 
-- Login - this page has two inputs, username or e-mail and password. It also displays two buttons:
-  - "Home" button where redirects the user to the index page
-  - "Sigh In" button where redirects the user to the index page
-  - Underneath those buttons there is a link "Forgot Password?" which redirects to a "Password Reset" page where the user have to type in their e-mail address and click on the "Reset My Password" button, then wait for an e-mail to arrive with instructions to reset the password.
+- Sign In - this page has two inputs, username or e-mail and password. It also displays two buttons:
+  - "Sign" button where redirects the user to the index page
+  - "Sign Up" link where redirects the user to the Sign Up page
+  - "Forgot Password?" link which redirects to a "Password Reset" page where the user have to type in their e-mail address and click on the "Reset My Password" button, then wait for an e-mail to arrive with instructions to reset the password.
 
-- Logout - this page displays a question "Are you sure you want to sign out?" and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
 
 - Error page - this page handles an error page in case the route wasn't found. There is a link to redirect the user back to index.
  
+
 ### Features Left to Implement
-- Add additional Nutrition Plans - ???/
+- Add and expiry date for the Nutrition Plan as at the moment the only way to stop the user to have access to the plan is when the Admin reset the user has_plan to NO.
+- Add additional Nutrition Plan types as at the moment the Admin is able to Edit the only existent Plan.
+- Add additional Nutrition Plan Menu as at the moment the Admin is able add 7/day menus at a time instead the fully month.
 
 ##### back to [top](#table-of-contents)
  
@@ -223,7 +224,7 @@ My wireframes for this project can be found in the UX folder.
 
 #### Subscriptions App Model
 - Within the `subscriptions app`:
-   - the `Plan model` holds all the fields needed to populate the "Nutrition" page which contain the subscription plan card where users can subscribe to it.
+   - the `Plan model` holds all the fields needed to populate the "Nutrition" page which contain the Nutrition Plan card where users can a Nutrition Plan available for a month.
 
 #### Products App Model
 - Within the `products app`:
@@ -234,12 +235,15 @@ My wireframes for this project can be found in the UX folder.
 - Within the `checkout app`:
    - the `ProductOrder model` holds all the data needed to generate a product order number and additional fields to have an order summary.
    - the `ProductLineOrder model` holds all the data needed to generate a product line order inside the Product Order (admin).
-   - the `SubscriptionOrder model` holds all the data needed to generate a subscription order number and additional fields to have an order summary.
 
-#### User Profile App Model
-The User model utilized for this project is the standard one provided by `django.contrib.auth.models`
+
+#### UserProfile App Model
 - Within the `user_profile app`:
    - the `UserProfile model` maintain default delivery information order history.
+
+#### Authentication and Authorization App Model
+The User model utilized for this project is the standard one provided by `django.contrib.auth.models`
+
 
 
 ##### back to [top](#table-of-contents)

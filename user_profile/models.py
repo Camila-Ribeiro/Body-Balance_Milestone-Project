@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_countries.fields import CountryField
 
+
 class UserProfile(models.Model):
     """
     A user profile model for maintaining default
@@ -12,7 +13,7 @@ class UserProfile(models.Model):
     """
     class Meta:
         verbose_name_plural = 'Profiles'
-    
+  
     BOOL_CHOICES = (
         (True, 'Yes'),
         (False, 'No')
