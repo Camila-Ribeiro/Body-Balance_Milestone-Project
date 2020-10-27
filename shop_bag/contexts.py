@@ -23,8 +23,6 @@ def bag_products(request):
             total_items += item_data * product.price
             product_count += item_data
 
-            # get_plan_total = product.price
-
             if get_cat == 'nutrition_plan':
                 nut_price = round(product.price * Decimal
                                   (settings.DELIVERY_PERCENTAGE / 100), 2)
