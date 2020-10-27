@@ -145,8 +145,8 @@ A standard layout is fully responsive on mobile devices and larger screens.
  
 My wireframes for this project can be found in the UX folder.
  
-- [Desktop Wireframe](static/UX/body-balance-wireframe-desktop.pdf)
-- [Mobile Wireframe](static/UX/body-balance-wireframe-mobile.pdf)
+- [Desktop Wireframe](static/UX/body_balance_wireframe_desktop.pdf)
+- [Mobile Wireframe](static/UX/body_balance_wireframe_mobile.pdf)
  
 ##### back to [top](#table-of-contents)
  
@@ -397,16 +397,9 @@ I also have validated all files using online validation sites cited below and ch
  
 ### Manual Testing
 I have conducted a detailed [manual testing](static/testing/manual/testing.md) to show that I have extensively tested this web application.
- 
-#### Testing Flask - Within my settings I had flask's debugger set to
- 
-`debug=True`
- 
-This is used for when Flask ever encounters an error the application knows to display this error in the view to give indication of what caused the app to crash.
- 
-I would work in small sprints where every step in my development I would ensure my app is still working as expected and where the app encounters any errors, I would debug the source until rectification was a success. Where needed I would document the error and the remediation taken in case of future occurrences.
- 
-Doing this meant after a while the error codes became more familiar to me. And from this debugging each error becomes less time consuming.
+ - I used Google Chrome's Development tools to constantly test each change that I made to my project and to ensure that it appeared in the desired way on different screen sizes.
+ - I also tested my app on different screen sizes (mobile, tablet and desktop) to ensure
+it appeared in the desired way on different devices.
  
 ##### back to [top](#table-of-contents)
  
@@ -419,21 +412,43 @@ Doing this meant after a while the error codes became more familiar to me. And f
 [Body Balance](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project) was developed  locally using **VS Code**, and all commits were pushed to [**Heroku**](https://body-balance-ms4.herokuapp.com/) using [**Git**](https://git-scm.com/).
  
 In order to get the application ready for deployment I followed the next steps:
-1. I removed all my hard-coded environment variables from app.py to protect my Database name, URI and secret-key and placed them in the env.py for development and entered it into herouku's Config Var for production.
+1. I removed all my hard-coded environment variables from settings.py to protect my Database name, secret-key and passwords and placed them in the env.py for development and entered it into herouku's Config Var for production.
 2. On the terminal window using the command `pip3 freeze > requirements.txt` I installed `requirements.txt` file, which contains a list of items to be installed, defining the modules imported to Heroku.
 3. Set up the Procfile (Remember to use a capital P in Procfile). using the command `echo web: python app.py > Procfile` - The Procfile file contains `web: python app.py` which tells Heroku to start a process called web and to run `python app.py` when it starts.
-4. Created a new Heroku app
-5. Created Config Var for production adding api_key, IP, PORT, MONGO_DBNAME, MONGO_URI & SECRET_KEY.
-6. Set Flask's debugging to False.
-7. Pushed the code to Heroku.
+4. Created the app in Heroku.
+5. Went to the Resources tab in Heroku and searched for Heroku Postgres in the 'Add-Ons' section.
+5.Selected the free Hobby level.
+6. Updated the `.bashrc` file within my local workspace with the `DATABASE_URL` details, and the `settings.py` to connect to the database using the `dj_database_url` package.
+7. Ran the `python3 manage.py makemigrations`, `python3 manage.py migrate`, `python3 manage.py createsuperuser` commands to migrate the models into Heroku Postgres and create a new super user in the new PostgreSQL database.
+8. Went to the Settings tab in Heroku and clicked on the Reveal Config Vars button.
+9. Copied and paste all of the default variables from env.py in to Heroku's Config Vars section.
  
-Upon successful deployment Heroku will give you the URL that is hosted on your app!
+![devices image](static/img/env_py.png)
+
+10. Went to the Deploy tab in Heroku, connected my app to my GitHub repository and selected Enable Automatic Deployment as the deployment method.
+11. Went to the Developers section in Stripe and clicked on API Keys.
+12. Copied and pasted the Publishable Key and Secret Key and set them as the STRIPE_PUBLISHABLE and STRIPE_SECRET environment variables in the .bashrc file within my local workspace.
+13. Updated the settings.py with the new Stripe environment variables.
+14. Went to the S3 section of AWS and created a new S3 bucket.
+15. Updated the settings.py file in my local workspace with the relevant S3 bucket details:
+
+![devices image](static/img/S3_bucket_details.png)
+
+
+16. Created a custom_storages.py file with classes to route to the relevant location settings for static and media files.
+
+17. Updated the settings.py file with the relevant configuration for static and media file storage.
+
+18. Ran the python3 manage.py collectstatic command to push the static files to my S3 bucket.
+
+19. Ran the git add ., git commit -m "<commit-message>" and git push commands to push all changes to my GitHub repository.
  
 **IMPORTANT NOTE**:
  
 - Please allow a few minutes to pass before opening your newly deployed link! Clicking this link too quickly may result in a failure to build the site, causing an Error 404 page instead.
  
 Congratulations! Your project should be deployed successfully on Heroku's app! :tada:
+
 
 ### Local Development
 To run this project locally on your own system, users can clone to their desktop by completing the following steps:
@@ -457,7 +472,7 @@ python3 manage.py createsuperuser`
 13. In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
 14. Set the following config vars in heroku :
 
-![devices image](static/img/heroku_congig_vars.png)
+![devices image](static/img/heroku_config_vars.png)
 
 
 Once the migrations are completed and the super user has been created successfully, the site should be running locally.
@@ -476,7 +491,7 @@ To allow you to access all functionality on the site locally, ensure you have cr
 #### In Gitpod you create env.py file in main directory and write in first line: import os. Use table below to copy required fields.
 
 
-![devices image](static/img/env_file.png)
+
 
 
 
@@ -494,7 +509,7 @@ To allow you to access all functionality on the site locally, ensure you have cr
  
 ### Media
 - [Alexia Clark](https://alexia-clark.com/) - all texts used in the homepage and nutrition page
-- [Very Well Fit](https://www.verywellfit.com/an-example-of-a-healthy-balanced-meal-plan-2506647#day-1) - recipes used on nutrition menu 
+- [Very Well Fit](https://www.verywellfit.com/an-example-of-a-healthy-balanced-meal-plan-2506647#day-1) - recipes used on nutrition plan menu 
 - [Unsplash](https://unsplash.com/) 
   - Photo by Scott Webb - Homepage
   - Photo by Louis Hanse - Nutrition page
