@@ -2,8 +2,6 @@
 ### [Heroku App](https://body-balance-ms4.herokuapp.com/)
 ### [GitHub](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project)
  
-![devices image](static/img/web-app-devices.png)
- 
 Body Balance is a Milestone Project created for the "Full Stack Frameworks With Django" module of my FullStack Software Development Course offered by [Code Institute](https://codeinstitute.net/).
  
 ## Table of Contents
