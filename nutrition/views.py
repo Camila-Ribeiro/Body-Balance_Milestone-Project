@@ -19,32 +19,32 @@ def nutrition(request):
     return render(request, template, context)
 
 
-@login_required
-def add_menu_admin(request):
-    """ Add a nutrition plan available to purchase """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners have the permission\
-            to add Nutrition Menu Details.')
-        return redirect(reverse('home'))
+# @login_required
+# def add_menu_admin(request):
+#     """ Add a nutrition plan available to purchase """
+#     if not request.user.is_superuser:
+#         messages.error(request, 'Sorry, only store owners have the permission\
+#             to add Nutrition Menu Details.')
+#         return redirect(reverse('home'))
 
-    if request.method == 'POST':
-        form = AddNutritionPlanForm(request.POST, request.FILES)
-        if form.is_valid():
-            nutrition_plan = form.save()
-            messages.success(request, 'Nutrition Plan added successfully!')
-            return redirect(reverse('nutrition'))
-        else:
-            messages.error(request, 'Failed! Please ensure you added the\
-                Nutrition Plan correctly!')
-    else:
-        form = AddNutritionPlanForm()
+#     if request.method == 'POST':
+#         form = AddNutritionPlanForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             nutrition_plan = form.save()
+#             messages.success(request, 'Nutrition Plan added successfully!')
+#             return redirect(reverse('nutrition'))
+#         else:
+#             messages.error(request, 'Failed! Please ensure you added the\
+#                 Nutrition Plan correctly!')
+#     else:
+#         form = AddNutritionPlanForm()
 
-    template = 'nutrition/add_menu_admin.html'
-    context = {
-        'form': form,
-    }
+#     template = 'nutrition/add_menu_admin.html'
+#     context = {
+#         'form': form,
+#     }
 
-    return render(request, template, context)
+#     return render(request, template, context)
 
 
 def get_nutrition_id(request, nutrition_id):
