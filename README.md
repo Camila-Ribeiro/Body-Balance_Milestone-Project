@@ -61,7 +61,7 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 ---
  
 ## Project overview
-Body Balance was built using [Python](https://www.python.org/) - programming language, [Django](https://docs.djangoproject.com/en/3.1/) - which is a high-level Python Web framework that encourages rapid development and clean, pragmatic design and [Hekoru Postgres](https://www.mongodb.com/) - a document-based database.
+Body Balance was built using [Python](https://www.python.org/) - programming language, [Django](https://docs.djangoproject.com/en/3.1/) - which is a high-level Python Web framework that encourages rapid development and clean, pragmatic design and [Hekoru Postgres](https://https://www.heroku.com/postgres) - a document-based database.
  
  
 ## UX
@@ -161,8 +161,8 @@ My wireframes for this project can be found in the UX folder.
    - Signed in users can purchase the plan clicking on "Buy Nutrition Plan" button where redirects the user to Product Detail page.
 
   - Signed in users who have already purchased the plan it displays "See Your Plan" button where redirects the user to "My Nutrition Plan"page.
-   - For anonymous users it displays a "Register to buy" button where redirects the user to the "Sign Up"page.
-   - For superusers it displays an "Edit" button where redirects to the "Edit Plan"page and also "See Your Plan" button where redirects the user to "My Nutrition Plan"page.
+   - For anonymous users it displays a "Register to buy" button where redirects the user to the "Sign Up" page.
+   - For superusers it displays an "Edit" button where redirects to the "Edit Plan"page and also "See Your Plan" button where redirects the user to "My Nutrition Plan"page.
 
 - Products - this page displays all products:
    - Products can be filtered by category, price, rating or show all products.
@@ -182,14 +182,14 @@ My wireframes for this project can be found in the UX folder.
      - Check their Product Order history
      - Users who purchased the Nutrition Plan can access to their weekly Nutritional Plan Menu.
   - Anonymous don't have access to this page.
-  - Sign Out - this page displays a question "Are you sure you want to sign out?" and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
+  - Sign Out - this page displays a question "Are you sure you want to sign out?"and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
   - Superusers can also see:
      - Product Management - this page is designed only for superusers. It allows them to add products. 
      - Nutrition Menu Management - this page is designed only for superusers. It allows them to edit nutrition menu.
      - Plan Management - this page is designed only for superusers. It allows them to edit the Nutrition Plan such as plan name, description, and price.
 
 - Sign Up - this page has five inputs: e-mail address, e-mail address confirmation, username, password and password(again). It also displays two buttons:
-  - "Back to Login" button where redirects the user to the Login page
+  - "Back to Login" button where redirects the user to the Login page
   - "Sign Up" where redirects the user to a confirmation e-mail page with a message " We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes." After user confirms the e-mail (link sent to their email address), the user can log in.
 
 - Sign In - this page has two inputs, username or e-mail and password. It also displays two buttons:
@@ -413,35 +413,49 @@ it appeared in the desired way on different devices.
  
 In order to get the application ready for deployment I followed the next steps:
 1. I removed all my hard-coded environment variables from settings.py to protect my Database name, secret-key and passwords and placed them in the env.py for development and entered it into herouku's Config Var for production.
+
 2. On the terminal window using the command `pip3 freeze > requirements.txt` I installed `requirements.txt` file, which contains a list of items to be installed, defining the modules imported to Heroku.
-3. Set up the Procfile (Remember to use a capital P in Procfile). using the command `echo web: python app.py > Procfile` - The Procfile file contains `web: python app.py` which tells Heroku to start a process called web and to run `python app.py` when it starts.
+
+3. Set up the Procfile (Remember to use a capital P in Procfile). using the command `echo web: python app.py > Procfile` - The Procfile file contains `web: gunicorn body_balance.wsgi:application` which tells Heroku to start a process called web and to run `python manage.py` when it starts.
+
 4. Created the app in Heroku.
+
 5. Went to the Resources tab in Heroku and searched for Heroku Postgres in the 'Add-Ons' section.
-5.Selected the free Hobby level.
-6. Updated the `.bashrc` file within my local workspace with the `DATABASE_URL` details, and the `settings.py` to connect to the database using the `dj_database_url` package.
-7. Ran the `python3 manage.py makemigrations`, `python3 manage.py migrate`, `python3 manage.py createsuperuser` commands to migrate the models into Heroku Postgres and create a new super user in the new PostgreSQL database.
-8. Went to the Settings tab in Heroku and clicked on the Reveal Config Vars button.
-9. Copied and paste all of the default variables from env.py in to Heroku's Config Vars section.
+
+6. Selected the free Hobby level.
+
+7. Updated the `.bashrc` file within my local workspace with the `DATABASE_URL` details, and the `settings.py` to connect to the database using the `dj_database_url` package.
+
+8. Ran the `python3 manage.py makemigrations`, `python3 manage.py migrate`, `python3 manage.py createsuperuser` commands to migrate the models into Heroku Postgres and create a new superuser in the new PostgreSQL database.
+
+9. Went to the Settings tab in Heroku and clicked on the Reveal Config Vars button.
+
+10. Copied and paste all of the default variables from env.py in to Heroku's Config Vars section.
  
-![devices image](static/img/env_py.png)
+![devices image](static/img/env-py.png)
 
-10. Went to the Deploy tab in Heroku, connected my app to my GitHub repository and selected Enable Automatic Deployment as the deployment method.
-11. Went to the Developers section in Stripe and clicked on API Keys.
-12. Copied and pasted the Publishable Key and Secret Key and set them as the STRIPE_PUBLISHABLE and STRIPE_SECRET environment variables in the .bashrc file within my local workspace.
-13. Updated the settings.py with the new Stripe environment variables.
-14. Went to the S3 section of AWS and created a new S3 bucket.
-15. Updated the settings.py file in my local workspace with the relevant S3 bucket details:
+11. Went to the Deploy tab in Heroku, connected my app to my GitHub repository and selected Enable Automatic Deployment as the deployment method.
 
-![devices image](static/img/S3_bucket_details.png)
+12. Went to the Developers section in Stripe and clicked on API Keys.
+
+13. Copied and pasted the Publishable Key and Secret Key and set them as the `STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY` environment variables in the `.bashrc` file within my local workspace.
+
+14. Updated the `settings.py` with the new Stripe environment variables.
+
+15. Went to the S3 section of AWS and created a new S3 bucket.
+
+16. Updated the `settings.py` file in my local workspace with the relevant S3 bucket details:
+
+![devices image](static/img/s3_bucket.png)
 
 
-16. Created a custom_storages.py file with classes to route to the relevant location settings for static and media files.
+17. Created a `custom_storages.py` file with classes to route to the relevant location settings for static and media files.
 
-17. Updated the settings.py file with the relevant configuration for static and media file storage.
+18. Updated the `settings.py` file with the relevant configuration for static and media file storage.
 
-18. Ran the python3 manage.py collectstatic command to push the static files to my S3 bucket.
+19. Ran the `python3 manage.py collectstatic` command to push the static files to my S3 bucket.
 
-19. Ran the git add ., git commit -m "<commit-message>" and git push commands to push all changes to my GitHub repository.
+20. Ran the `git add .`, `git commit -m "<commit-message>"` and `git push - u origin master` commands to push all changes to my GitHub repository.
  
 **IMPORTANT NOTE**:
  
@@ -452,23 +466,36 @@ Congratulations! Your project should be deployed successfully on Heroku's app! :
 
 ### Local Development
 To run this project locally on your own system, users can clone to their desktop by completing the following steps:
+
 1. Go to [my GitHub repository](https://github.com/Camila-Ribeiro/Body-Balance_Milestone-Project).
+
 2. Click on 'Code'(green button) placed beside Gitpod button.
+
 3. Copy the clone URL for the repository in the 'Clone with HTTPs section'.
+
 4. Open 'Git Bash' in your local IDE.
+
 5. Change the current working directory to the location where you want the cloned directory to be made. (e.g. cd projects).
-6. Type git clone, then paste the URL you copied in Step 3: git clone `https://github.com/USERNAME/REPOSITORY`
-7. Press Enter to complete the process and create your local clone.
+
+6. Type `git clone`, then paste the URL you copied in Step 3: `git clone` `https://github.com/USERNAME/REPOSITORY`
+
+7. Press `Enter` to complete the process and create your local clone.
+
 8. Create a `.env,py` file with your own credentials and import this into the `settings.py` file.
+
 9. Install the requirements.txt file by running the below command in your CLI Terminal:
 `pip3 install -r requirements.txt`.
+
 10. Run one of the following commands in your Terminal to launch the Django project:
 `python3 manage.py runserver`
+
 11. Click the `http:// link` that loads, and the project should load. If it doesn't load when you click the link, copy and paste it into a new browser tab instead.
+
 12. Run the following commands to migrate the database models and create a super user:
 `python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py createsuperuser`
+
 13. In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
 14. Set the following config vars in heroku :
 
@@ -488,10 +515,9 @@ To allow you to access all functionality on the site locally, ensure you have cr
 
 -[AWS - S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
 
-#### In Gitpod you create env.py file in main directory and write in first line: import os. Use table below to copy required fields.
+#### In Gitpod or your IDE  you create env.py file in main directory and write in first line: import os. Use table below to copy required fields.
 
-
-
+![devices image](static/img/env-py.png)
 
 
 
