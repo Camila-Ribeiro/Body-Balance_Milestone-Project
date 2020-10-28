@@ -33,17 +33,77 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
           {% for n in nutrition_obj %}
-
-          {% if n.day == 1 %}
-            <div class="tab-pane fade show active" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
+            {% if n.day == 1 %}
+              <div class="tab-pane fade show active" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
+                <div class="img-fluid {% if request.user.is_superuser %} position-relative {% endif %}">
+                  {% if request.user.is_superuser %}
+                    <div class="center-absolute bg-dark">
+                      <button class="btn btn-secondary btn-lg">
+                        <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
+                      </button>
+                    </div>
+                  {% endif %}
+                    {% if n.image_file %}
+                        <a href="{{ n.image_file.url }}" target="_blank">
+                            <img class="card-img-top img-fluid" src="{{ n.image_file.url }}" alt="{{ n.plan_name }}">
+                        </a>
+                    {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ n.plan_name }}">
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="container-fluid">
+                  <div class="row row-grey">
+                    <div class="col">
+                        <h6>Daily Cal</h6>
+                        <p>{{ n.daily_total_cal }}cal</p>
+                    </div>
+                    <div class="col">
+                        <h6>Protein</h6>
+                        <p>{{ n.protein }}</p>
+                    </div>
+                    <div class="col">
+                        <h6>Carbs</h6>
+                        <p>{{ n.carbohydrates }}</p>
+                    </div>
+                    <div class="col">
+                        <h6>Fiber</h6>
+                        <p>{{ n.fiber }}</p>
+                    </div>
+                    <div class="col">
+                        <h6>Fat</h6>
+                        <p>{{ n.fat }}</p>
+                    </div>
+                    <div class="col">
+                        <h6>Sodium</h6>
+                        <p>{{ n.sodium }}mg</p>
+                    </div>
+                  </div>
+                  <div class="container bg-white margin-container pb-5">
+                    <h4 class="pt-5 mb-3">Breakfast</h4>
+                    <p>{{ n.breakfast | linebreaks }}</p>
+                    <h4 class="mt-5 mb-3">AM Snack</h4>
+                    <p>{{ n.am_snack | linebreaks  }}</p>
+                    <h4 class="mt-5 mb-3">Lunch</h4>
+                    <p>{{ n.lunch | linebreaks  }}</p>
+                    <h4 class="mt-5 mb-3">PM Snack</h4>
+                    <p>{{ n.pm_snack | linebreaks  }}</p>
+                    <h4 class="mt-5 mb-3">Dinner</h4>
+                    <p>{{ n.dinner | linebreaks  }}</p>
+                  </div>
+                </div>
+              </div>
+            {% else %}
+            <div class="tab-pane fade show" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
               <div class="img-fluid {% if request.user.is_superuser %} position-relative {% endif %}">
                 {% if request.user.is_superuser %}
-                  <div class="center-absolute bg-dark">
-                    <button class="btn btn-secondary btn-lg">
-                      <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
-                    </button>
-                  </div>
-                {% endif %}
+                    <div class="center-absolute bg-dark">
+                      <button class="btn btn-secondary btn-lg">
+                        <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
+                      </button>
+                    </div>
+                  {% endif %}
                   {% if n.image_file %}
                       <a href="{{ n.image_file.url }}" target="_blank">
                           <img class="card-img-top img-fluid" src="{{ n.image_file.url }}" alt="{{ n.plan_name }}">
@@ -54,134 +114,52 @@
                       </a>
                   {% endif %}
               </div>
-
               <div class="container-fluid">
-                  <div class="row row-grey">
-                    <div class="col">
-
-                        <h6>Daily Cal</h6>
-                        <p>{{ n.daily_total_cal }}cal</p>
-                    </div>
-                    <div class="col">
-
-                        <h6>Protein</h6>
-                        <p>{{ n.protein }}</p>
-
-                    </div>
-                    <div class="col">
-
-                        <h6>Carbs</h6>
-                        <p>{{ n.carbohydrates }}</p>
-
-                    </div>
-                    <div class="col">
-                        <h6>Fiber</h6>
-                        <p>{{ n.fiber }}</p>
-                    </div>
-                    <div class="col">
-                        <h6>Fat</h6>
-                        <p>{{ n.fat }}</p>
-                    </div>
-
-                    <div class="col">
-                        <h6>Sodium</h6>
-                        <p>{{ n.sodium }}mg</p>
-                    </div>
+                <div class="row row-grey">
+                  <div class="col">
+                      <h6>Daily Cal</h6>
+                      <p>{{ n.daily_total_cal }}cal</p>
                   </div>
-              
-                  <div class="container bg-white margin-container pb-5">
-                    <h4 class="pt-5 mb-3">Breakfast</h4>
-                      <p>{{ n.breakfast | linebreaks }}</p>
-
-
-                    <h4 class="mt-5 mb-3">AM Snack</h4>
-                    <p>{{ n.am_snack | linebreaks  }}</p>
-
-
-                    <h4 class="mt-5 mb-3">Lunch</h4>
-                    <p>{{ n.lunch | linebreaks  }}</p>
-
-
-                    <h4 class="mt-5 mb-3">PM Snack</h4>
-                    <p>{{ n.pm_snack | linebreaks  }}</p>
-
-
-                    <h4 class="mt-5 mb-3">Dinner</h4>
-                    <p>{{ n.dinner | linebreaks  }}</p>
+                  <div class="col">
+                    <h6>Protein</h6>
+                    <p>{{ n.protein }}</p>
                   </div>
+                  <div class="col">
+                    <h6>Carbs</h6>
+                    <p>{{ n.carbohydrates }}</p>
+                  </div>
+                  <div class="col">
+                      <h6>Fiber</h6>
+                      <p>{{ n.fiber }}</p>
+                  </div>
+                  <div class="col">
+                      <h6>Fat</h6>
+                      <p>{{ n.fat }}</p>
+                  </div>
+                  <div class="col">
+                      <h6>Sodium</h6>
+                      <p>{{ n.sodium }}mg</p>
+                  </div>
+                </div>
+                <div class="container bg-white margin-container pb-5">
+                  <h4 class="mb-3 pt-5">Breakfast</h4>
+                  <p>{{ n.breakfast | linebreaks }}</p>
+                  <h4 class="mt-5 mb-3">AM Snack</h4>
+                  <p>{{ n.am_snack | linebreaks  }}</p>
+                  <h4 class="mt-5 mb-3">Lunch</h4>
+                  <p>{{ n.lunch | linebreaks  }}</p>
+                  <h4 class="mt-5 mb-3">PM Snack</h4>
+                  <p>{{ n.pm_snack | linebreaks  }}</p>
+                  <h4 class="mt-5 mb-3">Dinner</h4>
+                  <p>{{ n.dinner | linebreaks  }}</p>
+                </div>
               </div>
             </div>
-          {% else %}
-          <div class="tab-pane fade show" id="tab-{{ n.day }}" role="tabpanel" aria-labelledby="{{ n.day }}">
-            <div class="img-fluid {% if request.user.is_superuser %} position-relative {% endif %}">
-              {% if request.user.is_superuser %}
-                  <div class="center-absolute bg-dark">
-                    <button class="btn btn-secondary btn-lg">
-                      <a href="{% url 'edit_menu_admin' n.id %}">Edit Menu</a>
-                    </button>
-                  </div>
-                {% endif %}
-                {% if n.image_file %}
-                    <a href="{{ n.image_file.url }}" target="_blank">
-                        <img class="card-img-top img-fluid" src="{{ n.image_file.url }}" alt="{{ n.plan_name }}">
-                    </a>
-                {% else %}
-                    <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ n.plan_name }}">
-                    </a>
-                {% endif %}
-            </div>
-            <div class="container-fluid">
-              <div class="row row-grey">
-                <div class="col">
-                    <h6>Daily Cal</h6>
-                    <p>{{ n.daily_total_cal }}cal</p>
-                </div>
-                <div class="col">
-                  <h6>Protein</h6>
-                  <p>{{ n.protein }}</p>
-                </div>
-                <div class="col">
-                  <h6>Carbs</h6>
-                  <p>{{ n.carbohydrates }}</p>
-                </div>
-                <div class="col">
-                    <h6>Fiber</h6>
-                    <p>{{ n.fiber }}</p>
-                </div>
-                <div class="col">
-                    <h6>Fat</h6>
-                    <p>{{ n.fat }}</p>
-                </div>
-                <div class="col">
-                    <h6>Sodium</h6>
-                    <p>{{ n.sodium }}mg</p>
-                </div>
-              </div>
-              <div class="container bg-white margin-container pb-5">
-                <h4 class="mb-3 pt-5">Breakfast</h4>
-                <p>{{ n.breakfast | linebreaks }}</p>
-
-
-                <h4 class="mt-5 mb-3">AM Snack</h4>
-                <p>{{ n.am_snack | linebreaks  }}</p>
-
-              
-                <h4 class="mt-5 mb-3">Lunch</h4>
-                <p>{{ n.lunch | linebreaks  }}</p>
-              
-                <h4 class="mt-5 mb-3">PM Snack</h4>
-                <p>{{ n.pm_snack | linebreaks  }}</p>
-
-                <h4 class="mt-5 mb-3">Dinner</h4>
-                <p>{{ n.dinner | linebreaks  }}</p>
-              </div>
-            </div>
-          </div>
-          {% endif %}
+            {% endif %}
           {% endfor %}
         </div>
       </div>
+    </div> 
   </section>
 {% endblock %}
 
