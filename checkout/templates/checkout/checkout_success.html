@@ -164,7 +164,8 @@
                             <p class="mb-0  font-weight-bold text-left">Subtotal</p>
                         </div>
                         <div class="col-sm col-md-8 text-md-right">
-                            <p class="mb-0">€{{ order.order_total }}</p>
+  
+                            <p class="mb-0">€{{ order.order_total }} {{ nutrition_delivery }}</p>
                         </div>
                     </div>
 
@@ -188,6 +189,7 @@
                             {% endfor %}
                         {% endfor %}
                     </div>
+
                     <div class="row">
                         <div class="col-sm col-md-4">
                             <p class="mb-0  font-weight-bold text-left">Total</p>

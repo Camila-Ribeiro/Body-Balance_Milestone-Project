@@ -7,6 +7,8 @@ from checkout.models import ProductOrder
 from .models import UserProfile
 from .forms import UserProfileForm
 
+from django import template
+
 
 @login_required
 def profile(request):
@@ -38,11 +40,18 @@ def profile(request):
 
     return render(request, template, context)
 
+# register = template.Library()
+
+# @register.filter(name='subtract')
+# def subtract(order_total, nutrition_delivery):
+#     return order_total - nutrition_delivery
+#     print(subtract)
 
 def product_order_history(request, order_number):
     order = get_object_or_404(ProductOrder, order_number=order_number)
     profile = get_object_or_404(UserProfile, user=request.user)
     products_order = profile.orders.all()
+    nutrition_delivery = 2.99
 
     messages.info(request, (
         f'This is a past confirmation for order number {order_number}. '
@@ -53,6 +62,7 @@ def product_order_history(request, order_number):
     context = {
         'order': order,
         'products_order': products_order,
+        'nutrition_delivery': nutrition_delivery,
         'from_user_profile': True,
     }
 
