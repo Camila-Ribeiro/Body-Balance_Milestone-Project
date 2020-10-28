@@ -41,6 +41,8 @@ def profile(request):
 
 def product_order_history(request, order_number):
     order = get_object_or_404(ProductOrder, order_number=order_number)
+    profile = get_object_or_404(UserProfile, user=request.user)
+    products_order = profile.orders.all()
 
     messages.info(request, (
         f'This is a past confirmation for order number {order_number}. '
@@ -50,6 +52,7 @@ def product_order_history(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'products_order': products_order,
         'from_user_profile': True,
     }
 

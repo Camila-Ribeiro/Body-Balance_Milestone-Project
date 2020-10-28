@@ -172,9 +172,21 @@
                         <div class="col-sm col-md-4">
                             <p class="mb-0  font-weight-bold text-left">Delivery</p>
                         </div>
-                        <div class="col-sm col-md-8 text-md-right">
-                            <p class="mb-0">€{{ order.delivery_cost }}</p>
-                        </div>
+                        {% for item in products_order %}
+                        {{ item }}
+
+                            {% for o in item.lineorders.all %}
+                                {% if o.product.category.category_name == 'nutrition_plan' %}
+                                <div class="col-sm col-md-8 text-md-right">
+                                    <p class="mb-0">€ 0.00</p>
+                                </div>
+                                {% else %}
+                                <div class="col-sm col-md-8 text-md-right">
+                                    <p class="mb-0">€{{ order.delivery_cost }}</p>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
                     </div>
                     <div class="row">
                         <div class="col-sm col-md-4">

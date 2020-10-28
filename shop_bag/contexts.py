@@ -45,6 +45,7 @@ def bag_products(request):
                     'product_quantity': product_quantity,
                     'product': product,
                     'size': size,
+                    'category': category,
                 })
 
     #  no delivery fee if nutrition plan in shop bag
