@@ -374,7 +374,7 @@ I also have validated all files using online validation sites cited below and ch
  
 #### HTML
  
-- [W3C HTML Validator](https://validator.w3.org/) - `Text not allowed in elements in this context. - errors due to Jinja`
+- [W3C HTML Validator](https://validator.w3.org/) - `The W3C Validator tool doesn't recognize the Jinja templating, which has resulted in it showing a lot of errors in relation to the Jinja code.`
  
 #### CSS
  
@@ -382,17 +382,32 @@ I also have validated all files using online validation sites cited below and ch
  
 #### PYTHON
  
-- [Pep8 Online tool](http://pep8online.com/checkresult) - `All right` for all python files except for Checkout App- views.py as I left 3 long lines for better reading purpose.
+- [Pep8 Online tool](http://pep8online.com/checkresult) - `All right` for all python files except for few long lines as I left for better reading purpose.
  
 #### JavaScript
+ - [JShint](https://jshint.com/)
+  - File: [stripe.js](checkout/static/checkout/js/stripe.js)
+       - Metrics:
+           - There are 5 functions in this file.
+           - Function with the largest signature takes 1 arguments, while the median is 1.
+           - Largest function has 10 statements in it, while the median is 5.
+           - The most complex function has a cyclomatic complexity value of 3 while the median is 1.
  
  - [JShint](https://jshint.com/)
-  - File: [main.js](static/js/main.js)
+  - File: [jquery.star-rating-svg.js](products/static/products/js/jquery.star-rating-svg.js)
        - Metrics:
-           - There are 12 functions in this file.
-           - Function with the largest signature takes 2 arguments, while the median is 0.
-           - Largest function has 15 statements in it, while the median is 2.
-           - The most complex function has a cyclomatic complexity value of 1 while the median is 1.
+           - There are 29 functions in this file.
+           - Function with the largest signature takes 4 arguments, while the median is 1.
+           - Largest function has 16 statements in it, while the median is 4.
+           - The most complex function has a cyclomatic complexity value of 13 while the median is 2.
+
+- [JShint](https://jshint.com/)
+  - File: [country_field.js](user_profile/static/user_profile/js/country_field.js)
+       - Metrics:
+          - There is only one function in this file.
+          - It takes no arguments.
+          - This function contains 4 statements.
+          - Cyclomatic complexity number for this function is 2.
  
  
 ### Manual Testing

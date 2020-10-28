@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     """
     class Meta:
         verbose_name_plural = 'Profiles'
-  
+
     BOOL_CHOICES = (
         (True, 'Yes'),
         (False, 'No')

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Nutrition
 
+
 class Nutrition_Plan_Admin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
@@ -15,5 +16,6 @@ class Nutrition_Plan_Admin(admin.ModelAdmin):
         'day',
     )
     ordering = ('-week', '-day',)
+
 
 admin.site.register(Nutrition, Nutrition_Plan_Admin)

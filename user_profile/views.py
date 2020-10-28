@@ -7,8 +7,6 @@ from checkout.models import ProductOrder
 from .models import UserProfile
 from .forms import UserProfileForm
 
-from django import template
-
 
 @login_required
 def profile(request):
@@ -40,12 +38,6 @@ def profile(request):
 
     return render(request, template, context)
 
-# register = template.Library()
-
-# @register.filter(name='subtract')
-# def subtract(order_total, nutrition_delivery):
-#     return order_total - nutrition_delivery
-#     print(subtract)
 
 def product_order_history(request, order_number):
     order = get_object_or_404(ProductOrder, order_number=order_number)

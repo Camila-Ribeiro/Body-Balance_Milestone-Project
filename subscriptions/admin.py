@@ -14,4 +14,5 @@ class Subscription_Admin(admin.ModelAdmin):
         'plan_duration',
     )
 
+
 admin.site.register(Plan, Subscription_Admin)

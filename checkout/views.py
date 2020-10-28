@@ -166,7 +166,6 @@ def checkout_success(request, order_number):
             if str(cat) == 'nutrition_plan':
                 user_has_plan = True
                 profile = UserProfile.objects.get(user=request.user)
-                
                 form_database_sub = {
                     'has_plan': user_has_plan,
                 }

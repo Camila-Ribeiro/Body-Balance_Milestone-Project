@@ -7,4 +7,3 @@ urlpatterns = [
     path('edit_subscription_admin/<int:plan_id>',
          views.edit_subscription_admin, name='edit_subscription_admin'),
 ]
-
