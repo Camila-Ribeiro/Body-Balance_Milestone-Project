@@ -17,10 +17,8 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="container">
-
         <div class="row mt-5">
             <div class="col-12 col-lg-6 order-lg-last mb-5">
-
                 <button class="add-to-cart mb-2 collapse-summary" type="button" data-toggle="collapse" data-target="#summary-order" aria-expanded="false" aria-controls="summary-order">
                     Check Summary Order
                 </button>
@@ -55,7 +53,6 @@
                             </div>
                         </div>
                     {% endfor %}
-                
                     <div class="row text-black text-right">
                         <div class="col-7 offset-2">
                             <p class="my-0">Subtotal:</p>
@@ -81,12 +78,10 @@
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                     {% csrf_token %}
                     <fieldset class="rounded px-3 mb-3">
-                        <!-- <legend class="fieldset-label small text-black px-2 w-auto">Details</legend> -->
                         {{ order_form.full_name | as_crispy_field }}
                         {{ order_form.email | as_crispy_field }}
                     </fieldset>
                     <fieldset class="rounded px-3 mb-5">
-                        <!-- <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend> -->
                         {{ order_form.phone_number | as_crispy_field }}
                         {{ order_form.street_address1 | as_crispy_field }}
                         {{ order_form.street_address2 | as_crispy_field }}
