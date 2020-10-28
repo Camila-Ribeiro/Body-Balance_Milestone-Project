@@ -81,7 +81,7 @@ hr {
     opacity:0;
 }
 
- /* ---- Code From ckz8780 /boutique_ado_v1 -------*/
+ /* -- Code From ckz8780 /boutique_ado_v1 -- */
 .overlay {
 	height: 100%;
 	width: 100%;
@@ -101,7 +101,7 @@ hr {
     
 }
 
-/* ------------------------- navigation and footer*/
+/* ------------------------------------------ navigation and footer*/
 nav {
     -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
@@ -145,10 +145,6 @@ a.green-hover:hover {
     background-color: #6c757d;
 }
 
-/* .align-text-center{
-    text-align: center;
-} */
-
 footer {
     background-color: #6c757d;
     position: relative;
@@ -161,7 +157,7 @@ footer {
     /* margin-top: 98px; */
 }
 
-/* ---------------------------------- base.html */
+/* ------------------------------------------ base.html */
 .message-container {
     position: fixed;
     top: 72px;
@@ -413,13 +409,8 @@ footer {
     font-size: 1rem;
 }
 
-/* .btn-style {
-    background-color:#3eb33f;
-    color: black;
-} */
-
- /* https://codepen.io/phoenixzqy/pen/oLLVGq  */
- .btn-backToTop {
+/* https://codepen.io/phoenixzqy/pen/oLLVGq  */
+.btn-backToTop {
     transition: all 0.5s ease;
     display: none;
     position: fixed;
@@ -445,10 +436,6 @@ footer {
     transition: all 0.5s ease;
     color: #aade56;
 }
-
-/* #container {
-height: 900px;
-} */
 
 /* ---------------------------------- Shop Bag */
 .custom-box{
@@ -503,16 +490,6 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
-/* @media (max-width: 991px) {
-    .shop-bag.add-to-cart,.shop-bag-back {
-        display: flex;
-        justify-content: center;
-    }
-    .xs-text-center {
-        text-align: center !important;
-    }
-} */
-
 /* ---------------------------------- checkout */
 .header-checkout {
     margin-top: 50px;
@@ -566,10 +543,6 @@ input[name='q']::placeholder {
 }
 
 /* ---------------------------------- Allauth form formatting */
-/* #div_id_remember {
-    float: left;
-} */
-
 .allauth-form-inner-content {
     background-color: #FFF;
     padding: 20px 40px;
@@ -703,29 +676,19 @@ input[name='q']::placeholder {
     border-style: solid;
     border-radius: 10px;
     background: #36a037;
-    color: #FFF;
+    color: #fff;
 }
 
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 80%;
-  }
+@media (min-width:1200px) {
+    .container {
+        max-width: 80%;
+    }
 }
 
-
-@media (min-width: 992px) {
-    /* fixed top navbar only on medium and up */
-    /* .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    } */
-
+@media (min-width:992px) {
     .header-container {
         padding-top: 125px;
     }
@@ -747,9 +710,7 @@ input[name='q']::placeholder {
     }
 }
 
-/* pad the top a bit when navbar is collapsed on mobile */
-@media (max-width: 991px) {
-
+@media (max-width:991px) {
     .header-container {
         padding-top: 70px;
     }
@@ -776,7 +737,7 @@ input[name='q']::placeholder {
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
     .mob-margin {
         margin-top: 50px;
     }
