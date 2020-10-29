@@ -56,6 +56,7 @@ def bag_products(request):
         elif get_cat == 'nutrition_plan' and product_in_bag:
             delivery_fee = (total_items - get_plan_total) * Decimal(settings.DELIVERY_PERCENTAGE / 100)
             free_delivery_delta = 0
+            # print(delivery_fee)
         else:
             if get_plan_total:
                 delivery_fee = (total_items - get_plan_total)\
