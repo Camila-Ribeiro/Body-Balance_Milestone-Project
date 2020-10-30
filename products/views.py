@@ -18,7 +18,7 @@ def check_user(request):
         has_plan = profile.has_plan
         return has_plan
     else:
-        return ('AnonymousUser')
+        return 'AnonymousUser'
 
 
 def shop_all_products(request):
