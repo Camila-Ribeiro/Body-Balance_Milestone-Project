@@ -440,6 +440,7 @@ footer {
 /* ---------------------------------- Shop Bag */
 .custom-box{
     background-color: #3eb33f;
+    color: #fff;
 }
 .custom-box h4{
     color: #FFF;
@@ -773,6 +774,10 @@ input[name='q']::placeholder {
     /* user profile */
     .nav-user a.nav-link {
         text-align: center;
+    }
+
+    .side-nav-profile {
+        padding-right: 0px;
     }
 
     /* products */

@@ -69,11 +69,19 @@
                     </div>
                     <div class="col-md-9">
                         <div class="row">
-                            <div class="col-6 col-md-3 order-md-first">
+                            <div class="col-xs-12 col-md-3 order-md-first">
                                 {% if search_term %}
-                                <p class="text-muted mt-3 text-center text-md-left">
-                                    {{ products|length }} products found for <strong>"{{ search_term }}"</strong>
-                                </p>
+                                    {% if has_plan %}
+                                        {% if search_term == 'plan' or search_term == 'nutrition' or search_term == 'nutrition plan' %}
+                                            <p class="text-muted mt-3 text-center text-md-left">
+                                                No products found for <strong>"{{ search_term }}"</strong>
+                                            </p>
+                                        {% else %}
+                                            <p class="text-muted mt-3 text-center text-md-left">
+                                                {{ products|length }} products found for <strong>"{{ search_term }}"</strong>
+                                            </p>
+                                        {% endif %}
+                                    {% endif %}
                                 {% endif %}
                             </div>
                             <div class="col-md-3 offset-md-6">
