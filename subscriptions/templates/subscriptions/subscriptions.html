@@ -29,7 +29,6 @@
               <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top img-fluid" alt="{{ plan.plan_duration }}" />
           {% endif %}
       
-
           <div class="subscription mb-5">
             <h4 class="mt-5">{{ plan.plan_duration }}</h4>
             <p class="mt-4 mb-5">{{ plan.description}}</p>
@@ -47,8 +46,8 @@
                   <a class="btn btn-secondary" href="{% url 'edit_subscription_admin' plan.id %}">Edit</a>
               </div>
             {% endif %}
-            
           </div>
         {% endfor %}
+    </section>
   </section>
 {% endblock %}
