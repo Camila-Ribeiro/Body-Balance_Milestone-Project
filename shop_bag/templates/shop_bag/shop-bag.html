@@ -15,11 +15,11 @@
 <div class="container margin-section mb-2">
     
     {% if free_delivery_delta == 0 %}
-        
+        <div class="d-none"></div>
     {% else %}
         <div class="row custom-box text-center">
             <div class="col my-3 mx-3">
-                <h4>Free delivery on orders over €{{ free_delivery }}!</h4>                
+                <h4 class="mt-2">Free delivery on orders over €{{ free_delivery }}!</h4>                
             </div>            
         </div>
     {% endif %}
@@ -29,7 +29,6 @@
             <h2 class="text-center mt-2 mb-4">Shopping Bag</h2>
         </div>
     </div>
-
     <div class="row">
         <div class="col">
             {% if bag_items %}
@@ -40,13 +39,11 @@
                                 <th>Product</th>
                                 <th>Details</th>
                                 <th>Price</th>
-                                <th width="10%" class="text-center">Quantity</th>
+                                <th class="text-center">Quantity</th>
                                 <th class="text-right d-none d-sm-block">Total</th>
                             </tr>
                         </thead>
-                        <hr>
-                    
-                        <div class="row ">
+                        <div class="row">
                             {% for product_item in bag_items %} 
                                 <tr class="border border-right-0 border-left-0">
                                     <td class="py-2 w-25 mt-2 mb-2">
@@ -100,7 +97,6 @@
                                         </form>
                                         <button class="update-link add-to-cart btn-sm m-2">UPDATE</button>
                                     </td>
-                                   
                                     {% if product_item.product.category == 'nutrition_plan' %} 
                                         <td class="text-right py-2 d-none d-sm-block">
                                             <p class="my-0">€{{ product_item.product.price }}</p>
@@ -110,18 +106,16 @@
                                             <p class="my-0">€{{ product_item.product.price | calc_productXquantity:product_item.product_quantity }}</p>
                                         </td>
                                     {% endif %}
-                                    
                                 </tr>
                             {% endfor %}
                         </div> 
                     </table>
-                        <div class="mt-5 mb-3 container">
-                            <div class="text-right xs-text-center">
-                                <h5>Subtotal €{{ total_items|floatformat:2 }}</h5>
-                                <p>Shipping calculated at checkout</p>
+                    <div class="mt-5 mb-3 container">
+                        <div class="text-right xs-text-center">
+                            <h5>Subtotal €{{ total_items|floatformat:2 }}</h5>
+                            <p>Shipping calculated at checkout</p>
                         </div>
-                        <div class="row mt-5 mb-5 flex-row-reverse">      
-                            
+                        <div class="row mt-5 mb-5 flex-row-reverse">
                             <div class="col-xs-12 col-md-6 text-right order-xs-1">
                                 <a href="{% url 'checkout' %}" class="shop-bag add-to-cart mb-3 w-100">
                                     <span class="text-uppercase"> Checkout</span>&nbsp;<i class="fas fa-lock"></i>
@@ -134,10 +128,9 @@
                                     </span>
                                     <span class="text-uppercase">&nbsp; Back to Shopping</span>
                                 </a>
-                            </div>  
-                             
+                            </div>
                         </div>
-                </div>
+                    </div>
             {% else %}
                 <p class="lead mb-5">Your bag is empty.</p>
                 <a href="{% url 'shop_products' %}" class="btn mt-5">
@@ -146,10 +139,8 @@
                     </span>
                     <span class="text-uppercase">Back to Shopping</span>
                 </a>
-            {% endif %}
-            
+            {% endif %} 
         </div>
-     
     </div>
 </div>
 {% endblock %}

@@ -40,6 +40,7 @@ def bag_products(request):
     if total_items < settings.FREE_DELIVERY:
         delivery_fee = total_items * Decimal(settings.DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY - total_items
+    else:
         delivery_fee = 0
         free_delivery_delta = 0
 
