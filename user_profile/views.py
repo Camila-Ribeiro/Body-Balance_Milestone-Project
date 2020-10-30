@@ -1,15 +1,12 @@
+from decimal import Decimal
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from decimal import Decimal
 
 from nutrition.views import nutrition
 from checkout.models import ProductOrder
 from .models import UserProfile
 from .forms import UserProfileForm
-from django.conf import settings
-from products.models import Product
-
 
 
 @login_required
