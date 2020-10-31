@@ -29,3 +29,6 @@ urlpatterns = [
     path('nutrition/', include('nutrition.urls')),
     path('subscriptions/', include('subscriptions.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = 'body_balance.views.handler404'
