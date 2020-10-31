@@ -61,7 +61,7 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 ---
  
 ## Project overview
-Body Balance was built using [Python](https://www.python.org/) - programming language, [Django](https://docs.djangoproject.com/en/3.1/) - which is a high-level Python Web framework that encourages rapid development and clean, pragmatic design and [Hekoru Postgres](https://https://www.heroku.com/postgres) - a document-based database.
+Body Balance was built using [Python](https://www.python.org/) - programming language, [Django](https://docs.djangoproject.com/en/3.1/) - which is a high-level Python Web framework that encourages rapid development and clean, pragmatic design and [Hekoru Postgres](https://www.heroku.com/postgres) - a document-based database.
  
  
 ## UX
@@ -70,44 +70,44 @@ Body Balance is an online web application designed for users with interest in ga
 
 
 - The anonymous user (users that are not signed in) can:
- - Navigate through the website and see Nutrition and Products page.
- - Search for products
- - Purchase products and nutrition plan
- - Register an account
+  - Navigate through the website and see Nutrition and Products page.
+  - Search for products
+  - Purchase products and nutrition plan
+  - Register an account
 
 
 - The user can:
- - Register an account
- - Log in into their account
- - Search for products
- - Purchase products and nutrition plan
- - If registered already, user can log in into their account and:
-    - Access "My profile" page
-    - Access Order history
-    - Access weekly nutritional plan
+  - Register an account
+  - Log in into their account
+  - Search for products
+  - Purchase products and nutrition plan
+  - If registered already, user can log in into their account and:
+     - Access "My profile" page
+     - Access Order history
+     - Access weekly nutritional plan
 
 
 - The site owner/administrator (superuser) can:
- - Log in into their account
- - Search for products
- - Purchase products and nutrition plan
- - Access "Product Management" page
- - Access "Nutrition Menu Management" page
- - Access "Plan Management" page
- - Access "My profile" page
- - Access Order history
- - Access weekly nutrition plan menu
- - Add, edit and delete product and all it's specifications
- - Edit nutrition plan menu
- - Edit nutrition plan  
- - Access the Django Admin page through `https://body-balance-ms4.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
-    - Access Accounts
-    - Access Authentication and Authorization
-    - Access a list of Product Orders
-    - Edit nutrition plan menu
-    - Add, edit and delete product and all it's specifications, including category
-    - Edit nutrition plan 
-    - Access a list of user profiles
+  - Log in into their account
+  - Search for products
+  - Purchase products and nutrition plan
+  - Access "Product Management" page
+  - Access "Nutrition Menu Management" page
+  - Access "Plan Management" page
+  - Access "My profile" page
+  - Access Order history
+  - Access weekly nutrition plan menu
+  - Add, edit and delete product and all it's specifications
+  - Edit nutrition plan menu
+  - Edit nutrition plan  
+  - Access the Django Admin page through `https://body-balance-ms4.herokuapp.com/admin` and using superuser's authorization as `username` or `email address` and `password`:
+     - Access Accounts
+     - Access Authentication and Authorization
+     - Access a list of Product Orders
+     - Edit nutrition plan menu
+     - Add, edit and delete product and all it's specifications, including category
+     - Edit nutrition plan 
+     - Access a list of user profiles
     
     
     
@@ -182,7 +182,7 @@ My wireframes for this project can be found in the UX folder.
      - Check their Product Order history
      - Users who purchased the Nutrition Plan can access to their weekly Nutritional Plan Menu.
   - Anonymous don't have access to this page.
-  - Sign Out - this page displays a question "Are you sure you want to sign out?"and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
+  - Sign Out - this page displays a question "Are you sure you want to sign out?" and two buttons: "Cancel and Sign out". Both buttons redirects the user back to index page.
   - Superusers can also see:
      - Product Management - this page is designed only for superusers. It allows them to add products. 
      - Nutrition Menu Management - this page is designed only for superusers. It allows them to edit nutrition menu.
@@ -202,9 +202,12 @@ My wireframes for this project can be found in the UX folder.
  
 
 ### Features Left to Implement
-- Add and expiry date for the Nutrition Plan as at the moment the only way to stop the user to have access to the plan is when the Admin reset the user has_plan to NO.
+- Add Nutrition Plan as a montly subscription plan and creat a separe Stripe payment. 
+- Add expiry date for the Nutrition Plan as at the moment the only way to stop the user to have access to the plan is when the Admin reset the user has_plan to NO.
 - Add additional Nutrition Plan types as at the moment the Admin is able to Edit the only existent Plan.
 - Add additional Nutrition Plan Menu as at the moment the Admin is able add 7/day menus at a time instead the fully month.
+- Remove Nutrition Plan delivery charge and apply only to the remaining products.
+
 
 ##### back to [top](#table-of-contents)
  
@@ -277,60 +280,47 @@ The User model utilized for this project is the standard one provided by `django
 8. ![Django Storages](https://img.shields.io/badge/django--storages-%20-green)
  - [Django Storages](https://django-storages.readthedocs.io/en/latest/) -  is a collection of custom storage backends for Django to work with boto3 and AWS S3.
 
-9. ![Flask](https://img.shields.io/badge/Flask-Version%201.1.2-orange)
- - [Flask](https://flask.palletsprojects.com/en/1.1.x/) - is a web framework, it provides you with tools, libraries and technologies that allow you to build a web application.
-
-10. ![Flask-Bcrypt](https://img.shields.io/badge/Flask--Bcrypt-0.7.1-orange)
- - [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/latest/) - is a Flask extension that provides bcrypt hashing utilities for your application.
-
-11. ![Flask PyMongo](https://img.shields.io/badge/Flask--PyMongo-2.3.0-blue)
- - [Flask PyMongo](https://flask-pymongo.readthedocs.io/en/latest/) - Bridges between Flask and PyMongo.
-
-
-13. ![Flask WTF](https://img.shields.io/badge/Flask--WTF-0.14.3-blue)
- - [Flask WTF](https://flask-wtf.readthedocs.io/en/stable/) - Simple integration of Flask and WTForms, including CSRF, file upload, and reCAPTCHA.
-
-14. ![Git](https://img.shields.io/badge/Git-----fast--version--control-orange)
+9. ![Git](https://img.shields.io/badge/Git-----fast--version--control-orange)
  - [Git](https://git-scm.com/) - open source distributed version control system.
 
-15. ![GitHub](https://img.shields.io/badge/GitHub-Git%20repository%20hosting%20service-lightgrey)
+10. ![GitHub](https://img.shields.io/badge/GitHub-Git%20repository%20hosting%20service-lightgrey)
  - [GitHub](https://github.com/) - is a Web-based hosting service for version control using Git.
 
-16. ![GitIgnore](https://img.shields.io/badge/GitIgnore-files-royalblue)
+11. ![GitIgnore](https://img.shields.io/badge/GitIgnore-files-royalblue)
  - [GitIgnore](https://github.com/toptal/gitignore.io) - is a web service designed to help you create .gitignore files for your Git repositories.
 
-17. ![gunicorn](https://img.shields.io/badge/gunicorn-20.0.4-blue)
+12. ![gunicorn](https://img.shields.io/badge/gunicorn-20.0.4-blue)
  - [gunicorn](https://pypi.org/project/gunicorn/) - is a Python WSGI HTTP Server for UNIX. It’s a pre-fork worker model ported from Ruby’s Unicorn project. The Gunicorn server is broadly compatible with various web frameworks, simply implemented, light on server resource usage, and fairly speedy.
 
-18. ![Heroku](https://img.shields.io/badge/Heroku-Deployment-blueviolet)
+13. ![Heroku](https://img.shields.io/badge/Heroku-Deployment-blueviolet)
  - [Heroku](https://dashboard.heroku.com/) - lets you deploy, run and manage applications written in Ruby, Node.js, Java, Python, Clojure, Scala, Go and PHP.
 
-19. ![HTML5](https://img.shields.io/static/v1?label=HTML&message=5&color=E34F26&logo=html5&logoColor=ffffff)
+14. ![HTML5](https://img.shields.io/static/v1?label=HTML&message=5&color=E34F26&logo=html5&logoColor=ffffff)
  - [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) - used as the base for markup text.
 
-20. ![JavaScript](https://img.shields.io/badge/javaScript--yellow)
+15. ![JavaScript](https://img.shields.io/badge/javaScript--yellow)
  - [JavaScript](https://www.javascript.com/) -  is a scripting or programming language that allows you to implement complex features on web pages.
 
-21. ![jQuery](https://img.shields.io/badge/jQuery-3.5.1-yellowgreen)
+16. ![jQuery](https://img.shields.io/badge/jQuery-3.5.1-yellowgreen)
  - [jQuery](https://jquery.com/) - is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
 
-22. ![Jinja](https://img.shields.io/badge/Jinja2-2.11.2-red)
+17. ![Jinja](https://img.shields.io/badge/Jinja2-2.11.2-red)
  - [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) - a full featured template engine for Python.
 
-23. ![Pillow](https://img.shields.io/badge/pillow--blue)
+18. ![Pillow](https://img.shields.io/badge/pillow--blue)
  - [Pillow](https://pillow.readthedocs.io/en/stable/) -  is the friendly PIL fork by Alex Clark and Contributors. PIL is the Python Imaging Library by Fredrik Lundh and Contributors.
 
-24. ![PIP](https://img.shields.io/badge/pip-3-blue)
+19. ![PIP](https://img.shields.io/badge/pip-3-blue)
  - [PIP](https://pip.pypa.io/en/stable/installing/) - is the standard package manager for Python. It allows you to install and manage additional packages that are not part of the Python standard library.
 
-25. ![Phyton](https://img.shields.io/badge/Python-3.8.3-blue)
+20. ![Phyton](https://img.shields.io/badge/Python-3.8.3-blue)
  - [Python](https://www.python.org/downloads/release/python-383/) - is a scripting language.
 
 
-27. ![Werkzeug](https://img.shields.io/badge/Werkzeug-WSGI%20-yellow)
+21. ![Werkzeug](https://img.shields.io/badge/Werkzeug-WSGI%20-yellow)
  - [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/) - is a WSGI utility library for Python.
 
-28. ![WTforms](https://img.shields.io/badge/WTforms-2.3.1-blue)
+22. ![WTforms](https://img.shields.io/badge/WTforms-2.3.1-blue)
  - [WTforms](https://pypi.org/project/WTForms/) - is  a framework agnostic library handling web forms in python.
 
 
@@ -366,8 +356,8 @@ The SQLite file format is stable, cross-platform, and backwards compatible and t
  
 ## Testing
  
-The project guidelines stated that a Test Driven Development (TDD) approach should be taken to developing the web application but I only manual testing was conducted during this project to fix bugs I used print() method. Below I outlined most of what I did below for documentation purposes.
-I also have validated all files using online validation sites cited below and checked across different browsers and devices.
+The project guidelines stated that a Test Driven Development (TDD) approach should be taken to developing the web application but I only manual testing was conducted during this project to fix bugs I used print() method. I utlined most of what I did below for documentation purposes.
+I also have validated all files using online validation sites and checked across different browsers and devices.
  
  
 ### Validators
@@ -382,7 +372,7 @@ I also have validated all files using online validation sites cited below and ch
  
 #### PYTHON
  
-- [Pep8 Online tool](http://pep8online.com/checkresult) - `All right` for all python files except for few long lines as I left for better reading purpose.
+- [Pep8 Online tool](http://pep8online.com/) - `All right` for all python files except for few long lines as I left for better reading purpose.
  
 #### JavaScript
  - [JShint](https://jshint.com/)
@@ -393,7 +383,6 @@ I also have validated all files using online validation sites cited below and ch
            - Largest function has 10 statements in it, while the median is 5.
            - The most complex function has a cyclomatic complexity value of 3 while the median is 1.
  
- - [JShint](https://jshint.com/)
   - File: [jquery.star-rating-svg.js](products/static/products/js/jquery.star-rating-svg.js)
        - Metrics:
            - There are 29 functions in this file.
@@ -401,7 +390,6 @@ I also have validated all files using online validation sites cited below and ch
            - Largest function has 16 statements in it, while the median is 4.
            - The most complex function has a cyclomatic complexity value of 13 while the median is 2.
 
-- [JShint](https://jshint.com/)
   - File: [country_field.js](user_profile/static/user_profile/js/country_field.js)
        - Metrics:
           - There is only one function in this file.
