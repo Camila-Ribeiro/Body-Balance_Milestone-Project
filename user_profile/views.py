@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from nutrition.views import nutrition
+from products.views import check_user
 from checkout.models import ProductOrder
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -28,33 +29,22 @@ def profile(request):
 
     # call nutrition func from nutrition.views
     nutrition(request)
+    has_plan = check_user(request)
 
     template = 'user_profile/user-profile.html'
 
     context = {
         'form': form,
         'orders': orders,
+        'has_plan': has_plan,
         'on_user_profile_page': True
     }
 
     return render(request, template, context)
 
 
-def nutrition_delivery():
-    """Convert value to Decimal keeping the given number of digits after the
-    leading number."""
-
-    subtract_delivery = 2.99
-    get_float = float(subtract_delivery)
-    convert_to_decimal = Decimal(get_float).quantize(Decimal('1.00'))
-    return convert_to_decimal
-
-
 def product_order_history(request, order_number):
     order = get_object_or_404(ProductOrder, order_number=order_number)
-    profile = get_object_or_404(UserProfile, user=request.user)
-    products_order = profile.orders.all()
-    nut_delivery = nutrition_delivery()
 
     messages.info(request, (
         f'This is a past confirmation for order number {order_number}. '
@@ -64,8 +54,6 @@ def product_order_history(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
-        'products_order': products_order,
-        'nut_delivery': nut_delivery,
         'from_user_profile': True,
     }
 

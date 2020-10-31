@@ -29,14 +29,9 @@
             <div class="col-md-3 side-nav-profile nav flex-column nav-pills nav-user" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">My Details</a>
                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Order History</a>
-             
-                {% for order in orders %}
-                    {% for o in order.lineorders.all %}
-                        {% if o.product.category.category_name == 'nutrition_plan' %}
-                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Nutrition Plan</a>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
+                {% if has_plan  %}
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Nutrition Plan</a>
+                {% endif %}
 
                 {% if request.user.is_superuser %}
                     <a class="nav-link" href="{% url 'add_product_admin' %}">Product Management</a>
@@ -99,45 +94,46 @@
                         </table>
                     </div>
                 </div>
-                {% for order in orders %}
-                    {% for o in order.lineorders.all %}
-                        {% if o.product.category.category_name == 'nutrition_plan' %}
-                            <div class="col-md-12 tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                <p class="text-muted lead">Nutrition Plan</p>
-                                <div class="subscription-order table-responsive">
-                                    <table class="table table-sm table-borderless">
-                                        <thead>
-                                            <tr>
-                                                <th>Order Number</th>
-                                                <th>Date</th>
-                                                <th>Plan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            
+                {% if has_plan %}
+                    {% for order in orders %}
+                        {% for o in order.lineorders.all %}
+                            {% if o.product.category.category_name == 'nutrition_plan' %}
+                                <div class="col-md-12 tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                    <p class="text-muted lead">Nutrition Plan</p>
+                                    <div class="subscription-order table-responsive">
+                                        <table class="table table-sm table-borderless">
+                                            <thead>
                                                 <tr>
-                                                    <td>
-                                                        <a href="{% url 'product_order_history' order.order_number %}"
-                                                        title="{{ order.order_number }}">
-                                                            {{ order.order_number|truncatechars:15 }}
-                                                        </a>
-                                                    </td>
-                                                    <td class="small">{{ order.date }} </td>
-                                                    <td>Nutrition</td>
+                                                    <th>Order Number</th>
+                                                    <th>Date</th>
+                                                    <th>Plan</th>
                                                 </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                    <div class="mx-auto text-center mt-5 border border-success p-3">
-                                        <p class="lead">Please check here your Nutrition Plan</p>
-                                        <a class=" btn btn-secondary" href="{% url 'nutrition' %}">SEE YOUR PLAN</a>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                    <tr>
+                                                        <td>
+                                                            <a href="{% url 'product_order_history' order.order_number %}"
+                                                            title="{{ order.order_number }}">
+                                                                {{ order.order_number|truncatechars:15 }}
+                                                            </a>
+                                                        </td>
+                                                        <td class="small">{{ order.date }} </td>
+                                                        <td>Nutrition</td>
+                                                    </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                        <div class="mx-auto text-center mt-5 border border-success p-3">
+                                            <p class="lead">Please check here your Nutrition Plan</p>
+                                            <a class=" btn btn-secondary" href="{% url 'nutrition' %}">SEE YOUR PLAN</a>
+                                        </div> 
                                     </div>
-                                    
                                 </div>
-                            </div>
-                        {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
+                {% endif %}
             </div>
         </div>
         
