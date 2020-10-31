@@ -32,3 +32,4 @@ urlpatterns = [
 
 
 handler404 = 'body_balance.views.handler404'
+handler500 = 'body_balance.views.handler500'
