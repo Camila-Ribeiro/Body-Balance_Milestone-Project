@@ -63,11 +63,6 @@ hr {
 }
 
 .add-to-cart:hover {
-    /* padding: 0.5em 1em 0.5em 1em;
-    border-radius: 100px;
-    border: none;
-    cursor: pointer; */
-    /* width: 10em; */
     background: #aade56;
     color: white;
 }
@@ -150,11 +145,8 @@ footer {
     position: relative;
     width: 100%;
     text-align: center;
-    /* padding: 10px; */
-    /* margin-top: 60px; */
     clear: both;
     height: 30px;
-    /* margin-top: 98px; */
 }
 
 /* ------------------------------------------ base.html */

@@ -156,14 +156,13 @@
     <!-- https://codepen.io/phoenixzqy/pen/oLLVGq -->
     <!-- backToTop Button -->
         <div id="btn-backToTop"></div>
-      </div> 
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
     
 <!-- backToTop Button -->
-<script type="text/javascript">
+<script>
     jQuery(document).ready(function(){
 
         //   insert back to top button dynamicly
@@ -189,7 +188,7 @@
 </script>
 
 <!-- backToTop Button -->
-<script type="text/javascript">
+<script>
     $('#sortby').change(function() {
         var sortby_selector = $(this);
         var current_page = new URL(window.location);
