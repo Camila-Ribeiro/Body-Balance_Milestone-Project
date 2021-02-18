@@ -33,26 +33,27 @@ Body Balance is a Milestone Project created for the "Full Stack Frameworks With 
 5. [**Technologies Used**](#technologies-used)
     - [**Libraries**](#libraries)
 
- 
-6. [**Databases Used**](#databases-used)
+6. [**API Used**](#api-used) 
    - [**Stripe API**](#stripe-api)
+
+7. [**Databases Used**](#databases-used)
    - [**PostgresSQL**](#sostgressql)
    - [**SQlite3**](#sqlite3)
  
 
-7. [**Testing**](#testing)
+8. [**Testing**](#testing)
   - [**Validators**](#validators)
   - [**Manual Testing**](#manual-testing)
 
  
-8. [**Deployment**](#deployment)
+9. [**Deployment**](#deployment)
   - [**Deploying to Heroku**](#deploying-to-heroku)
   - [**Local development**](#local-development)
   - [**Amazon Web Services(AWS) - S3**](#amazon-web-services(aws)-s3)
       - [**Media And Static Folders**](#media-and-static-folders)
       
 
-9. [**Credits**](#credits)
+10. [**Credits**](#credits)
   - [**Content**](#content)
   - [**Media**](#media)
   - [**Acknowledgements**](#acknowledgements)
@@ -334,11 +335,14 @@ The User model utilized for this project is the standard one provided by `django
 ##### back to [top](#table-of-contents)
  
 ---
-## Databases Used
+## API Used
 
 ### Stripe API
 [Stripe API](https://stripe.com/en-ie) is a payment processor, which means they support the electronic transfer of money from a customer's bank (issuing bank) into a merchant's bank (acquiring bank) as payment for goods or services bought with a credit card.
- 
+##### back to [top](#table-of-contents)
+
+## Databases Used
+
 ### PostgresSQL
 [PostgresSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads.
  

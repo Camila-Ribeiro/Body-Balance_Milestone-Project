@@ -1,9 +1,10 @@
 {
-    "python.pythonPath": "/usr/local/bin/python",
+    "python.pythonPath": "/Users/camila/Desktop/Projects/Body-Balance_Milestone-Project_newDB/venv/bin/python3",
     "python.linting.pycodestyleEnabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
         "--load-plugins=pylint_django",
         // "--errors-only"
     ],
+    "git.ignoreLimitWarning": true,
 }
